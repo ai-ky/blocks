@@ -119,6 +119,6 @@ Blockly.Python['scratchclient_on_set'] = function(block) {
   // TODO: Assemble Python into code variable.
   statements_content=statements_content.replace('variable_name', 'variable.name');
   statements_content=statements_content.replace('variable_value', 'variable.value');
-  var code = "@connection.on(\"set\")\ndef on_set(variable):\n"+statements_content+"123456";
+  var code = "@connection.on(\"set\")\ndef on_set(variable):\n"+statements_content;
   return code;
 };
