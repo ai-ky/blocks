@@ -270,3 +270,22 @@ Blockly.Python['python_f_readlines'] = function(block) {
   var code = 'f.readlines()';
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
+//============================================
+Blockly.Blocks['python_mark1'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("#");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['python_mark1'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = '#'+value_name+'\n';
+  return code;
+};
