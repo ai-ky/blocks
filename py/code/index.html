@@ -83,9 +83,46 @@
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 	<category name="鍵鼠外掛工具" colour="#5ba55b">
 	    <block type="import_pyautogui"></block>
-	    <block type="pyautogui_click"></block>
-	    <block type="pyautogui_press"></block>
-	    <block type="pyautogui_moveto"></block>
+	    <block type="pyautogui_click">
+			<value name="NAME1"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+		</block>
+	    <block type="pyautogui_press">
+			<value name="NAME1">
+				<shadow type="text"><field name="TEXT">up</field></shadow>
+			</value>
+		</block>
+	    <block type="pyautogui_moveto">
+			<value name="NAME1"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME3"><shadow type="math_number">
+			<field name="NUM">0.3</field></shadow>
+			</value>
+		</block>
+		<block type="pyautogui_locatecenteronscreen">
+			<value name="NAME1">
+				<shadow type="text">
+				<field name="TEXT">1.png</field></shadow>
+			</value>
+		</block>
+		<block type="pyautogui_getpixel">
+			<value name="NAME1"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+		</block>
+		<block type="pyautogui_mousedown"></block>
+		<block type="pyautogui_mouseup"></block>
 	</category>
 	<category name="colab工具" colour="#a56b5d">
 	    <block type="googlecolab_import_colabcam"></block>
