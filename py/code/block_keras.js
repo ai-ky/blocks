@@ -60,7 +60,7 @@ Blockly.Blocks['keras_predict'] = {
 Blockly.Python['keras_predict'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
-  var code = value_name1+'.predict('+value_name2+')\n';
+  var code = value_name1+'.predict('+value_name2+')';
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 //===============================
