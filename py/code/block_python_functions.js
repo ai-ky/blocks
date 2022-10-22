@@ -14,7 +14,6 @@ Blockly.Blocks['python_int'] = {
  this.setHelpUrl("");
   }
 };
-
 Blockly.Python['python_int'] = function(block) {
   var value_python_int_v = Blockly.Python.valueToCode(block, 'python_int_V', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
