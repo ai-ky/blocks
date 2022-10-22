@@ -18,7 +18,6 @@ Blockly.Python['opencv_import'] = function(block) {
   var code = "import cv2\n";
   return code;
 };
-
 //=======================================================
 Blockly.Blocks['cv2_create_knn'] = {
   init: function() {
