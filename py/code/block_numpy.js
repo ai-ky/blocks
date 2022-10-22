@@ -584,3 +584,4 @@ Blockly.Python['empty_list'] = function(block) {
   var code = '[]';
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
+//======================================
