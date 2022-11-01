@@ -14,7 +14,7 @@ Blockly.Blocks['from_sklearn_import_kmeans'] = {
 };
 Blockly.Python['from_sklearn_import_kmeans'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'from_sklearn_import_kmeans\n';
+  var code = 'from sklearn.cluster import KMeans\n';
   return code;
 };
 
