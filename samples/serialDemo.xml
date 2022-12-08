@@ -1,0 +1,192 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="L1Nir6jjaHJ(,@Ml!GB}">serialPort</variable>
+    <variable id="t.[W;qWJG7mFXefs@3xN">i</variable>
+    <variable id="5mR5mac;J#tm8Egh^{;O">line</variable>
+    <variable id=",Bh-KYt^~iC169fUjGz;">apdu</variable>
+  </variables>
+  <block type="import_serial" id="l%|.vT2dG_(aDB`f=5Ey" x="237" y="138">
+    <next>
+      <block type="serial_create" id="2D1n7bR#6J*gQr3J$+u-">
+        <value name="NAME1">
+          <block type="variables_get" id="Rf^r:LF@+#Us[%zViQ.T">
+            <field name="VAR" id="L1Nir6jjaHJ(,@Ml!GB}">serialPort</field>
+          </block>
+        </value>
+        <value name="NAME2">
+          <shadow type="text" id="bjRek|:}g^Ih.!Lx0AGE">
+            <field name="TEXT">COM3</field>
+          </shadow>
+        </value>
+        <value name="NAME3">
+          <shadow type="math_number" id=";KEXD_p[+o7(zjFGWzp0">
+            <field name="NUM">9600</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="variables_set" id="VjvJF0d!Y3Hs{Ds*Yd%;">
+            <field name="VAR" id="t.[W;qWJG7mFXefs@3xN">i</field>
+            <value name="VALUE">
+              <block type="math_number" id="h}BQaj]Z:=p1CmwC@fcO">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_whileUntil" id="24[,rd~h`aovGyru}j~p">
+                <field name="MODE">WHILE</field>
+                <value name="BOOL">
+                  <block type="logic_boolean" id="tA[hV%!3`YL5d_vraE#]">
+                    <field name="BOOL">TRUE</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="controls_if" id="ZYuhFmBDr.L5Pjy`%UD-">
+                    <value name="IF0">
+                      <block type="logic_compare" id="tUv=EHuVuQ4i;#[z]}XX">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="serialport_in_waiting" id="I_DRj^2;?ww;kAuS*NcD">
+                            <value name="NAME1">
+                              <block type="variables_get" id="CZrrFW]HU^ba:Y$;kGhK">
+                                <field name="VAR" id="L1Nir6jjaHJ(,@Ml!GB}">serialPort</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="59/MNFAFXiAN*D2}_!pU">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="P#az`lxWJ%ZikuL{?2Xh">
+                        <field name="VAR" id="5mR5mac;J#tm8Egh^{;O">line</field>
+                        <value name="VALUE">
+                          <block type="string_strip" id="[JT@Xjdr]4.4#nl}?pjf">
+                            <field name="NAME2"></field>
+                            <value name="NAME1">
+                              <shadow type="text" id="?!)PCGOk-hvdK0o*~YF_">
+                                <field name="TEXT"></field>
+                              </shadow>
+                              <block type="serialport_readline" id="dL/Tpllf3b)4p:iEi.K8">
+                                <value name="NAME1">
+                                  <block type="variables_get" id="8S/5l@i~`Ms$XpHu+xcd">
+                                    <field name="VAR" id="L1Nir6jjaHJ(,@Ml!GB}">serialPort</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_if" id="_~O9%,M)@_PodGJ!DP;N">
+                            <value name="IF0">
+                              <block type="logic_compare" id="@3;fI(1P+Ty(aZTvIcYZ">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                  <block type="variables_get" id="i:fpOKQgWWA(^cqL9F/S">
+                                    <field name="VAR" id="t.[W;qWJG7mFXefs@3xN">i</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="7LX9zQ$I.~NBN~rECeZ-">
+                                    <field name="NUM">20</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="variables_set" id="1s#T0reG!KJk^}ruDW0s">
+                                <field name="VAR" id="t.[W;qWJG7mFXefs@3xN">i</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="7l6k7[J}^tT04%$Sz@-d">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="text_print" id="ntwXJ[Ei}Ls8`%iCBXL*">
+                                    <value name="TEXT">
+                                      <shadow type="text" id="|o|XoZ8_.m#x.:i;XMcu">
+                                        <field name="TEXT">abc</field>
+                                      </shadow>
+                                      <block type="variables_get" id="3{ik{_v$w1},Kfi:b2Ur">
+                                        <field name="VAR" id="5mR5mac;J#tm8Egh^{;O">line</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="Nn#*8wc[w?9uCS6w}ygV">
+                                        <field name="VAR" id=",Bh-KYt^~iC169fUjGz;">apdu</field>
+                                        <value name="VALUE">
+                                          <block type="text_join" id="%N^(~sp]jB[#B`aQ:d~|">
+                                            <mutation items="2"></mutation>
+                                            <value name="ADD0">
+                                              <block type="variables_get" id=".},YM+HIse[]bemhyBWu">
+                                                <field name="VAR" id="5mR5mac;J#tm8Egh^{;O">line</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD1">
+                                              <block type="text" id="OBQIX-[]|U8n$b);jCv-">
+                                                <field name="TEXT">OK</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="serialport_write" id="n_{u3-}_RWE(7]Y9]XZP">
+                                            <value name="NAME1">
+                                              <block type="variables_get" id="n4{3+e1NGsVQAB$*4kmx">
+                                                <field name="VAR" id="L1Nir6jjaHJ(,@Ml!GB}">serialPort</field>
+                                              </block>
+                                            </value>
+                                            <value name="NAME2">
+                                              <block type="variables_get" id="1-vP3gMMMd$axMDLUu3r">
+                                                <field name="VAR" id=",Bh-KYt^~iC169fUjGz;">apdu</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="variables_set" id="zabW4uviqXYf,J?0Wk$3">
+                        <field name="VAR" id="t.[W;qWJG7mFXefs@3xN">i</field>
+                        <value name="VALUE">
+                          <block type="math_arithmetic" id="|gCmUE|st)9x%@`f1pmN">
+                            <field name="OP">ADD</field>
+                            <value name="A">
+                              <shadow type="math_number" id="VQxI[ZIplBYVEO/;OZSa">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="variables_get" id="syNjaL4weMT!4U!cyPcB">
+                                <field name="VAR" id="t.[W;qWJG7mFXefs@3xN">i</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <shadow type="math_number" id="gH$#}R]E?VXcq4j{,1I*">
+                                <field name="NUM">1</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

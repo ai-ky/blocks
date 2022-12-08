@@ -1,0 +1,174 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id=")@y-EJ1@NCe@S.Z1{eM9">ret</variable>
+    <variable id="/05UFuCr[I2TNlF91@hu">img</variable>
+    <variable id="5]0PN;n|wWEEE@jT;!,Y">poseResult</variable>
+    <variable id="fuI57$fTA^ZY1aN.t$-?">poseLandmarks</variable>
+  </variables>
+  <block type="import_mediapipe_as_mp" id="]=q9GCXR3.~h]z(~s|e." x="124" y="76">
+    <next>
+      <block type="opencv_import" id=";?Iyw?Oj6.5VwPrQ}{#6">
+        <next>
+          <block type="cv2_vdeocapture" id="@Th4A}.xH=;oXc3DANp+">
+            <field name="NAME">1</field>
+            <next>
+              <block type="cv2_cap_read" id="[dH)8p.SP9{P5fAN4P-c">
+                <field name="RET_NAME" id=")@y-EJ1@NCe@S.Z1{eM9">ret</field>
+                <field name="IMG_NAME" id="/05UFuCr[I2TNlF91@hu">img</field>
+                <next>
+                  <block type="mp_pose_predefine" id="3H76w12(!s[i3tlvUKlb">
+                    <next>
+                      <block type="with_mp_pose_as_pose" id="NB_Yrql5z^~B~)9u7oui">
+                        <statement name="NAME3">
+                          <block type="controls_whileUntil" id="ec!~t$m][Y/6_1cVF$G;">
+                            <field name="MODE">WHILE</field>
+                            <value name="BOOL">
+                              <block type="logic_boolean" id="dHzeNjH5Jw?Y.MNb+m]Y">
+                                <field name="BOOL">TRUE</field>
+                              </block>
+                            </value>
+                            <statement name="DO">
+                              <block type="img_flags_writeable" id="emaf2|uw_)5W]Oot3?O9">
+                                <field name="NAME1" id="/05UFuCr[I2TNlF91@hu">img</field>
+                                <field name="NAME2">False</field>
+                                <next>
+                                  <block type="cv2_cap_read" id=".DG]VQu$iag^q;SSxd7K">
+                                    <field name="RET_NAME" id=")@y-EJ1@NCe@S.Z1{eM9">ret</field>
+                                    <field name="IMG_NAME" id="/05UFuCr[I2TNlF91@hu">img</field>
+                                    <next>
+                                      <block type="controls_if" id="wUzYLI.d,6OQlrIQ1a:)">
+                                        <value name="IF0">
+                                          <block type="logic_negate" id="@7|tn/^[GDj.q1GPL8}R">
+                                            <value name="BOOL">
+                                              <block type="variables_get" id="b*wS/T[X]]S@W^Y)%s-]">
+                                                <field name="VAR" id=")@y-EJ1@NCe@S.Z1{eM9">ret</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="python_continue" id="^1n)T8h^]#%FGNt!vMwF"></block>
+                                        </statement>
+                                        <next>
+                                          <block type="pose_process" id="Uqbx]^Pntym#-@gO%mYn">
+                                            <field name="NAME1" id="5]0PN;n|wWEEE@jT;!,Y">poseResult</field>
+                                            <value name="NAME">
+                                              <block type="variables_get" id="/)9D;)7,XQ,wkbW`lr4`">
+                                                <field name="VAR" id="/05UFuCr[I2TNlF91@hu">img</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="pose_landmarks" id="JXes?,-OfA}qpsSgZu~p">
+                                                <field name="NAME1" id="fuI57$fTA^ZY1aN.t$-?">poseLandmarks</field>
+                                                <field name="NAME2" id="5]0PN;n|wWEEE@jT;!,Y">poseResult</field>
+                                                <next>
+                                                  <block type="mp_drawing_draw_landmarks" id="2*oUcZL3r[`]npL8K;2!">
+                                                    <field name="NAME2" id="fuI57$fTA^ZY1aN.t$-?">poseLandmarks</field>
+                                                    <value name="NAME1">
+                                                      <block type="variables_get" id="MAiB1F^@A#d]fdY)NAVy">
+                                                        <field name="VAR" id="/05UFuCr[I2TNlF91@hu">img</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="text_print" id="z9MbP{wM4-OY@*-Q%2W;">
+                                                        <value name="TEXT">
+                                                          <shadow type="text" id="/2:3P=95sfuy^W0%+_QQ">
+                                                            <field name="TEXT">abc</field>
+                                                          </shadow>
+                                                          <block type="get_poselandmark" id=".eDrgR~?Rb=-j@liin)B">
+                                                            <field name="NAME1" id="fuI57$fTA^ZY1aN.t$-?">poseLandmarks</field>
+                                                            <field name="NAME">y</field>
+                                                            <value name="NAME2">
+                                                              <shadow type="math_number" id="He=UE`(GZO.s_2(vrIXM">
+                                                                <field name="NUM">16</field>
+                                                              </shadow>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="controls_if" id="g]HM/9_jaP1:Z548i6Q)">
+                                                            <value name="IF0">
+                                                              <block type="logic_compare" id="sV75Kxe[O{}-NL2*F:v3">
+                                                                <field name="OP">EQ</field>
+                                                                <value name="A">
+                                                                  <block type="cv2_waitkey" id="bWlD2+rmL0Nd`$92:aZ=">
+                                                                    <value name="NAME1">
+                                                                      <shadow type="math_number" id="jHtM?o;iY23%iuO.+~d4">
+                                                                        <field name="NUM">50</field>
+                                                                      </shadow>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                  <block type="python_ord" id="+02#mG6w+x{[A^}nkcSz">
+                                                                    <value name="python_ord_V">
+                                                                      <shadow type="text" id="D0V:3wyu%xGYV##y;62%">
+                                                                        <field name="TEXT">q</field>
+                                                                      </shadow>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <statement name="DO0">
+                                                              <block type="controls_flow_statements" id="dE7lGw![%3t|KKRW|(gh">
+                                                                <field name="FLOW">BREAK</field>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="img_flags_writeable" id="nJAVd5;/,p7%q`b[bL1L">
+                                                                <field name="NAME1" id="/05UFuCr[I2TNlF91@hu">img</field>
+                                                                <field name="NAME2">True</field>
+                                                                <next>
+                                                                  <block type="cv2_imshow" id="p$B!/J^!#.!B7Z1#CkOs">
+                                                                    <value name="TITLE">
+                                                                      <shadow type="text" id=".Yu0pl].W14}B@)O4tBH">
+                                                                        <field name="TEXT"></field>
+                                                                      </shadow>
+                                                                    </value>
+                                                                    <value name="IMG">
+                                                                      <block type="variables_get" id="2$Mu^~uJ)FzJGXwYnDY3">
+                                                                        <field name="VAR" id="/05UFuCr[I2TNlF91@hu">img</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="cv2_cap_release" id="-JdK5C~O}RA8v,BzvA7:">
+                            <next>
+                              <block type="cv2_destroyallwindows" id="7:U;h!yv73{-r7N$xSIR"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

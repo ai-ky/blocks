@@ -1,0 +1,112 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="uc$ADY#2]~X,/G~m7Pa}">D8</variable>
+    <variable id="cLG#gx_;8av2;p/4SR=(">D6</variable>
+  </variables>
+  <block type="board_initializes_setup" id="M*BY9QWP~3=_loc(+~hF" x="190" y="90">
+    <field name="BOARD_TYPE">ESP8266</field>
+    <statement name="CONTENT">
+      <block type="serial_init" id="0Hx/G%-t1g{4Zq`kab;n">
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="inout_custom_digital_write" id="gtflMIjQ2M4+{sJOxOob">
+            <value name="PIN">
+              <block type="variables_get" id="uF9$k.^stOAyq$,y/PA~">
+                <field name="VAR" id="uc$ADY#2]~X,/G~m7Pa}">D8</field>
+              </block>
+            </value>
+            <value name="STAT">
+              <block type="inout_highlow" id="$VVDV4C:fQ-?w|kKpi1}">
+                <field name="BOOL">HIGH</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="nKg{ifdgo(@%YJk,rt2a">
+        <statement name="CONTENT">
+          <block type="serial_println" id="_cCBk?NhBI@j)w7/f42)">
+            <value name="CONTENT">
+              <block type="inout_custom_digital_read_pullup" id="Jk[L9dM]2VDyUPHcc/^}">
+                <value name="PIN_READ">
+                  <block type="variables_get" id="%zOE{GNt0G{DPFkY*0mL">
+                    <field name="VAR" id="cLG#gx_;8av2;p/4SR=(">D6</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="ljj_serial_readString" id="bFk9O4SJcWtoI]XdAQui">
+                <field name="SERIAL_PORT">Serial</field>
+                <statement name="STATEMENT">
+                  <block type="controls_if" id="hZJc,7V:~Wi{^2bR%X-)">
+                    <mutation elseif="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="r/D[hFAkG#2@+ZdXo_^^">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="ljj_serial_read_result" id="5HZ;Ei/{rrzZfDR4uR:%"></block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="iFiL/lv3_|Ij3mwKOm~5">
+                            <field name="TEXT">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="inout_custom_digital_write" id="[jL:r5nhT.KwN8[z0!R}">
+                        <value name="PIN">
+                          <block type="variables_get" id="T,muUr+~*DlbdW%H;_Uq">
+                            <field name="VAR" id="uc$ADY#2]~X,/G~m7Pa}">D8</field>
+                          </block>
+                        </value>
+                        <value name="STAT">
+                          <block type="inout_highlow" id="CsvyC*w=fcPu([LPxN+q">
+                            <field name="BOOL">HIGH</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <value name="IF1">
+                      <block type="logic_compare" id="1DGNuy}`sPfahAx6%]7T">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="ljj_serial_read_result" id="xSp$Qld%mh^8cB40qthU"></block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="wqu0)Qtt~tG)1tIaxH.]">
+                            <field name="TEXT">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO1">
+                      <block type="inout_custom_digital_write" id="LnRI6%VdUb/d[4:Bu,f~">
+                        <value name="PIN">
+                          <block type="variables_get" id="g}qTl{7`C~FM3LWG=#gy">
+                            <field name="VAR" id="uc$ADY#2]~X,/G~m7Pa}">D8</field>
+                          </block>
+                        </value>
+                        <value name="STAT">
+                          <block type="inout_highlow" id="aM_xH:9+qf[i]|!RDZQn">
+                            <field name="BOOL">LOW</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+  <block type="inout_highlow" id="_GDo=[)2bMM5{7P5QoUy" disabled="true" x="447" y="354">
+    <field name="BOOL">HIGH</field>
+  </block>
+</xml>

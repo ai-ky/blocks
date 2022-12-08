@@ -1,0 +1,258 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="n-jL?a3U)%QU=/3q4LEk">state</variable>
+    <variable id="WA?nt^v=bK434]t]3;J}">power</variable>
+    <variable id="uc$ADY#2]~X,/G~m7Pa}">D8</variable>
+    <variable id="1]f/w%dGT$Uu_YLp=GzI">count</variable>
+    <variable id="Sn%1n]X/+o32Hf0ulq!%">serialIN</variable>
+  </variables>
+  <block type="board_initializes_setup" id="M*BY9QWP~3=_loc(+~hF" x="-150" y="-70">
+    <field name="BOARD_TYPE">ESP8266</field>
+    <statement name="CONTENT">
+      <block type="serial_init" id="0Hx/G%-t1g{4Zq`kab;n">
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="inout_custom_digital_write" id="gtflMIjQ2M4+{sJOxOob">
+            <value name="PIN">
+              <block type="variables_get" id="uF9$k.^stOAyq$,y/PA~">
+                <field name="VAR" id="uc$ADY#2]~X,/G~m7Pa}">D8</field>
+              </block>
+            </value>
+            <value name="STAT">
+              <block type="inout_highlow" id="$VVDV4C:fQ-?w|kKpi1}">
+                <field name="BOOL">HIGH</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="variables_set" id="Ta0S}Wes(v(qkBjfXXfn">
+        <field name="POSITION">global</field>
+        <field name="TYPE">int</field>
+        <field name="VAR" id="n-jL?a3U)%QU=/3q4LEk">state</field>
+        <value name="VALUE">
+          <shadow type="math_number" id="|Fzt.yd8Twr.niE:(l?`">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="variables_set" id="fAad/OLi(sl@_EGqN:uw">
+            <field name="POSITION">global</field>
+            <field name="TYPE">int</field>
+            <field name="VAR" id="WA?nt^v=bK434]t]3;J}">power</field>
+            <value name="VALUE">
+              <shadow type="math_number" id="rst/{^(hC~t272nwA`]3">
+                <field name="NUM">0</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="variables_set" id="Rm~*4Rp]iEbwuc#sRL5Z">
+                <field name="POSITION">global</field>
+                <field name="TYPE">int</field>
+                <field name="VAR" id="1]f/w%dGT$Uu_YLp=GzI">count</field>
+                <value name="VALUE">
+                  <shadow type="math_number" id="@HjQ$J)NNn47SNy7ZHVv">
+                    <field name="NUM">0</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="initializes_loop" id="nKg{ifdgo(@%YJk,rt2a">
+                    <statement name="CONTENT">
+                      <block type="serial_println" id="_cCBk?NhBI@j)w7/f42)">
+                        <value name="CONTENT">
+                          <block type="inout_analog_read" id="oPAb^u=04xldneD/zM-$">
+                            <field name="PIN">A0</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="F%)brPqQUj:T@M_Z3$lG">
+                            <field name="POSITION">local</field>
+                            <field name="TYPE">int</field>
+                            <field name="VAR" id="Sn%1n]X/+o32Hf0ulq!%">serialIN</field>
+                            <value name="VALUE">
+                              <shadow type="math_number" id="elSi|%bV?BV%MH^u6fOD">
+                                <field name="NUM">0</field>
+                              </shadow>
+                              <block type="serial_read" id="@0@I1dgBTX^(12%cqv(o"></block>
+                            </value>
+                            <next>
+                              <block type="controls_if" id="uWqfznQn9];}@wGA_]=Y">
+                                <mutation elseif="1"></mutation>
+                                <value name="IF0">
+                                  <block type="logic_compare" id="~.poh5[xiP1+QBB0Qma+">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="UY*gHrHUVicWUCaRLq@-">
+                                        <field name="VAR" id="n-jL?a3U)%QU=/3q4LEk">state</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="sD4ChH{E(PM[W46(-UGp">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="controls_if" id="N)/59}s;vb$/y*CkBIgY">
+                                    <mutation else="1"></mutation>
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="?bGz*rr?B4W]$Xm%C74b">
+                                        <field name="OP">GT</field>
+                                        <value name="A">
+                                          <block type="variables_get" id="-cN;7PFl)+~Yp-pHHg]O">
+                                            <field name="VAR" id="Sn%1n]X/+o32Hf0ulq!%">serialIN</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="math_number" id="`/p1Y]@W9r~{O=YG$8}n">
+                                            <field name="NUM">0</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="variables_set3" id="]h]y!X(%E)xmydfr2HUQ">
+                                        <field name="VAR" id="n-jL?a3U)%QU=/3q4LEk">state</field>
+                                        <value name="DELTA">
+                                          <shadow type="math_number" id="NW-z#s-l(Vk4R8ILIk}S">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set3" id="Ub#}G~r/BtvtTySc04YE">
+                                            <field name="VAR" id="WA?nt^v=bK434]t]3;J}">power</field>
+                                            <value name="DELTA">
+                                              <shadow type="math_number" id="0qDw_GN=f%WBH:}Rr#mC">
+                                                <field name="NUM">0</field>
+                                              </shadow>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set3" id="kBTw:-~04Z6oCHF)u/Px">
+                                                <field name="VAR" id="1]f/w%dGT$Uu_YLp=GzI">count</field>
+                                                <value name="DELTA">
+                                                  <shadow type="math_number" id="9erkQLJSk;Usg$29C$M.">
+                                                    <field name="NUM">0</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <statement name="ELSE">
+                                      <block type="inout_custom_analog_write" id="_1o|ytyMv*=KZrcT@GGH">
+                                        <value name="PIN_ANALOGWRITE">
+                                          <block type="variables_get" id="Ed`xnc*77dvwx353Ux}K">
+                                            <field name="VAR" id="uc$ADY#2]~X,/G~m7Pa}">D8</field>
+                                          </block>
+                                        </value>
+                                        <value name="NUM">
+                                          <block type="variables_get" id="Y/49Oz;MPi-N~zpM2$vV">
+                                            <field name="VAR" id="WA?nt^v=bK434]t]3;J}">power</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </statement>
+                                <value name="IF1">
+                                  <block type="logic_compare" id="EziwNR3i[6zdYOIxzXD?">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="{+`AF^$d?0W*QA_|N$xs">
+                                        <field name="VAR" id="n-jL?a3U)%QU=/3q4LEk">state</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="Z7~Xd~_P_d~i+p[L4b.Z">
+                                        <field name="NUM">1</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO1">
+                                  <block type="inout_custom_analog_write" id="m20c~^I=4FoJOFZI^|uf">
+                                    <value name="PIN_ANALOGWRITE">
+                                      <block type="variables_get" id="BfDHmz[opC@=2H[MM{o,">
+                                        <field name="VAR" id="uc$ADY#2]~X,/G~m7Pa}">D8</field>
+                                      </block>
+                                    </value>
+                                    <value name="NUM">
+                                      <block type="variables_get" id="7Xs$C1@$%-vVCq!9cY7O">
+                                        <field name="VAR" id="WA?nt^v=bK434]t]3;J}">power</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set3" id="x-N;vjfs7vj8qh9X+fqn">
+                                        <field name="VAR" id="1]f/w%dGT$Uu_YLp=GzI">count</field>
+                                        <value name="DELTA">
+                                          <shadow type="math_number" id="|!M:(:nT#ZLe*|@}hm07">
+                                            <field name="NUM">0</field>
+                                          </shadow>
+                                          <block type="math_arithmetic" id="=Z]=J7)2_sT,Wk$2g/Hl">
+                                            <field name="OP">ADD</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="tEXVO`zZEPG-#YxF4z=C">
+                                                <field name="VAR" id="1]f/w%dGT$Uu_YLp=GzI">count</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="/CMrTn_F-]mL0a0FfHj2">
+                                                <field name="NUM">1</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="controls_if" id="oXfs1+DKCx3mZVlU{Up@">
+                                            <value name="IF0">
+                                              <block type="logic_compare" id="KiSAKBcet?#VA36jueys">
+                                                <field name="OP">EQ</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="nV0[Q4$Ye%jNAjL95xt%">
+                                                    <field name="VAR" id="1]f/w%dGT$Uu_YLp=GzI">count</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="RFv[0C*zS5Tg}cCu{ROU">
+                                                    <field name="NUM">100</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <statement name="DO0">
+                                              <block type="variables_set3" id="ZQ7GV=:%b6COW{KZ#A-7">
+                                                <field name="VAR" id="n-jL?a3U)%QU=/3q4LEk">state</field>
+                                                <value name="DELTA">
+                                                  <shadow type="math_number" id="g?X7?BzG34hz:!]X}s#c">
+                                                    <field name="NUM">0</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

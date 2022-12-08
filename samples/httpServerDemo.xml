@@ -1,0 +1,59 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Q,CAxD=(kONW:/3f2-]a">value</variable>
+  </variables>
+  <block type="Flask_import" id="1[1llhL+3o/4s9lO;~FW" x="238" y="112">
+    <next>
+      <block type="Flask_on_request_value" id="I4bF/^U2Hrl^JF,,I?W!">
+        <field name="VALUE" id="Q,CAxD=(kONW:/3f2-]a">value</field>
+        <statement name="content">
+          <block type="text_print" id="(d+8P]NIs(q[A*`]YXs@">
+            <value name="TEXT">
+              <shadow type="text" id="xC_X!oehQWS4~/?%E7qk">
+                <field name="TEXT">abc</field>
+              </shadow>
+              <block type="text_join" id="rSs;P)~Uj8^6bxm{W/vU">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="oEco+Pl|%_9vW:JluqPR">
+                    <field name="TEXT">收到:</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="variables_get" id=",{*wP0x5EZ$CdBH=26VR">
+                    <field name="VAR" id="Q,CAxD=(kONW:/3f2-]a">value</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <value name="RET">
+          <block type="text_join" id="_8N]1z*0:s:.I)aO`_^^">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="3l~wj`4(@KUVfe`e_Gmk">
+                <field name="TEXT">收到:</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="variables_get" id="+!=uV1;TGj{tGwrV!n3$">
+                <field name="VAR" id="Q,CAxD=(kONW:/3f2-]a">value</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="app_run" id="zjfx==E1IkQy.LXOvlqt">
+            <field name="NAME">80</field>
+            <value name="NAME1">
+              <shadow type="text" id="V+^P+f$L11wvA;#6i{j2">
+                <field name="TEXT">0.0.0.0</field>
+              </shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

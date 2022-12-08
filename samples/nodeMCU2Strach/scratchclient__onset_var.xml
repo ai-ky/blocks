@@ -1,0 +1,69 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="tb13!Mb!yht*Q2E~-/WY">variable.name</variable>
+    <variable id="l^Y%3wT-rmcDMLls()V4">variable.value</variable>
+  </variables>
+  <block type="scratchclient_import" id="W1hTe(cd/Hyx|7/L8A!Q" x="88" y="37">
+    <next>
+      <block type="scratchclient_createsession" id="4J{(7E5s#`YD!jK5tC:[">
+        <value name="USER">
+          <shadow type="text" id="O-WeRxIK$X;4dB31cHLL">
+            <field name="TEXT">ccsh_ky</field>
+          </shadow>
+        </value>
+        <value name="PW">
+          <shadow type="text" id="ksdU;ysb/UXCkS)IKO,?">
+            <field name="TEXT">123456987</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="scratchclient_createconnection" id="T17Dw)PNrHNF^N`]4+Pf">
+            <value name="PID">
+              <shadow type="math_number" id="b$]6v-|hj)?bto/K8WFy">
+                <field name="NUM">725470383</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="scratchclient_on_set" id="(P)$C!G3b_bI0$e#6g}a">
+                <field name="NAME" id="tb13!Mb!yht*Q2E~-/WY">variable.name</field>
+                <field name="VALUE" id="l^Y%3wT-rmcDMLls()V4">variable.value</field>
+                <statement name="content">
+                  <block type="text_print" id="5B8K/1FX/#Mj.lqf3^12">
+                    <value name="TEXT">
+                      <shadow type="text" id="XT7A[ro68vXs*c~DL,vk">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="text_join" id="v}|N6[`[MY+Tk-nmv2L@">
+                        <mutation items="4"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="Z%2lqSB-vsVA`BzE?RjS">
+                            <field name="TEXT">變數名稱:</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get" id="8Z2{u|Rz-?GYy3tu%g]V">
+                            <field name="VAR" id="tb13!Mb!yht*Q2E~-/WY">variable.name</field>
+                          </block>
+                        </value>
+                        <value name="ADD2">
+                          <block type="text" id="_5!Ucb$!EjDqh8C.$@;-">
+                            <field name="TEXT">,變數值:</field>
+                          </block>
+                        </value>
+                        <value name="ADD3">
+                          <block type="variables_get" id="aRB;wRZtR`dch@}]oLt0">
+                            <field name="VAR" id="l^Y%3wT-rmcDMLls()V4">variable.value</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

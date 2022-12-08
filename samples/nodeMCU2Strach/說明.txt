@@ -1,0 +1,4 @@
+藉由PC端中介程式(scratchclient模組)
+打通nodemcu與scratch
+詳細操作方法請參考
+https://docs.google.com/presentation/d/1m_mWsx_s9PQa7hqXZk69Fq-cv_ANewgx9gGNSTmwj_o/edit?usp=sharing

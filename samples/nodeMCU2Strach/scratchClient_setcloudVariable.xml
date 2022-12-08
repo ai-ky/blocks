@@ -1,0 +1,41 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="scratchclient_import" id="W1hTe(cd/Hyx|7/L8A!Q" x="87" y="88">
+    <next>
+      <block type="scratchclient_createsession" id="4J{(7E5s#`YD!jK5tC:[">
+        <value name="USER">
+          <shadow type="text" id="O-WeRxIK$X;4dB31cHLL">
+            <field name="TEXT">ccsh_ky</field>
+          </shadow>
+        </value>
+        <value name="PW">
+          <shadow type="text" id="ksdU;ysb/UXCkS)IKO,?">
+            <field name="TEXT">123456987</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="scratchclient_createconnection" id="T17Dw)PNrHNF^N`]4+Pf">
+            <value name="PID">
+              <shadow type="math_number" id="b$]6v-|hj)?bto/K8WFy">
+                <field name="NUM">725470383</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="scratchclient_set_cloud_variable" id="v2Gw][N,PPeBT;t0WR-V">
+                <value name="NAME">
+                  <shadow type="text" id="cZ6N^s5=;m}zy~;trRb8">
+                    <field name="TEXT">A0_R</field>
+                  </shadow>
+                </value>
+                <value name="VALUE">
+                  <shadow type="math_number" id="](Rk|Q`PXW6/d7izHNGM">
+                    <field name="NUM">1023</field>
+                  </shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
