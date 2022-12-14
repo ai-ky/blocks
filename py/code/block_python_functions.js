@@ -564,7 +564,7 @@ Blockly.Blocks['block_get_anyconcat'] = {
         .setCheck(null);
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setColour(python_functions_colour);
  this.setTooltip("");
  this.setHelpUrl("");
   }
