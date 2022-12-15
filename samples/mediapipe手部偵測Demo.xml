@@ -1,0 +1,231 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="RSy$rn;vj%;`YH5tE^97">ret</variable>
+    <variable id="{i_G8T?w.j=pkmUx$/Si">img</variable>
+    <variable id="Y^)^^K9#pXs?Djx6*;C6">result</variable>
+    <variable id="XANH0Qt2}G_iFey8PbrM">hand_landmarks</variable>
+  </variables>
+  <block type="import_mediapipe_as_mp" id="$#7@U[(|N#~Q*aTgE2%D" x="88" y="13">
+    <next>
+      <block type="opencv_import" id="}hWJBID-$99xDYRBf5k]">
+        <next>
+          <block type="mediapipe_hands_predefine" id="rdT)Rm,lLefo_a^KS(#L">
+            <next>
+              <block type="cv2_vdeocapture" id="g[EjObF=DSOyYDWTNt%z">
+                <field name="NAME">0</field>
+                <next>
+                  <block type="with_mp_hands_hands" id="Hkd;4*J7$]O[zt,I$XGL">
+                    <statement name="NAME">
+                      <block type="controls_whileUntil" id="[!o2+V:D(2eH9ebW+|I9">
+                        <field name="MODE">WHILE</field>
+                        <value name="BOOL">
+                          <block type="logic_boolean" id=".`eZPzf4*sL-q15~c0WD">
+                            <field name="BOOL">TRUE</field>
+                          </block>
+                        </value>
+                        <statement name="DO">
+                          <block type="cv2_cap_read" id="_NSa);2kZz[U%2DOIdJw">
+                            <field name="RET_NAME" id="RSy$rn;vj%;`YH5tE^97">ret</field>
+                            <field name="IMG_NAME" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                            <next>
+                              <block type="img_flags_writeable" id="J*w[+ncu77n7~Kyg++Q#">
+                                <field name="NAME1" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                <field name="NAME2">False</field>
+                                <next>
+                                  <block type="block_anyconcat" id="0Sq{1C+.8D5.Z!z@LrJx">
+                                    <field name="NAME2">=</field>
+                                    <value name="NAME1">
+                                      <block type="variables_get" id="hepVKgTOd.U}tFbL$$$g">
+                                        <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                      </block>
+                                    </value>
+                                    <value name="NAME3">
+                                      <block type="cv2_cvtcolor_" id="F-jK*O@Ep|4`fJ-=PnrQ">
+                                        <field name="NAME2">cv2.COLOR_BGR2RGB</field>
+                                        <value name="NAME1">
+                                          <block type="variables_get" id="7%W+_F:@D,jQTc{#%Pqu">
+                                            <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="mediapipe_hands_process" id="JOv1B=OvF+=V;VJFEA!`">
+                                        <value name="NAME1">
+                                          <block type="variables_get" id="2l+5lYyy8qu{WKEf|!|p">
+                                            <field name="VAR" id="Y^)^^K9#pXs?Djx6*;C6">result</field>
+                                          </block>
+                                        </value>
+                                        <value name="NAME2">
+                                          <block type="variables_get" id="M^y:B^7LBZCJy(tcZhF*">
+                                            <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="block_anyconcat" id="N^{=YM)2QqC)cXPex0A,">
+                                            <field name="NAME2">=</field>
+                                            <value name="NAME1">
+                                              <block type="variables_get" id="A7j0^#Uv!VwXx;-Ofv[Z">
+                                                <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                              </block>
+                                            </value>
+                                            <value name="NAME3">
+                                              <block type="cv2_cvtcolor_" id="Vj~~:^iO-d]i^Dvlx5tI">
+                                                <field name="NAME2">cv2.COLOR_RGB2BGR</field>
+                                                <value name="NAME1">
+                                                  <block type="variables_get" id="3x:uzxAKo}2t3m$5KGVr">
+                                                    <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="controls_if" id="2}Cy,mz9Yj8*MoxR46+Z">
+                                                <value name="IF0">
+                                                  <block type="multi_hand_landmarks" id="RFhbEoq@jcMDLAA#|.YG">
+                                                    <field name="NAME2">multi_hand_landmarks</field>
+                                                    <value name="NAME1">
+                                                      <block type="variables_get" id="CEDjhP=)h_XI8?Qdm)Uy">
+                                                        <field name="VAR" id="Y^)^^K9#pXs?Djx6*;C6">result</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                  <block type="for_loop" id=":3e!yCD7QCTexu#/1Q)T">
+                                                    <value name="NAME1">
+                                                      <block type="variables_get" id="WN/3x]^~V9BAnyy%!IEc">
+                                                        <field name="VAR" id="XANH0Qt2}G_iFey8PbrM">hand_landmarks</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="NAME2">
+                                                      <block type="multi_hand_landmarks" id="|n2S`Bo`@VH/F$~_Wzf=">
+                                                        <field name="NAME2">multi_hand_landmarks</field>
+                                                        <value name="NAME1">
+                                                          <block type="variables_get" id="%Io0q(xIMc1sQ^KwHWDX">
+                                                            <field name="VAR" id="Y^)^^K9#pXs?Djx6*;C6">result</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <statement name="NAME3">
+                                                      <block type="text_print" id="BEh(~9S]O:Zu)uD3@ayb">
+                                                        <value name="TEXT">
+                                                          <shadow type="text" id="p)KVD$*~L?1QDyNz.P[:">
+                                                            <field name="TEXT">abc</field>
+                                                          </shadow>
+                                                          <block type="get_handslandmark" id="A@PbKW4Xk}_Ug-a:9k#Q">
+                                                            <field name="NAME1" id="XANH0Qt2}G_iFey8PbrM">hand_landmarks</field>
+                                                            <field name="NAME">y</field>
+                                                            <value name="NAME2">
+                                                              <shadow type="math_number" id="V#5MB8?rk-t+QvB4R@?I">
+                                                                <field name="NUM">8</field>
+                                                              </shadow>
+                                                              <block type="math_number" id="!le;*-v._;ZIWGS[i~I}">
+                                                                <field name="NUM">8</field>
+                                                                <comment pinned="true" h="45" w="170">取 index finger y座標</comment>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="hands_mp_drawing" id="Ki@?`N2JGCw5~j}N50Qt">
+                                                            <value name="NAME1">
+                                                              <block type="variables_get" id="H.Y-5:Jx5nhpA2_|fObp">
+                                                                <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="NAME2">
+                                                              <block type="variables_get" id="dMTzpT_%]}7[,Kjt!cnu">
+                                                                <field name="VAR" id="XANH0Qt2}G_iFey8PbrM">hand_landmarks</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </statement>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="controls_if" id="VSEt7j5D2qj!/IvxhE-e">
+                                                    <value name="IF0">
+                                                      <block type="logic_compare" id="^z9oz$O)pqsxi6tbj/x/">
+                                                        <field name="OP">EQ</field>
+                                                        <value name="A">
+                                                          <block type="cv2_waitkey" id="CRv2z.14D2=[i0Bj?SIy">
+                                                            <value name="NAME1">
+                                                              <shadow type="math_number" id="W-z|b?$u$2i5#LG-m~by">
+                                                                <field name="NUM">50</field>
+                                                              </shadow>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <value name="B">
+                                                          <block type="python_ord" id="ol;Q/UnI0L0a[P|c^J(G">
+                                                            <value name="python_ord_V">
+                                                              <shadow type="text" id="xvy@LwTyM{5JrAkCU{D6">
+                                                                <field name="TEXT">q</field>
+                                                              </shadow>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <statement name="DO0">
+                                                      <block type="controls_flow_statements" id="-r0v*X9y8lmrKiWMIb-3">
+                                                        <field name="FLOW">BREAK</field>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="img_flags_writeable" id="=Yy91|C(g*Q0XkW:P8Ki">
+                                                        <field name="NAME1" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                                        <field name="NAME2">True</field>
+                                                        <next>
+                                                          <block type="cv2_imshow" id="u[F)q8AjKu_C-=WeS92V">
+                                                            <value name="TITLE">
+                                                              <shadow type="text" id="k.+X`BDL-uM19*iv5}{?">
+                                                                <field name="TEXT">mediapipe hands demo</field>
+                                                              </shadow>
+                                                            </value>
+                                                            <value name="IMG">
+                                                              <block type="variables_get" id="oaK~xFeWyW#=J^R*9$Jy">
+                                                                <field name="VAR" id="{i_G8T?w.j=pkmUx$/Si">img</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="cv2_cap_release" id="?_q{eyCv;E=x)?|W_2Qx">
+                        <next>
+                          <block type="cv2_destroyallwindows" id="k1*QtG63.|GyiKnHgl/k"></block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
