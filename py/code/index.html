@@ -559,11 +559,15 @@
 		</block>
 	</category>
 	<category name="檔案處理" colour="#8ca55b">
-	<block type="python_with_open">
+		<block type="python_with_open">
 			<value name="NAME1"><shadow type="text"></shadow></value>
 		</block>
 		<block type="python_f_readlines"></block>
-		<block type="plus2"></block>
+		<block type="python_f_readline"></block>
+		<block type="python_f_write">
+			<value name="NAME1"><shadow type="text"></shadow></value>
+		</block>
+		
 	</category>
 	<category name="字串處理" colour="#8ca55b">
 	<block type="string_split">
@@ -578,9 +582,11 @@
 		<block type="string_encode">
 			<value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow></value>
 		</block>
+		<block type="plus2"></block>
 	</category>
 	
 	<category name="常用函式" colour="#8ca55b">
+		<block type="python_any_statement"></block>
 		<block type="block_comma"></block>
 		<block type="python_global"></block>
 		<block type="python_big_parantheses"></block>
