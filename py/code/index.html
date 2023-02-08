@@ -24,6 +24,7 @@
   <script src="block_mediapipe.js"></script>
   <script src="block_thread.js"></script>
   <script src="block_serial.js"></script>
+  <script src="block_pygame.js"></script>
 </head>
 
 <body>
@@ -821,8 +822,19 @@
 	   <value name="NAME1"><shadow type="text"><field name="TEXT">0.0.0.0</field></shadow></value>
 	   <value name="NAME3"><shadow type="text"><field name="TEXT">adhoc</field></shadow></value>
 	   </block>
-	   
 	</category>
+	
+	<category name="pygame" colour="#5b8ca5">
+		<block type="import_pygame"></block>
+		<block type="pygame_init__"></block>
+		<block type="pygame_mixer_init__"></block>
+		<block type="pygame_mixer_music_load">
+			<value name="NAME1"><shadow type="text"><field name="TEXT">1.mp3</field></shadow></value>
+		</block>
+		<block type="pygame_mixer_music_get_busy"></block>
+		<block type="pygame_mixer_music_funcs"></block>
+	</category>
+	
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
