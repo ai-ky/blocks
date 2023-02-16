@@ -667,7 +667,29 @@ Blockly.Python['block_anyconcat'] = function(block) {
 };
 
 
-
+//<block type="any_indent_statement"></block>
+//======================================
+Blockly.Blocks['any_indent_statement'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("def func():"), "NAME");
+    this.appendStatementInput("NAME")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['any_indent_statement'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var statements_name = Blockly.Python.statementToCode(block, 'NAME');
+  // TODO: Assemble Python into code variable.
+  var code = text_name+'\n'+statements_name;
+  return code;
+};
 //<block type="create_arrayin"></block>
 //======================================
 Blockly.Blocks['create_arrayin'] = {

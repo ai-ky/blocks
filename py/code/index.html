@@ -162,17 +162,48 @@
 				<shadow type="math_number"><field name="NUM">200</field></shadow>
 			</value>
 		</block>
+		
 	    <block type="cv2_cap_read"></block>
-	    <block type="cv2_flip">
-			<value name="NAME1">
-			<block type="variables_get">
-            <field name="VAR">img</field>
-			</block>
+		
+		<block type="any_indent_statement">
+			<field name="NAME">while True:</field>
+			<statement name="NAME">
+				<block type="cv2_cap_read"></block>
+			</statement>
+		</block>
+		<block type="block_anyconcat">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+			<value name="NAME3"><block type="cv2_flip"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
+		</block>
+	    
+		<block type="controls_if">
+			<value name="IF0">
+			  <block type="block_get_anyconcat">
+				<field name="NAME2">==</field>
+				<value name="NAME1">
+				  <block type="cv2_waitkey">
+					<value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow>
+					</value>
+				  </block>
+				</value>
+				<value name="NAME3">
+				  <block type="python_ord">
+					<value name="python_ord_V">
+					  <shadow type="text">
+						<field name="TEXT">q</field>
+					  </shadow>
+					</value>
+				  </block>
+				</value>
+			  </block>
 			</value>
+			<statement name="DO0">
+				<block type="python_any_statement" id="q8,hsWaozS!OG;s}`}I8">
+				<field name="NAME1">break</field>
+				</block>
+			</statement>
 		</block>
-	    <block type="cv2_waitkey">
-			<value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
-		</block>
+		
 	    <block type="cv2_imshow">
 			<value name="TITLE"><shadow type="text"></shadow></value>
 			<value name="IMG">
@@ -202,12 +233,10 @@
 		</block>
 		<block type="cv2_cap_release"></block>
 	    <block type="cv2_destroyallwindows"></block>
-	    <block type="cv2_cvtcolor_">
-			<value name="NAME1">
-				<block type="variables_get">
-				<field name="VAR">img</field>
-				</block>
-			</value>
+		<block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block>
+		<block type="block_anyconcat">
+		<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+		<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
 		</block>
 		<block type="cv2_imwrite">
 			<value name="NAME1"><shadow type="text"></shadow></value>
@@ -249,14 +278,20 @@
 				</block>
 			</value>
     	</block>
-	    <block type="cv2_resize">
-			<value name="NAME1">
-			<block type="variables_get">
-            <field name="VAR">img</field>
-			</block>
-			</value>
+		<block type="cv2_resize">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
 			<value name="NAME2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
 			<value name="NAME3"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+		</block>
+		<block type="block_anyconcat">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+			<value name="NAME3">
+				<block type="cv2_resize">
+					<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+					<value name="NAME2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+					<value name="NAME3"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+				</block>
+			</value>
 		</block>
 		<block type="img_flags_writeable"></block>
 		<block type="cv2_empty"></block>
@@ -293,13 +328,12 @@
 	<category name="mediapip手部偵測" colour="#a58c5b">
 	<block type="import_mediapipe_as_mp"></block>
 	<block type="mediapipe_hands_predefine"></block>
-	<block type="cv2_cvtcolor_">
-		<value name="NAME1">
-			<block type="variables_get">
-			<field name="VAR">img</field>
-			</block>
-		</value>
-	</block>
+	
+	<block type="block_anyconcat">
+		<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+		<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
+	</block>	
+	
 	<block type="mediapipe_hands_process">
 		<value name="NAME1">
 			<block type="variables_get">
@@ -587,6 +621,7 @@
 	</category>
 	
 	<category name="常用函式" colour="#8ca55b">
+		<block type="any_indent_statement"></block>
 		<block type="python_any_statement"></block>
 		<block type="block_comma"></block>
 		<block type="python_global"></block>
