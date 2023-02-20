@@ -1,4 +1,160 @@
 python_functions_colour=80
+//<block type="str_"></block>
+//======================================
+Blockly.Blocks['str_'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("str(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['str_'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = '...\n';
+  return code;
+};
+//<block type="ifelse"></block>
+//======================================
+Blockly.Blocks['ifelse'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField("if");
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendStatementInput("NAME2")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("else :");
+    this.appendStatementInput("NAME3")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['ifelse'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var statements_name2 = Blockly.Python.statementToCode(block, 'NAME2');
+  var statements_name3 = Blockly.Python.statementToCode(block, 'NAME3');
+  // TODO: Assemble Python into code variable.
+  var code = 'if '+value_name1+':'+'\n'+
+				statements_name2+
+				'else:\n'+
+				statements_name3;
+  return code;
+};
+//<block type="if"></block>
+//======================================
+Blockly.Blocks['if'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField("if");
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendStatementInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['if'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var statements_name2 = Blockly.Python.statementToCode(block, 'NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = 'if '+value_name1+':'+'\n'+
+				statements_name2+'\n';
+  return code;
+};
+//<block type="logic_operation"></block>
+//======================================
+Blockly.Blocks['logic_operation'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendValueInput("NAME2")
+        .setCheck(null)
+        .appendField(new Blockly.FieldDropdown([["==","=="], [">",">"], [">=",">="], ["<","<="], ["!=","!="], ["in","in"], ["is","is"], ["and","and"], ["or","or"], ["+=","+="], ["-=","-="], ["+","+"], ["-","-"], ["*","*"], ["/","/"], ["%","%"]]), "NAME3");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['logic_operation'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var dropdown_name3 = block.getFieldValue('NAME3');
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name1+dropdown_name3+value_name2;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="logic_boolean"></block>
+//======================================
+Blockly.Blocks['logic_boolean'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["True","True"], ["False","False"]]), "NAME1");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['logic_boolean'] = function(block) {
+  var dropdown_name1 = block.getFieldValue('NAME1');
+  // TODO: Assemble Python into code variable.
+  var code = 'True';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="while"></block>
+//======================================
+Blockly.Blocks['while'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("while");
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendStatementInput("NAME1")
+        .setCheck(null)
+        .appendField("");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['while'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  var statements_name1 = Blockly.Python.statementToCode(block, 'NAME1');
+  // TODO: Assemble Python into code variable.
+  var code = 'while '+value_name+':\n'+statements_name1;
+  return code;
+};
 //======================================
 Blockly.Blocks['string_strip'] = {
   init: function() {

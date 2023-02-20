@@ -87,6 +87,17 @@
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 	<category name="鍵鼠外掛" colour="#5ba55b">
 	    <block type="import_pyautogui"></block>
+		<block type="pyautogui_position__"></block>
+		<block type="block_anyconcat">
+			<field name="NAME2">=</field>
+			<value name="NAME1">
+			  <block type="block_comma">
+				<value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value>
+				<value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value>
+			  </block>
+			</value>
+			<value name="NAME3"><block type="pyautogui_position__"></block></value>
+		</block>
 	    <block type="pyautogui_click">
 			<value name="NAME1"><shadow type="math_number">
 			<field name="NUM">10</field></shadow>
@@ -111,13 +122,24 @@
 			<field name="NUM">0.3</field></shadow>
 			</value>
 		</block>
+		
+		<block type="pyautogui_screenshot_"></block>
+		<block type="pyautogui_getpixel_"></block>
+		
+		<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1">
+			<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3">
+			<block type="pyautogui_screenshot_"><field name="NAME1"></field></block></value><next>
+			<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">pix</field></block></value><value name="NAME3"><block type="pyautogui_getpixel_"><value name="NAME1">
+            <block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">20</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">20</field></shadow></value></block></value></block></value></block></next> 
+	    </block>
+  
 		<block type="pyautogui_locatecenteronscreen">
 			<value name="NAME1">
 				<shadow type="text">
 				<field name="TEXT">1.png</field></shadow>
 			</value>
 		</block>
-		<block type="pyautogui_getpixel">
+		<block type="pyautogui_pixel">
 			<value name="NAME1"><shadow type="math_number">
 			<field name="NUM">10</field></shadow>
 			</value>
@@ -617,6 +639,7 @@
 		<block type="string_encode">
 			<value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow></value>
 		</block>
+		<block type="str_"></block>
 		<block type="plus2"></block>
 	</category>
 	
@@ -781,7 +804,7 @@
 			<value name="NAME2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
 			<value name="NAME3"><shadow type="math_number"><field name="NUM">255</field></shadow></value>
 		</block>
-	    <block type="var_equal"></block>
+	    <!--<block type="var_equal"></block>-->
 	    <block type="numpy_var_dim1">
 			<value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
 			<value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
@@ -871,25 +894,28 @@
 	</category>
 	
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+	  <block type="if"></block>
+	  <block type="ifelse"></block>
       <block type="controls_if"></block>
-      <block type="logic_compare"></block>
+      <!--<block type="logic_compare"></block>-->
       <block type="logic_operation"></block>
       <block type="logic_negate"></block>
       <block type="logic_boolean"></block>
       <block type="logic_null"></block>
-      <block type="logic_ternary"></block>
+      <!--<block type="logic_ternary"></block>-->
     </category>
     <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
-      <block type="controls_repeat_ext">
-        <value name="TIMES">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="controls_whileUntil"></block>
+      <!--<block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>-->
+	  <block type="while">
+		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
+	  </block>
+	  
+      <!--<block type="controls_whileUntil"></block>-->
 	  <block type="for_loop"></block>
-	  <block type="for_i_in_"></block>
+	  <block type="for_i_in_">
+		<field name="NAME2">i</field>
+		<value name="NAME1"><block type="python_range"><value name="NAME"><shadow type="math_number"><field name="NUM">5</field></shadow></value></block></value>
+	  </block>
 	  <block type="python_range">
 		<value name="NAME">
           <shadow type="math_number">
@@ -910,24 +936,8 @@
         </value>
 	  </block>
 	  <block type="python_continue"></block>
-      <block type="controls_for">
-        <value name="FROM">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-        <value name="TO">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
-        <value name="BY">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="controls_forEach"></block>
+      <!--<block type="controls_for"><value name="FROM"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="TO"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="BY"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block>-->
+      <!--<block type="controls_forEach"></block>-->
       <block type="controls_flow_statements"></block>
 	  <block type="cv2_empty"></block>
     </category>

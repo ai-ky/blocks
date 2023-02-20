@@ -1,4 +1,73 @@
 pyautoguiColour=120
+//<block type="pyautogui_getpixel_"></block>
+//======================================
+Blockly.Blocks['pyautogui_getpixel_'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendValueInput("NAME2")
+        .setCheck(null)
+        .appendField(".getpixel(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(pyautoguiColour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['pyautogui_getpixel_'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name1+'.getpixel('+value_name2+')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="pyautogui_screenshot_"></block>
+//======================================
+Blockly.Blocks['pyautogui_screenshot_'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("pyautogui.screenshot(")
+        .appendField(new Blockly.FieldTextInput("\"1.png\",region=(0,0,300,200)"), "NAME1");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(pyautoguiColour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['pyautogui_screenshot_'] = function(block) {
+  var text_name1 = block.getFieldValue('NAME1');
+  // TODO: Assemble Python into code variable.
+  var code = 'pyautogui.screenshot('+text_name1+')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+//<block type="pyautogui_position__"></block>
+//======================================
+Blockly.Blocks['pyautogui_position__'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("pyautogui.position()");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(pyautoguiColour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['pyautogui_position__'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'pyautogui.position()';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
 //=====================================================
 Blockly.Blocks['import_pyautogui'] = {
   init: function() {
@@ -119,11 +188,11 @@ Blockly.Python['pyautogui_locatecenteronscreen'] = function(block) {
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 //========================================================
-Blockly.Blocks['pyautogui_getpixel'] = {
+Blockly.Blocks['pyautogui_pixel'] = {
   init: function() {
     this.appendValueInput("NAME1")
         .setCheck(null)
-        .appendField("pyautogui.getpixel(x=");
+        .appendField("pyautogui.pixel(x=");
     this.appendValueInput("NAME2")
         .setCheck(null)
         .appendField(",y=");
@@ -138,11 +207,11 @@ Blockly.Blocks['pyautogui_getpixel'] = {
 };
 
 
-Blockly.Python['pyautogui_getpixel'] = function(block) {
+Blockly.Python['pyautogui_pixel'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = 'pyautogui.getpixel('+value_name1+','+value_name2+')';
+  var code = 'pyautogui.pixel('+value_name1+','+value_name2+')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
