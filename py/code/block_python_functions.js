@@ -1,4 +1,32 @@
 python_functions_colour=80
+//<block type="print_"></block>
+//======================================
+Blockly.Blocks['print_'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField("print(");
+    this.appendDummyInput()
+        .appendField(",")
+        .appendField(new Blockly.FieldTextInput("end=\"\\n\""), "NAME2")
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['print_'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var text_name2 = block.getFieldValue('NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = 'print('+value_name1+','+text_name2+')\n';
+  if(text_name2=="end=\"\\n\"")
+	  code = 'print('+value_name1+')\n';
+  return code;
+};
 //<block type="str_"></block>
 //======================================
 Blockly.Blocks['str_'] = {

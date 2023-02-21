@@ -1,4 +1,25 @@
 pyautoguiColour=120
+//<block type="pyautoui_any"></block>
+//======================================
+Blockly.Blocks['pyautoui_any'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("pyautoui.")
+        .appendField(new Blockly.FieldTextInput("keyDown('shift')"), "NAME");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(pyautoguiColour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['pyautoui_any'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  // TODO: Assemble Python into code variable.
+  var code = 'pyautogui.'+text_name+'\n';
+  return code;
+};
 //<block type="pyautogui_getpixel_"></block>
 //======================================
 Blockly.Blocks['pyautogui_getpixel_'] = {
