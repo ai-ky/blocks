@@ -1,4 +1,108 @@
 python_functions_colour=80
+//<block type="any_func_value"></block>
+//======================================
+Blockly.Blocks['any_func_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("time.sleep"), "NAME");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['any_func_value'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = text_name+'('+value_name+')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="any_func_call_value"></block>
+//======================================
+Blockly.Blocks['any_func_call_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("random"), "NAME1")
+        .appendField(".")
+        .appendField(new Blockly.FieldTextInput("randint"), "NAME2")
+        .appendField("(")
+        .appendField(new Blockly.FieldTextInput("0,9"), "NAME3")
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['any_func_call_value'] = function(block) {
+  var text_name1 = block.getFieldValue('NAME1');
+  var text_name2 = block.getFieldValue('NAME2');
+  var text_name3 = block.getFieldValue('NAME3');
+  // TODO: Assemble Python into code variable.
+  var code = text_name1+'.'+text_name2+'('+text_name3+')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="any_func_call"></block>
+//======================================
+Blockly.Blocks['any_func_call'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("=")
+        .appendField(new Blockly.FieldTextInput("random"), "NAME1")
+        .appendField(".")
+        .appendField(new Blockly.FieldTextInput("randint"), "NAME2")
+        .appendField("(")
+        .appendField(new Blockly.FieldTextInput("0,9"), "NAME3")
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['any_func_call'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  var text_name1 = block.getFieldValue('NAME1');
+  var text_name2 = block.getFieldValue('NAME2');
+  var text_name3 = block.getFieldValue('NAME3');
+  // TODO: Assemble Python into code variable.
+  var code = value_name+'='+text_name1+'.'+text_name2+'('+text_name3+')\n';
+  return code;
+};
+//<block type="import_any"></block>
+//======================================
+Blockly.Blocks['import_any'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("import")
+        .appendField(new Blockly.FieldTextInput("time"), "NAME");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['import_any'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  // TODO: Assemble Python into code variable.
+  var code = 'import'+text_name+'\n';
+  return code;
+};
 //<block type="print_"></block>
 //======================================
 Blockly.Blocks['print_'] = {
@@ -599,11 +703,10 @@ Blockly.Python['python_f_write'] = function(block) {
   return code;
 };
 //============================================
-Blockly.Blocks['python_mark1'] = {
+Blockly.Blocks['python_transform_mode'] = {
   init: function() {
     this.appendValueInput("NAME")
-        .setCheck(null)
-        .appendField("#");
+        .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(python_functions_colour);
@@ -611,10 +714,10 @@ Blockly.Blocks['python_mark1'] = {
  this.setHelpUrl("");
   }
 };
-Blockly.Python['python_mark1'] = function(block) {
+Blockly.Python['python_transform_mode'] = function(block) {
   var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = '#'+value_name+'\n';
+  var code = value_name+'\n';
   return code;
 };
 //======================================

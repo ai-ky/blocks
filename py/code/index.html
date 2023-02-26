@@ -86,7 +86,8 @@
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 	<category name="鍵鼠外掛" colour="#5ba55b">
-	    <block type="import_pyautogui"></block>
+		<block type="import_pyautogui"></block>
+		<block type="import_any"></block>
 		<block type="pyautogui_position__"></block>
 		<block type="block_anyconcat">
 			<field name="NAME2">=</field>
@@ -163,7 +164,6 @@
 			</value>
 		</block>
 	</category>
-	
 	<category name="opencv" colour="#a56b5d">
 	    <block type="opencv_import"></block>
 	    <block type="cv2_vdeocapture"></block>
@@ -644,31 +644,31 @@
 		<block type="plus2"></block>
 		<block type="print_"></block>
 	</category>
-	
 	<category name="常用函式" colour="#8ca55b">
+		<block type="import_any"></block>
+		<block type="any_func_value"></block>	
+		<block type="any_func_call">
+			<value name="NAME">
+			<block type="variables_get"><field name="VAR">v</field></block>
+			</value>
+		</block>
 		<block type="any_indent_statement"></block>
 		<block type="python_any_statement"></block>
-		<block type="block_comma"></block>
-		<block type="python_global"></block>
-		<block type="python_big_parantheses"></block>
 		<block type="python_any"></block>
 		<block type="block_get_anyconcat"></block>
 		<block type="block_anyconcat"></block>
+		<block type="block_comma"></block>
+		<block type="python_global"></block>
+		<block type="python_big_parantheses"></block>
 		<block type="create_arrayin"></block>
 		<block type="python_in"></block>
-		<block type="python_mark1"></block>
-			<value name="NAME"><shadow type="text"><field name="TEXT">輸入註解</field></shadow></value>
-		</block>
+		<block type="python_transform_mode"></block>
 		<block type="python_int"></block>
 		<block type="python_bytes"></block>
 		<block type="python_ord">
 			<value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value>
 		</block>
-		<block type="python_str"></block>
-		<block type="python_time_import"></block>
-		<block type="python_time_sleep">
-		<value name="NAME"><shadow type="math_number"><field name="NUM">0.03</field></shadow></value>
-		</block>		
+		<block type="python_str"></block>		
 		<block type="try_except">
 			<value name="NAME2">
 				<block type="variables_get">
@@ -677,7 +677,6 @@
 			</value>
 		</block>
 	</category>
-	
 	<category name="序列埠控制" colour="#8c5ba5">
 		<block type="import_serial"></block>
 		<block type="serial_create">
@@ -722,7 +721,7 @@
 			</value>
 		</block>
 	</category>
-	
+	</category>
 	<category name="numpy" colour="#a55b5b">
 	    <block type="numpy_import"></block>
 	    <block type="np_array">
@@ -863,15 +862,16 @@
 		<value name="PW"><shadow type="text"><field name="TEXT"></field></shadow></value>
 		</block>
 	    <block type="scratchclient_createconnection">
-		<value name="PID"> <shadow type="math_number"><field name="NUM"></field>
-		</block>
+			<value name="PID"> 
+			<shadow type="math_number"><field name="NUM"></field></shadow>
+			</value>
+		</block>	
 	    <block type="scratchclient_set_cloud_variable">
-		<value name="NAME"><shadow type="text"><field name="TEXT"></field></shadow></value>
-		<value name="VALUE"><shadow type="math_number"><field name="NUM"></field>
+			<value name="NAME"><shadow type="text"><field name="TEXT"></field></shadow></value>
+			<value name="VALUE"><shadow type="math_number"><field name="NUM"></field></shadow></value>
 		</block>		
         <block type="scratchclient_on_set"></block>
     </category>
-	
 	<category name="httpServer" colour="#5b8ca5">
 	   <block type="Flask_import"></block>
 	   <block type="Flask_on_request_value"></block>
@@ -882,8 +882,7 @@
 	   <value name="NAME1"><shadow type="text"><field name="TEXT">0.0.0.0</field></shadow></value>
 	   <value name="NAME3"><shadow type="text"><field name="TEXT">adhoc</field></shadow></value>
 	   </block>
-	</category>
-	
+	</category>	
 	<category name="pygame" colour="#5b8ca5">
 		<block type="import_pygame"></block>
 		<block type="pygame_init__"></block>
@@ -893,8 +892,7 @@
 		</block>
 		<block type="pygame_mixer_music_get_busy"></block>
 		<block type="pygame_mixer_music_funcs"></block>
-	</category>
-	
+	</category>	
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
 	  <block type="if"></block>
 	  <block type="ifelse"></block>
