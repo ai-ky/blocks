@@ -243,56 +243,11 @@
 				<shadow type="math_number"><field name="NUM">200</field></shadow>
 			</value>
 		</block>
-		
-	    <block type="cv2_cap_read"></block>
-		
-		<block type="any_indent_statement">
-			<field name="NAME">while True:</field>
-			<statement name="NAME">
-				<block type="cv2_cap_read"></block>
-			</statement>
+				
+		<block type="python_any_statement"><field name="NAME1">#webcam影像貼圖迴圈</field><next><block type="any_indent_statement"><field name="NAME">while True:</field><statement name="NAME"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">0</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="controls_if"><value name="IF0"><block type="block_get_anyconcat"><field name="NAME2">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME3"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="DO0"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT"/></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block>
 		</block>
-		<block type="block_anyconcat">
-			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
-			<value name="NAME3"><block type="cv2_flip"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
-		</block>
+		
 	    
-		<block type="controls_if">
-			<value name="IF0">
-			  <block type="block_get_anyconcat">
-				<field name="NAME2">==</field>
-				<value name="NAME1">
-				  <block type="cv2_waitkey">
-					<value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow>
-					</value>
-				  </block>
-				</value>
-				<value name="NAME3">
-				  <block type="python_ord">
-					<value name="python_ord_V">
-					  <shadow type="text">
-						<field name="TEXT">q</field>
-					  </shadow>
-					</value>
-				  </block>
-				</value>
-			  </block>
-			</value>
-			<statement name="DO0">
-				<block type="python_any_statement" id="q8,hsWaozS!OG;s}`}I8">
-				<field name="NAME1">break</field>
-				</block>
-			</statement>
-		</block>
-		
-	    <block type="cv2_imshow">
-			<value name="TITLE"><shadow type="text"></shadow></value>
-			<value name="IMG">
-			<block type="variables_get">
-            <field name="VAR">img</field>
-			</block>
-			</value>
-		</block>
 	    <block type="cv2_rectangle">
 			<value name="CV2_RECTANGLE_IMG">
 			<block type="variables_get"><field name="VAR">img</field>
@@ -312,8 +267,7 @@
 			</value>
 			<value name="CV2_RECTANGLE_THICKNESS"><shadow type="math_number"><field name="NUM">2</field></shadow></value>
 		</block>
-		<block type="cv2_cap_release"></block>
-	    <block type="cv2_destroyallwindows"></block>
+		
 		<block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block>
 		<block type="block_anyconcat">
 		<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>

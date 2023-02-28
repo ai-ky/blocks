@@ -922,8 +922,8 @@ Blockly.Python['block_get_anyconcat'] = function(block) {
   // TODO: Assemble Python into code variable.
   var code = value_name1+text_name2+value_name3;
   // TODO: Change ORDER_NONE to the correct strength.
-  return code;
-  //return [code, Blockly.Python.ORDER_ATOMIC];
+  //return code;
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 //<block type="block_anyconcat"></block>
