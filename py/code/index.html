@@ -87,7 +87,12 @@
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 	<category name="鍵鼠外掛" colour="#5ba55b">
 		<block type="import_pyautogui"></block>
-		<block type="import_any"></block>
+		<block type="import_any"></block><!--import time-->
+		<block type="python_transform_mode"><!--time.sleep-->
+			<value name="NAME">
+				<block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">0.5</field></block></value></block>
+			</value>
+		</block>
 		<block type="pyautogui_position__"></block>
 		<block type="block_anyconcat">
 			<field name="NAME2">=</field>
@@ -646,23 +651,28 @@
 	</category>
 	<category name="常用函式" colour="#8ca55b">
 		<block type="import_any"></block>
-		<block type="any_func_value"></block>	
-		<block type="any_func_call">
+		<block type="python_transform_mode"><!--time.sleep-->
+			<value name="NAME">
+				<block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">0.5</field></block></value></block>
+			</value>
+		</block>
+		<block type="any_func_call"><!--v=random.randint(0.9)-->
 			<value name="NAME">
 			<block type="variables_get"><field name="VAR">v</field></block>
 			</value>
 		</block>
 		<block type="any_indent_statement"></block>
-		<block type="python_any_statement"></block>
-		<block type="python_any"></block>
-		<block type="block_get_anyconcat"></block>
-		<block type="block_anyconcat"></block>
-		<block type="block_comma"></block>
+		<block type="python_any_statement"></block><!--#any statement-->
+		<block type="python_any"></block><!--\n-->
+		<block type="python_transform_mode"></block><!--transform to statement-->
+		<block type="block_get_anyconcat"></block><!-- . -->
+		<block type="block_anyconcat"></block><!-- = -->
+		<block type="block_comma"></block><!-- , -->
 		<block type="python_global"></block>
 		<block type="python_big_parantheses"></block>
 		<block type="create_arrayin"></block>
 		<block type="python_in"></block>
-		<block type="python_transform_mode"></block>
+		
 		<block type="python_int"></block>
 		<block type="python_bytes"></block>
 		<block type="python_ord">

@@ -100,7 +100,7 @@ Blockly.Blocks['import_any'] = {
 Blockly.Python['import_any'] = function(block) {
   var text_name = block.getFieldValue('NAME');
   // TODO: Assemble Python into code variable.
-  var code = 'import'+text_name+'\n';
+  var code = 'import '+text_name+'\n';
   return code;
 };
 //<block type="print_"></block>
