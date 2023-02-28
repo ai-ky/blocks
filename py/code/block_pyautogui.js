@@ -4,7 +4,7 @@ pyautoguiColour=120
 Blockly.Blocks['pyautoui_any'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("pyautoui.")
+        .appendField("pyautogui.")
         .appendField(new Blockly.FieldTextInput("keyDown('shift')"), "NAME");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
