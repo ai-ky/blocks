@@ -1,0 +1,96 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="import_pygame" id="lK12ON8Oglos4Tu70BT/" x="112" y="38">
+    <next>
+      <block type="import_any" id="k=hn`(RXj[Oh%)JH,;F.">
+        <field name="NAME">keyboard</field>
+        <next>
+          <block type="pygame_init__" id="ol(p{yii-ujst:@Wb^QU">
+            <next>
+              <block type="pygame_mixer_music_load" id="$i=3Hx4G*olLtA;,PJgO">
+                <value name="NAME1">
+                  <shadow type="text" id="[U#n.#!)E={W%TsJMh)c">
+                    <field name="TEXT">1.mp3</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="python_any_statement" id="I[=Ol+34:q+Jo1`aMDD[">
+                    <field name="NAME1">#監聽 hotkey : 'p'鍵按下時觸發下列函式</field>
+                    <next>
+                      <block type="pygame_mixer_music_funcs" id="9DkT0o?%guHG:g9D[;7s">
+                        <field name="NAME1">play()</field>
+                        <next>
+                          <block type="any_indent_statement" id="5D?9X..OE=A7%3jXk.6C">
+                            <field name="NAME">def on_hotkey_triggered():</field>
+                            <statement name="NAME">
+                              <block type="python_any_statement" id="Wx.26_^QI(NX4[S.wz(n">
+                                <field name="NAME1">#如果音樂正在播放就暫停，否則繼續</field>
+                                <next>
+                                  <block type="ifelse" id="JUywrK.rPLu;=P9e@lRv">
+                                    <value name="NAME1">
+                                      <block type="pygame_mixer_music_get_busy" id="0vs[;qLBw3]@.NThnr@2"></block>
+                                    </value>
+                                    <statement name="NAME2">
+                                      <block type="pygame_mixer_music_funcs" id="QRn)P0?pZ*#r/Ywl3X$H">
+                                        <field name="NAME1">pause()</field>
+                                      </block>
+                                    </statement>
+                                    <statement name="NAME3">
+                                      <block type="pygame_mixer_music_funcs" id="xNU(pqOtyhoB!+}xutC1">
+                                        <field name="NAME1">unpause()</field>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="python_transform_mode" id="}Uc;9kIW?d`_c%n^)krQ">
+                                <value name="NAME">
+                                  <block type="any_func_value" id="kUv1kN7}MiUB]HJkJ*yE">
+                                    <field name="NAME">keyboard.add_hotkey</field>
+                                    <value name="NAME">
+                                      <block type="block_comma" id="n9gI=l7[cEJq?RuQ1uA)">
+                                        <value name="NAME1">
+                                          <block type="python_any" id="sj[o7y(0.cKYK#zDp~*A">
+                                            <field name="NAME">'p'</field>
+                                          </block>
+                                        </value>
+                                        <value name="NAME2">
+                                          <block type="python_any" id="l3tFQkWA(A!rJ8dLgYF|">
+                                            <field name="NAME">on_hotkey_triggered</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="python_transform_mode" id="DDen-wU9_-EZG`^*bk[,">
+                                    <value name="NAME">
+                                      <block type="any_func_value" id="hzlx@~HU6}|vD)o5o{w~">
+                                        <field name="NAME">keyboard.wait</field>
+                                        <value name="NAME">
+                                          <block type="python_any" id="Tka}Cp^6=3~Edy?6lO,t">
+                                            <field name="NAME"></field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
