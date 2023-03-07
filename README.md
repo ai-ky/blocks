@@ -1,6 +1,6 @@
 # ai-ky blocks
 ai-ky blocks can build python code blocks in blockly way.  
-it contains a lot of python popular used package such as :
+it contains a lot of popularly and widely used python packages such as :
 ### 1.pyautogui  
 ### 2.opencv  
 ### 3.pygame  
