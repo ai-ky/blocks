@@ -1,4 +1,109 @@
+
 python_functions_colour=80
+//<block type="statement_var"></block>
+//======================================
+Blockly.Blocks['statement_var'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput("with"), "NAME");
+	this.appendDummyInput()
+		.appendField(":");
+    this.appendStatementInput("NAME1")
+		.setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['statement_var'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  var statements_name1 = Blockly.Python.statementToCode(block, 'NAME1');
+  // TODO: Assemble Python into code variable.
+  var code = text_name+" "+value_name+":\n"+statements_name1;
+  return code;
+};
+//<block type="cammaconcat"></block>
+//======================================
+Blockly.Blocks['cammaconcat'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput(","), "NAME3");
+    this.setInputsInline(false);
+    this.setOutput(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['cammaconcat'] = function(block) {
+  var text_name3 = block.getFieldValue('NAME3');
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = text_name3+value_name1;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="obj_method"></block>
+//======================================
+Blockly.Blocks['obj_method'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("mic"), "NAME1")
+        .appendField(".");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("record"), "NAME2")
+        .appendField("(");
+    this.appendValueInput("NAME2")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['obj_method'] = function(block) {
+  var text_name1 = block.getFieldValue('NAME1');
+  var text_name2 = block.getFieldValue('NAME2');
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = text_name1+"."+text_name2+"("+value_name2+')\n';
+  return code;
+};
+//<block type="import_any_as_any"></block>
+//======================================
+Blockly.Blocks['import_any_as_any'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("import")
+        .appendField(new Blockly.FieldTextInput("pyMicVoiceDetection"), "NAME1");
+    this.appendDummyInput()
+        .appendField("as")
+        .appendField(new Blockly.FieldTextInput("mic"), "NAME2");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['import_any_as_any'] = function(block) {
+  var text_name1 = block.getFieldValue('NAME1');
+  var text_name2 = block.getFieldValue('NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = 'import '+text_name1+' as '+text_name2+"\n";
+  return code;
+};
 //<block type="any_func_value"></block>
 //======================================
 Blockly.Blocks['any_func_value'] = {

@@ -1,0 +1,192 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="T:l:O[F(uoKJ*ROpUwum">e</variable>
+  </variables>
+  <block type="python_any_statement" id="#,rWrZ@=a:o7!S;=pIbn" x="87" y="37">
+    <field name="NAME1">#連續語音辨識</field>
+    <next>
+      <block type="import_any_as_any" id="E*JTsbEz8N!W/YX1R~U^">
+        <field name="NAME1">pyMicVoiceDetection</field>
+        <field name="NAME2">mic</field>
+        <next>
+          <block type="import_any_as_any" id="dX%(uBLF61Q`(ex%-n[:">
+            <field name="NAME1">speech_recognition</field>
+            <field name="NAME2">sr</field>
+            <next>
+              <block type="any_indent_statement" id="+{Ex|UVYW{YQ*hw-79[=">
+                <field name="NAME">while True:</field>
+                <statement name="NAME">
+                  <block type="python_any_statement" id="[W2uvB:6Xn5^cKCu,gs~">
+                    <field name="NAME1">#偵測音量，有聲段存至 1.wav</field>
+                    <next>
+                      <block type="obj_method" id="mD=(gHDK#BZ`:U1=Z}_.">
+                        <field name="NAME1">mic</field>
+                        <field name="NAME2">record</field>
+                        <value name="NAME2">
+                          <block type="cammaconcat" id="1hd#@9^^CG*?{uH5wpw3">
+                            <field name="NAME3">filename="1.wav"</field>
+                            <value name="NAME1">
+                              <block type="cammaconcat" id="qmh!g-$wmxpsl|$Ux]5X">
+                                <field name="NAME3">,</field>
+                                <value name="NAME1">
+                                  <block type="cammaconcat" id="nz7Aw%-2.cc6ZsFFNVRs">
+                                    <field name="NAME3">dur=25</field>
+                                    <value name="NAME1">
+                                      <block type="cammaconcat" id="Q)HhUg51T-cZ7ai(CkZu">
+                                        <field name="NAME3">,</field>
+                                        <value name="NAME1">
+                                          <block type="cammaconcat" id="3Xbxc?qSNFg#92ut)N99">
+                                            <field name="NAME3">TH=0.02</field>
+                                            <value name="NAME1">
+                                              <block type="cammaconcat" id="B8XoqG|%.$x7/:$Q()LD">
+                                                <field name="NAME3">,SilenceNum=</field>
+                                                <value name="NAME1">
+                                                  <block type="python_any" id=".vm5bImq}#t`5-Td^u`I">
+                                                    <field name="NAME">50</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="any_func_call" id="HqvEPOH+:zRwf_rK^w$x">
+                            <field name="NAME1">sr</field>
+                            <field name="NAME2">Recognizer</field>
+                            <field name="NAME3"></field>
+                            <value name="NAME">
+                              <block type="python_any" id="IF):qA,(^K`qE/Y~)eAw">
+                                <field name="NAME">r</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="python_any_statement" id=")bwB5:FwH+%ky$E|MYru">
+                                <field name="NAME1">#由1.wav 讀出待辨識 audio</field>
+                                <next>
+                                  <block type="statement_var" id="tY||{$G+NA!ts2}Xq{Da">
+                                    <field name="NAME">with</field>
+                                    <value name="NAME">
+                                      <block type="cammaconcat" id="w3wUuI!X7kU(S.QW#k-U">
+                                        <field name="NAME3">sr.WavFile("1.wav") as </field>
+                                        <value name="NAME1">
+                                          <block type="python_any" id=")}_p9(V*:mAbxn)d6ety">
+                                            <field name="NAME">source</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="NAME1">
+                                      <block type="block_anyconcat" id="5j(af$uK8018Bq^+|hS7">
+                                        <field name="NAME2">=</field>
+                                        <value name="NAME1">
+                                          <block type="python_any" id="-%8x[SGu/}bW7YiV:S:)">
+                                            <field name="NAME">audio</field>
+                                          </block>
+                                        </value>
+                                        <value name="NAME3">
+                                          <block type="block_get_anyconcat" id="K24T7ZH?**YDt)Z=({iP">
+                                            <field name="NAME2">.</field>
+                                            <value name="NAME1">
+                                              <block type="python_any" id="S:pdOgDz)Cj.a3{T5::E">
+                                                <field name="NAME">r</field>
+                                              </block>
+                                            </value>
+                                            <value name="NAME3">
+                                              <block type="any_func_value" id="2WhE@Rfbbd~%GOC@fXg_">
+                                                <field name="NAME">record</field>
+                                                <value name="NAME">
+                                                  <block type="python_any" id="d^e05npW^6uVOB?cvE?i">
+                                                    <field name="NAME">source</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="try_except" id="z_/erf5ok@%xI~DP;iNX">
+                                        <statement name="NAME1">
+                                          <block type="python_any_statement" id="wK;U6bom7T(FXls9FN(V">
+                                            <field name="NAME1">#取得google語音有中文辨識結果</field>
+                                            <next>
+                                              <block type="block_anyconcat" id="DAhae=--,!3[ki]D(ypS">
+                                                <field name="NAME2">=</field>
+                                                <value name="NAME1">
+                                                  <block type="python_any" id="0$lZ,?q|JrM)iPvKMJ.K">
+                                                    <field name="NAME">result</field>
+                                                  </block>
+                                                </value>
+                                                <value name="NAME3">
+                                                  <block type="block_get_anyconcat" id="9hQ%,*RsvBor=wHd5e08">
+                                                    <field name="NAME2">.</field>
+                                                    <value name="NAME1">
+                                                      <block type="python_any" id="YlCz~F+t=b}E0E~Dh*xg">
+                                                        <field name="NAME">r</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="NAME3">
+                                                      <block type="any_func_value" id="h$q30x$y,IE3d2*@#4#^">
+                                                        <field name="NAME">recognize_google</field>
+                                                        <value name="NAME">
+                                                          <block type="cammaconcat" id="77/RD%HoDUx*sFpU^9:*">
+                                                            <field name="NAME3">audio</field>
+                                                            <value name="NAME1">
+                                                              <block type="cammaconcat" id="76t!R2#!e:PlGy+CkI+R">
+                                                                <field name="NAME3">,language=</field>
+                                                                <value name="NAME1">
+                                                                  <block type="python_any" id="z6i_s:U2yw4rC#=.DO)g">
+                                                                    <field name="NAME">'zh-TW'</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                        <value name="NAME2">
+                                          <block type="variables_get" id="P/Y.s]oe:%L[otNM%vUj">
+                                            <field name="VAR" id="T:l:O[F(uoKJ*ROpUwum">e</field>
+                                          </block>
+                                        </value>
+                                        <statement name="NAME3">
+                                          <block type="python_any_statement" id="AuQqP@Nc~uL7DBEtmXx7">
+                                            <field name="NAME1">pass</field>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

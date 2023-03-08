@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google" value="notranslate">
-  <title>Blockly Demo:</title>
+  <title>ai-ky Blocks code python blockly[方塊式python]</title>
   <link rel="stylesheet" href="style.css">
   <script src="../../blockly_compressed.js"></script>
   <script src="../../blocks_compressed.js"></script>
@@ -87,16 +87,20 @@
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 	<category name="常用函式" colour="#8ca55b">
 		<block type="import_any"></block>
+		<block type="import_any_as_any"></block>
 		<block type="python_transform_mode"><!--time.sleep-->
 			<value name="NAME">
 				<block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">0.5</field></block></value></block>
 			</value>
 		</block>
+		<block type="obj_method"></block>
+		<block type="cammaconcat"></block>
 		<block type="any_func_call"><!--v=random.randint(0.9)-->
 			<value name="NAME">
 			<block type="variables_get"><field name="VAR">v</field></block>
 			</value>
 		</block>
+		<block type="statement_var"></block>
 		<block type="any_indent_statement"></block>
 		<block type="python_any_statement"></block><!--#any statement-->
 		<block type="python_any"></block><!--\n-->
@@ -341,6 +345,7 @@
 		</block>
 	</category>
 	<category name="scikit-learn" colour="#a56b5d">
+	
 		<block type="from_sklearn_import_kmeans"></block>
 		<block type="block_kmeans">
 			<value name="NAME2">
@@ -350,6 +355,11 @@
 		<block type="block_kmeans_fit"></block>
 		<block type="block_kmeans_predict"></block>
 	</category>
+
+	<category name="語音與文字處理" colour="#a56b5d">
+		<block type="python_any_statement"><field name="NAME1">#連續語音辨識</field><next><block type="import_any_as_any"><field name="NAME1">pyMicVoiceDetection</field><field name="NAME2">mic</field><next><block type="import_any_as_any"><field name="NAME1">speech_recognition</field><field name="NAME2">sr</field><next><block type="any_indent_statement"><field name="NAME">while True:</field><statement name="NAME"><block type="python_any_statement"><field name="NAME1">#偵測音量，有聲段存至 1.wav</field><next><block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="cammaconcat"><field name="NAME3">filename="1.wav"</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">dur=25</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">TH=0.02</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,SilenceNum=</field><value name="NAME1"><block type="python_any"><field name="NAME">50</field></block></value></block></value></block></value></block></value></block></value></block></value></block></value><next><block type="any_func_call"><field name="NAME1">sr</field><field name="NAME2">Recognizer</field><field name="NAME3"></field><value name="NAME"><block type="python_any"><field name="NAME">r</field></block></value><next><block type="python_any_statement"><field name="NAME1">#由1.wav 讀出待辨識 audio</field><next><block type="statement_var"><field name="NAME">with</field><value name="NAME"><block type="cammaconcat"><field name="NAME3">sr.WavFile("1.wav") as </field><value name="NAME1"><block type="python_any"><field name="NAME">source</field></block></value></block></value><statement name="NAME1"><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">audio</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">r</field></block></value><value name="NAME3"><block type="any_func_value"><field name="NAME">record</field><value name="NAME"><block type="python_any"><field name="NAME">source</field></block></value></block></value></block></value></block></statement><next><block type="try_except"><statement name="NAME1"><block type="python_any_statement"><field name="NAME1">#取得google語音有中文辨識結果</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">result</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">r</field></block></value><value name="NAME3"><block type="any_func_value"><field name="NAME">recognize_google</field><value name="NAME"><block type="cammaconcat"><field name="NAME3">audio</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,language=</field><value name="NAME1"><block type="python_any"><field name="NAME">'zh-TW'</field></block></value></block></value></block></value></block></value></block></value></block></next></block></statement><value name="NAME2"><block type="variables_get"><field name="VAR">e</field></block></value><statement name="NAME3"><block type="python_any_statement"><field name="NAME1">pass</field></block></statement></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block>
+	</category>
+	
 	<category name="mediapip手部偵測" colour="#a58c5b">
 	<block type="import_mediapipe_as_mp"></block>
 	<block type="mediapipe_hands_predefine"></block>
@@ -854,14 +864,7 @@
 	   </block>
 	</category>	
 	<category name="pygame" colour="#5b8ca5">
-		<block type="import_pygame"></block>
-		<block type="pygame_init__"></block>
-		<block type="pygame_mixer_init__"></block>
-		<block type="pygame_mixer_music_load">
-			<value name="NAME1"><shadow type="text"><field name="TEXT">1.mp3</field></shadow></value>
-		</block>
-		<block type="pygame_mixer_music_get_busy"></block>
-		<block type="pygame_mixer_music_funcs"></block>
+		<block type="import_pygame"><next><block type="import_any"><field name="NAME">keyboard</field><next><block type="pygame_init__"><next><block type="pygame_mixer_music_load"><value name="NAME1"><shadow type="text"><field name="TEXT">1.mp3</field></shadow></value><next><block type="python_any_statement"><field name="NAME1">#監聽 hotkey : 'p'鍵按下時觸發下列函式</field><next><block type="pygame_mixer_music_funcs"><field name="NAME1">play()</field><next><block type="any_indent_statement"><field name="NAME">def on_hotkey_triggered():</field><statement name="NAME"><block type="python_any_statement"><field name="NAME1">#如果音樂正在播放就暫停，否則繼續</field><next><block type="ifelse"><value name="NAME1"><block type="pygame_mixer_music_get_busy"></block></value><statement name="NAME2"><block type="pygame_mixer_music_funcs"><field name="NAME1">pause()</field></block></statement><statement name="NAME3"><block type="pygame_mixer_music_funcs"><field name="NAME1">unpause()</field></block></statement></block></next></block></statement><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">keyboard.add_hotkey</field><value name="NAME"><block type="block_comma"><value name="NAME1"><block type="python_any"><field name="NAME">'p'</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">on_hotkey_triggered</field></block></value></block></value></block></value><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">keyboard.wait</field><value name="NAME"><block type="python_any"><field name="NAME"></field></block></value></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
 	</category>	
     <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
 	  <block type="if"></block>
