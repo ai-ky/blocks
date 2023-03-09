@@ -448,7 +448,7 @@ Blockly.Blocks['logic_operation'] = {
     this.appendValueInput("NAME2")
         .setCheck(null)
         .appendField(new Blockly.FieldDropdown([["==","=="], [">",">"], [">=",">="], ["<","<="], ["!=","!="], ["in","in"], ["is","is"], ["and","and"], ["or","or"], ["+=","+="], ["-=","-="], ["+","+"], ["-","-"], ["*","*"], ["/","/"], ["%","%"]]), "NAME3");
-    this.setInputsInline(true);
+	this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(230);
  this.setTooltip("");

@@ -25,6 +25,7 @@
   <script src="block_thread.js"></script>
   <script src="block_serial.js"></script>
   <script src="block_pygame.js"></script>
+  <script src="block_openai.js"></script>
 </head>
 
 <body>
@@ -220,6 +221,209 @@
 	<category name="瀏覽器" colour="#8ca55b">
 		<block type="import_any"><field name="NAME">webbrowser</field><next><block type="obj_method"><field name="NAME1">webbrowser</field><field name="NAME2">open</field><value name="NAME2"><block type="text"><field name="TEXT">https://github.com/ai-ky/blocks</field></block></value></block></next></block>
 	</category>
+	<category name="mediapip手部偵測" colour="#a58c5b">
+		<block type="import_mediapipe_as_mp"></block>
+		<block type="import_mediapipe_as_mp"><next><block type="opencv_import"><next><block type="mediapipe_hands_predefine"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="with_mp_hands_hands"><statement name="NAME"><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">False</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_BGR2RGB</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="mediapipe_hands_process"><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_RGB2BGR</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME2"><block type="for_loop"><value name="NAME1"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value><value name="NAME2"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME3"><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow><block type="get_handslandmark"><field name="NAME1">hand_landmarks</field><field name="NAME">y</field><value name="NAME2"><shadow type="math_number"><field name="NUM">8</field></shadow><block type="math_number"><field name="NUM">8</field><comment pinned="true" h="45" w="170">取 index finger y座標</comment></block></value></block></value><next><block type="hands_mp_drawing"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value></block></next></block></statement></block></statement><next><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME2"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">True</field><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT">mediapipe hands demo</field></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block></next></block></next></block></next></block>
+		<block type="mediapipe_hands_predefine"></block>
+		<block type="block_anyconcat">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+			<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
+		</block>	
+		<block type="mediapipe_hands_process">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">result</field>
+				</block>
+			</value>
+			<value name="NAME2">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+		<block type="with_mp_hands_hands"></block>
+		<block type="multi_hand_landmarks">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">result</field>
+				</block>
+			</value>
+		</block>
+		<block type="for_loop">
+		<value name="NAME1">
+			<block type="variables_get">
+			<field name="VAR">hand_landmarks</field>
+			</block>
+		</value>
+		<value name="NAME2">
+			<block type="multi_hand_landmarks">
+				<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">result</field>
+				</block>
+				</value>
+			</block>
+		</value>
+	</block>
+		<block type="get_handslandmark">
+			<value name="NAME2">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+	</block>
+		<block type="hands_mp_drawing">
+		<value name="NAME1">
+			<block type="variables_get">
+				<field name="VAR">img</field>
+			</block>
+		</value>
+		<value name="NAME2">
+			<block type="variables_get">
+				<field name="VAR">hand_landmarks</field>
+			</block>
+		</value>
+	</block>
+	</category>
+	<category name="mediapipe姿態偵測" colour="#a58c5b">
+		<block type="import_mediapipe_as_mp"></block>
+		<block type="import_mediapipe_as_mp"><next><block type="opencv_import"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="mp_pose_predefine"><next><block type="with_mp_pose_as_pose"><statement name="NAME3"><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="if"><value name="NAME1"><block type="logic_negate"><value name="BOOL"><block type="variables_get"><field name="VAR">ret</field></block></value></block></value><statement name="NAME2"><block type="python_continue"></statement><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">False</field><next><block type="pose_process"><field name="NAME1">poseResult</field><value name="NAME"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="pose_landmarks"><field name="NAME1">poseLandmarks</field><field name="NAME2">poseResult</field><next><block type="if"><value name="NAME1"><block type="variables_get"><field name="VAR">poseLandmarks</field></block></value><statement name="NAME2"><block type="mp_drawing_draw_landmarks"><field name="NAME2">poseLandmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow><block type="get_poselandmark"><field name="NAME1">poseLandmarks</field><field name="NAME">y</field><value name="NAME2"><shadow type="math_number"><field name="NUM">16</field></shadow></value></block></value></block></next></block></statement><next><block type="if"><value name="NAME1"><block type="logic_compare"><field name="OP">EQ</field><value name="A"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="B"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">True</field><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT"/></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block></next></block></next></block></next></block>
+		
+		<block type="mp_pose_predefine"></block>
+		<block type="with_mp_pose_as_pose"></block>
+		<block type="pose_process">
+			<value name="NAME">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+		<block type="pose_landmarks"></block>
+		<block type="get_poselandmark">
+			<value name="NAME2">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+		</block>
+		<block type="mp_drawing_draw_landmarks">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category name="chatGPT" colour="#a56b5d">
+		<!--chatGPT-->
+		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">openai</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">openai.api_key</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">在此輸入api key</field></block></value><next><block type="python_any_statement"><field name="NAME1">#互動問題放在下方prompt變數中</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">prompt</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">"請幫我寫一個python程式:1.按下p鍵時滑鼠會移到座標10,10\n2.使用pyautogui和keyboard包"</field></block></value><next><block type="python_any_statement"><field name="NAME1">#呼叫API</field><next><block type="python_any_statement"><field name="NAME1">#參數詳見==>https://platform.openai.com/docs/api-reference/completions/create</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">response</field></block></value><value name="NAME3"><block type="openai_completion_create_"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">engine</field></block></value><value name="NAME3"><block type="engines"><field name="NAME">'text-davinci-003'</field></block></value></block></value><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">prompt</field></block></value><value name="NAME3"><block type="variables_get"><field name="VAR">prompt</field></block></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">max_tokens= 1000</field></block></value><value name="NAME"><block type="python_any"><field name="NAME">temperature=0.8</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="list_getDim1"><value name="NAME1"><block type="python_any"><field name="NAME">response.choices</field></block></value><value name="NAME2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">text</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
+	</category>
+	<category name="DALL.e" colour="#a56b5d">
+		<block type="import_var" id="rMQ1v*8xf_-E51?rnyv;" x="112" y="-38">
+<value name="NAME2">
+<block type="python_any" id=";OYJwB[u/#Y-[HGN-[1i">
+<field name="NAME">openai</field>
+</block>
+</value>
+<next>
+<block type="import_any" id="i,Qce,oCoIri_!YGh`}z">
+<field name="NAME">webbrowser</field>
+<next>
+<block type="block_anyconcat" id="jsQ$RG/~=jKgZ~g+LFNZ">
+<field name="NAME2">=</field>
+<value name="NAME1">
+<block type="python_any" id="zpw+ovJ=,94s7qb*`slR">
+<field name="NAME">openai.api_key</field>
+</block>
+</value>
+<value name="NAME3">
+<block type="text" id=".6CXrm-9XDflbj%4#{Xp">
+<field name="TEXT">在此輸入api key</field>
+</block>
+</value>
+<next>
+<block type="python_any_statement" id="oZ^t$u)ZHhdtPwi9|5ch">
+<field name="NAME1">#繪圖要求放在下方prompt變數中</field>
+<next>
+<block type="block_anyconcat" id="Jhl8+a6_-25Zu][{RE+1">
+<field name="NAME2">=</field>
+<value name="NAME1">
+<block type="variables_get" id="(Ig5Z]::SY8@]_56v}2i">
+<field name="VAR" id="k2jF6!PP-MR+f/`LTES}">prompt</field>
+</block>
+</value>
+<value name="NAME3">
+<block type="text" id="[I`#Y%Q.`{(HGb.nwRFC">
+<field name="TEXT">3D model of a future car</field>
+</block>
+</value>
+<next>
+<block type="openai_image_create_" id="3{fluWr_YNRn4~KiNSq5">
+<value name="NAME1">
+<block type="python_any" id="7GcxLEJuyOYmKy7??#35">
+<field name="NAME">response</field>
+</block>
+</value>
+<value name="NAME2">
+<block type="block_get_anyconcat" id="SO#Fr5,@B!Hh`/iUxa[v">
+<field name="NAME2">=</field>
+<value name="NAME1">
+<block type="python_any" id="1#W|/DK1NYj0nMIm}+Nw">
+<field name="NAME">prompt</field>
+</block>
+</value>
+<value name="NAME3">
+<block type="variables_get" id="2IloxVlEu[TQ^WjVH[Y+">
+<field name="VAR" id="k2jF6!PP-MR+f/`LTES}">prompt</field>
+</block>
+</value>
+</block>
+</value>
+<value name="NAME3">
+<block type="python_any" id="{rmf3+7zVo#0:=Q.KS:p">
+<field name="NAME">n=1</field>
+</block>
+</value>
+<value name="NAME4">
+<block type="python_any" id="!a/!9pN@ow|cb#cUc%IY">
+<field name="NAME">size='512x512'</field>
+</block>
+</value>
+<next>
+<block type="block_anyconcat" id="+0GCRr)CS.p333VL?5xY">
+<field name="NAME2">=</field>
+<value name="NAME1">
+<block type="variables_get" id="y]3Dme%p[TE8!vr$ZRq8">
+<field name="VAR" id="%Ki1H2)1T9^;yhm$z[x`">result</field>
+</block>
+</value>
+<value name="NAME3">
+<block type="python_any" id="qjX|jt]yJ[{cI;v82n:g">
+<field name="NAME">response["data"][0]["url"]</field>
+</block>
+</value>
+<next>
+<block type="obj_method" id="%HVx59{tSu_fA7bb+S#.">
+<field name="NAME1">webbrowser</field>
+<field name="NAME2">open</field>
+<value name="NAME2">
+<block type="variables_get" id="R(N$QuLhk,uz(s1g=j.m">
+<field name="VAR" id="%Ki1H2)1T9^;yhm$z[x`">result</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+	</category>
+	
 	<category name="colab" colour="#a56b5d">
 	    <block type="googlecolab_import_colabcam"><next><block type="googlecolab_import_cv2_imshow"><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="googlecolab_colabcam_take_img"></block></value><next><block type="googlecolab_cv2_imshow"><value name="NAME"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block>
 	</category>
@@ -361,97 +565,7 @@
 		<block type="block_kmeans_fit"></block>
 		<block type="block_kmeans_predict"></block>
 	</category>
-
 	
-	
-	<category name="mediapip手部偵測" colour="#a58c5b">
-	<block type="import_mediapipe_as_mp"></block>
-	<block type="mediapipe_hands_predefine"></block>
-	
-	<block type="block_anyconcat">
-		<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
-		<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
-	</block>	
-	
-	<block type="mediapipe_hands_process">
-		<value name="NAME1">
-			<block type="variables_get">
-			<field name="VAR">result</field>
-			</block>
-		</value>
-		<value name="NAME2">
-			<block type="variables_get">
-			<field name="VAR">img</field>
-			</block>
-		</value>
-	</block>
-	<block type="with_mp_hands_hands"></block>
-	<block type="multi_hand_landmarks">
-		<value name="NAME1">
-			<block type="variables_get">
-			<field name="VAR">result</field>
-			</block>
-		</value>
-	</block>
-	<block type="for_loop">
-		<value name="NAME1">
-			<block type="variables_get">
-			<field name="VAR">hand_landmarks</field>
-			</block>
-		</value>
-		<value name="NAME2">
-			<block type="multi_hand_landmarks">
-				<value name="NAME1">
-				<block type="variables_get">
-				<field name="VAR">result</field>
-				</block>
-				</value>
-			</block>
-		</value>
-	</block>
-	<block type="get_handslandmark">
-			<value name="NAME2">
-				<shadow type="math_number"><field name="NUM">0</field></shadow>
-			</value>
-	</block>
-	<block type="hands_mp_drawing">
-		<value name="NAME1">
-			<block type="variables_get">
-				<field name="VAR">img</field>
-			</block>
-		</value>
-		<value name="NAME2">
-			<block type="variables_get">
-				<field name="VAR">hand_landmarks</field>
-			</block>
-		</value>
-	</block>
-	</category>
-	<category name="mediapipe姿態偵測" colour="#a58c5b">
-		<block type="import_mediapipe_as_mp"></block>
-		<block type="mp_pose_predefine"></block>
-		<block type="with_mp_pose_as_pose"></block>
-		<block type="pose_process">
-			<value name="NAME">
-				<block type="variables_get">
-				<field name="VAR">img</field>
-				</block>
-			</value>
-		</block>
-		<block type="pose_landmarks"></block>
-		<block type="get_poselandmark">
-			<value name="NAME2">
-				<shadow type="math_number"><field name="NUM">0</field></shadow>
-			</value>
-		</block>
-		<block type="mp_drawing_draw_landmarks">
-			<value name="NAME1">
-				<block type="variables_get">
-				<field name="VAR">img</field>
-				</block>
-			</value>
-		</block>
-	</category>
 	<category name="神經網路 keras" colour="#a56b5d">
 		<block type="keras_import_load_model"></block>
 		<block type="keras_import_np_utils"></block>
@@ -611,16 +725,16 @@
 		</block>
 	</category>
 	<category name="多執行緒" colour="#8ca55b">
+	    <block type="import_threading"><next><block type="import_pyautogui"><next><block type="statement_var"><field name="NAME">def </field><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">thread_job</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"/></block></value></block></value><statement name="NAME1"><block type="pyautogui_mousedown"><next><block type="pyautogui_moveto"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME3"><shadow type="math_number"><field name="NUM">1</field></shadow></value><next><block type="pyautogui_mouseup"></next></block></next></block></statement><next><block type="threading_thread"><field name="NAME1">thread1</field><field name="NAME2">thread_job</field><next><block type="thread_start"><field name="NAME1">thread1</field></block></next></block></next></block></next></block></next></block>
 		<block type="import_threading"></block>
-		<block type="threading_thread">
-		</block>
+		<block type="threading_thread"></block>
 		<block type="threading_thread2"></block>
 		<block type="thread_start"></block>
 		<block type="thread_join"></block>
 		<block type="create_threading_lock">
 			<value name="NAME">
 				<block type="variables_get">
-				<field name="VAR">lock</field>
+					<field name="VAR">lock</field>
 				</block>
 			</value>
 		</block>
@@ -704,6 +818,7 @@
 			</block>
 			</value>
 		</block>
+		<block type="import_serial"><next><block type="python_any_statement"><field name="NAME1">#開啟COM埠，遂次讀取一行由COM埠傳來的訊息每隔20</field><next><block type="serial_create"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value><value name="NAME2"><shadow type="text"><field name="TEXT">COM3</field></shadow></value><value name="NAME3"><shadow type="math_number"><field name="NUM">9600</field></shadow></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME3"><block type="math_number"><field name="NUM">0</field></block></value><next><block type="controls_whileUntil"><field name="MODE">WHILE</field><value name="BOOL"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="DO"><block type="if"><value name="NAME1"><block type="logic_compare"><field name="OP">GT</field><value name="A"><block type="serialport_in_waiting"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">#每隔20行，顯示一次讀入之訊息並回傳"OK"</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME3"><block type="serialport_readline"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="logic_operation"><field name="NAME3">%</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">20</field></block></value></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><statement name="NAME2"><block type="print_"><field name="NAME2">end=""</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><next><block type="serialport_write"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">OK</field></block></value></block></next></block></statement><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME3"><block type="math_arithmetic"><field name="OP">ADD</field><value name="A"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="variables_get"><field name="VAR">i</field></block></value><value name="B"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block></value></block></next></block></next></block></next></block></statement></block></statement></block></next></block></next></block></next></block></next></block>
 	</category>
 	</category>
 	<category name="numpy" colour="#a55b5b">
