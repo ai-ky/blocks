@@ -42,8 +42,7 @@ Blockly.Python['np_array'] = function(block) {
 Blockly.Blocks['numpyarray_copy'] = {
   init: function() {
     this.appendValueInput("COPY_ARRAY_NAME")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendDummyInput()
         .appendField(".cpoy()");
     this.setInputsInline(true);
@@ -63,8 +62,7 @@ Blockly.Python['numpyarray_copy'] = function(block) {
 Blockly.Blocks['numpyarray_astype'] = {
   init: function() {
     this.appendValueInput("numpyArray_astype_ARRAYNAME")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendDummyInput()
         .appendField(".astype(")
         .appendField(new Blockly.FieldDropdown([["np.float32","np.float32"], ["np.float64","np.float64"], ["np.int32","np.int32"], ["np.int32","np.int32"]]), "numpyArray_astype_type")
@@ -87,8 +85,7 @@ Blockly.Python['numpyarray_astype'] = function(block) {
 Blockly.Blocks['numpyarray_reshape3'] = {
   init: function() {
     this.appendValueInput("numpyArray_reshape3_ARRAYNAME")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendValueInput("numpyArray_reshape3_d1")
         .setCheck("Number")
         .appendField(".reshape(");
@@ -124,8 +121,7 @@ Blockly.Python['numpyarray_reshape3'] = function(block) {
 Blockly.Blocks['numpyarray_reshape4'] = {
   init: function() {
     this.appendValueInput("NAME1")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendValueInput("NAME2")
         .setCheck("Number")
         .appendField(".reshape(");
@@ -165,8 +161,7 @@ Blockly.Python['numpyarray_reshape4'] = function(block) {
 Blockly.Blocks['numpyarray_reshape2'] = {
   init: function() {
     this.appendValueInput("numpyArray_reshape2_ARRAYNAME")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendValueInput("numpyArray_reshape2_d1")
         .setCheck("Number")
         .appendField(".reshape(");
@@ -197,8 +192,7 @@ Blockly.Python['numpyarray_reshape2'] = function(block) {
 Blockly.Blocks['numpyarray_flatten'] = {
   init: function() {
     this.appendValueInput("numpyArray_flatten_ARRAYNAME")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendDummyInput()
         .appendField(".flatten()");
     this.setInputsInline(true);
@@ -219,8 +213,7 @@ Blockly.Python['numpyarray_flatten'] = function(block) {
 Blockly.Blocks['numpy_var_dim1'] = {
   init: function() {//
 	this.appendDummyInput()
-		.appendField("陣列")
-        .appendField(new Blockly.FieldVariable("A"), "ARRAY_NAME");
+		.appendField(new Blockly.FieldVariable("A"), "ARRAY_NAME");
     this.appendValueInput("DIM1_START")
         .setCheck("Number")
         .appendField("[");
@@ -248,8 +241,7 @@ Blockly.Python['numpy_var_dim1'] = function(block) {
 Blockly.Blocks['numpy_var_dim2'] = {
   init: function() {//
 	this.appendDummyInput()
-		.appendField("陣列")
-        .appendField(new Blockly.FieldVariable("A"), "ARRAY_NAME");
+		.appendField(new Blockly.FieldVariable("A"), "ARRAY_NAME");
     this.appendValueInput("DIM21_START")
         .setCheck("Number")
         .appendField("[");
@@ -424,8 +416,7 @@ Blockly.Python['build_tuple3'] = function(block) {
 Blockly.Blocks['list_append'] = {
   init: function() {
     this.appendValueInput("list_append_V1")
-        .setCheck(null)
-        .appendField("串列");
+        .setCheck(null);
     this.appendValueInput("list_append_V2")
         .setCheck(null)
         .appendField(".append(");
@@ -451,7 +442,7 @@ Blockly.Blocks['np_clip'] = {
   init: function() {
     this.appendValueInput("NAME1")
         .setCheck(null)
-        .appendField("np.clip(陣列=");
+        .appendField("np.clip(");
     this.appendValueInput("NAME2")
         .setCheck(null)
         .appendField(",min=");
@@ -480,8 +471,7 @@ Blockly.Python['np_clip'] = function(block) {
 Blockly.Blocks['list_getDim1'] = {
   init: function() {
     this.appendValueInput("NAME1")
-        .setCheck(null)
-        .appendField("取值");
+        .setCheck(null);
     this.appendDummyInput()
         .appendField("[");
     this.appendValueInput("NAME2")
@@ -507,8 +497,7 @@ Blockly.Python['list_getDim1'] = function(block) {
 Blockly.Blocks['numpy_array_shape'] = {
   init: function() {
     this.appendValueInput("NAME1")
-        .setCheck(null)
-        .appendField("陣列");
+        .setCheck(null);
     this.appendDummyInput()
         .appendField(".shape");
     this.setInputsInline(true);
