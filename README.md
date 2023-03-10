@@ -1,4 +1,4 @@
-# AI程式積木 code python blockly
+# AI python積木 code python blockly
 ai-ky blocks can build python code blocks in blockly way.  
 it contains a lot of popularly and widely used python packages such as :
 ### 1.pyautogui  
