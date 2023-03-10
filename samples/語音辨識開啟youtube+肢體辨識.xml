@@ -1,0 +1,839 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="#$2T*?z;RID!H;WdQ(o$">keyword</variable>
+    <variable id=":|tifzH~zIjXtyrO;T3m">params</variable>
+    <variable id="$x0#xx,_LBD7h$zLEHyt">res</variable>
+    <variable id="Kr{O`7x]Ck.*fkPho~i}">i</variable>
+    <variable id=":}zUtWN-jwbT/E_!*)t9">j</variable>
+    <variable id="#klgGr`p]qy;${Vw9K_N">vid</variable>
+    <variable id="lB$GY]AaY8K%Uv9c-weN">text</variable>
+    <variable id=")O+e{Of)F!bNJ[|Y-/,~">ret</variable>
+    <variable id="Zg}Vf#Z^/QS(lp.ECTrY">img</variable>
+    <variable id="T/s.]f3ab.DzK.ENG8:?">e</variable>
+    <variable id="lVE9?%C0s%jHnl0NVWcJ">result</variable>
+    <variable id="aQ8q+{-oLH@mL(*gR8yQ">poseResult</variable>
+    <variable id="ZijpNKb~HnF([]ZYBX=W">poseLandmarks</variable>
+  </variables>
+  <block type="python_any_statement" id=":fQztHkRL6/7eKp~]b/f" x="-87" y="-763">
+    <field name="NAME1">#連續語音辨識</field>
+    <next>
+      <block type="import_any" id="4A@K0_Bs9~n0K4PMI#@/">
+        <field name="NAME">time</field>
+        <next>
+          <block type="import_any" id="2TaP)bt2u}#U3xlgwCkb">
+            <field name="NAME">requests</field>
+            <next>
+              <block type="import_mediapipe_as_mp" id="liZ._Ri5,zqhZI3rR,4T">
+                <next>
+                  <block type="import_pyautogui" id="Hb??8d.DkpQ(CMmuG8jv">
+                    <next>
+                      <block type="opencv_import" id="aJb)HVa(+-O),d+GH.G^">
+                        <next>
+                          <block type="import_any" id="Nj/|.u`4a/s4yGq(rr?f">
+                            <field name="NAME">webbrowser</field>
+                            <next>
+                              <block type="import_any_as_any" id=":-a`zIS5.13dkD0Bfkkl">
+                                <field name="NAME1">pyMicVoiceDetection</field>
+                                <field name="NAME2">mic</field>
+                                <next>
+                                  <block type="import_any_as_any" id="RJk:T0#or@kYOZzDf?LZ">
+                                    <field name="NAME1">speech_recognition</field>
+                                    <field name="NAME2">sr</field>
+                                    <next>
+                                      <block type="import_threading" id="vR9,8ci?bBq(=`qNZ9]/">
+                                        <next>
+                                          <block type="python_any_statement" id="KBOW;S^kT)nd%JN^Os}E">
+                                            <field name="NAME1">#search_youtube函式:傳入關鍵字，回傳youtube搜尋到的第一個網址</field>
+                                            <next>
+                                              <block type="statement_var" id="U$-}*M~xVBKt];6:Q??]">
+                                                <field name="NAME">def</field>
+                                                <value name="NAME">
+                                                  <block type="any_in_brackets" id="2c/D:=vFx0R!*-{K|S);">
+                                                    <value name="NAME1">
+                                                      <block type="python_any" id="d:,DZ},5E36s,nkNQ(FS">
+                                                        <field name="NAME">search_youtube</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="NAME2">
+                                                      <block type="variables_get" id="$C0-G3!i8Dxpxf^4@oc}">
+                                                        <field name="VAR" id="#$2T*?z;RID!H;WdQ(o$">keyword</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <statement name="NAME1">
+                                                  <block type="block_anyconcat" id="{/_TKA^Yo6^`D:+,QhxV">
+                                                    <field name="NAME2">=</field>
+                                                    <value name="NAME1">
+                                                      <block type="variables_get" id="R0$1oqu*D}ev-/wDm#mN">
+                                                        <field name="VAR" id=":|tifzH~zIjXtyrO;T3m">params</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="NAME3">
+                                                      <block type="python_big_parantheses" id=";[)~J%t_Wn*T}!CxWD1Z">
+                                                        <value name="NAME1">
+                                                          <block type="cammaconcat" id="O@Dun^v#,/OJ^lJMQ$O/">
+                                                            <field name="NAME3">"search_query":</field>
+                                                            <value name="NAME1">
+                                                              <block type="variables_get" id=")g}6rm#A:OH:HR[1TLSh">
+                                                                <field name="VAR" id="#$2T*?z;RID!H;WdQ(o$">keyword</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="block_anyconcat" id="*zJ8)1-tlK[%ZS)PwH~a">
+                                                        <field name="NAME2">=</field>
+                                                        <value name="NAME1">
+                                                          <block type="variables_get" id="34~kit0wGN)9r71hID6Z">
+                                                            <field name="VAR" id="$x0#xx,_LBD7h$zLEHyt">res</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="NAME3">
+                                                          <block type="any_in_brackets" id=",iG`jIKxakr2UD^~CYYL">
+                                                            <value name="NAME1">
+                                                              <block type="block_get_anyconcat" id=".@E.lc~5c0,!~`_VsOiC">
+                                                                <field name="NAME2">.</field>
+                                                                <value name="NAME1">
+                                                                  <block type="python_any" id="}+:~um/#V=Sc9j{0.0=w">
+                                                                    <field name="NAME">requests</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="NAME3">
+                                                                  <block type="python_any" id=",n-/]Ci+EpinupkVF#Yn">
+                                                                    <field name="NAME">get</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <value name="NAME2">
+                                                              <block type="cammaconcat" id="t;$ydy@/6Y94!au)7d.v">
+                                                                <field name="NAME3">"https://www.youtube.com/results"</field>
+                                                                <value name="NAME1">
+                                                                  <block type="cammaconcat" id="svJm`UiRvLufR=L(*4b#">
+                                                                    <field name="NAME3">,</field>
+                                                                    <value name="NAME1">
+                                                                      <block type="variables_get" id="B%$3j@o/=[qosN}!uzlY">
+                                                                        <field name="VAR" id=":|tifzH~zIjXtyrO;T3m">params</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="block_anyconcat" id="I{,9n%k^Wi4]X|G^nS/s">
+                                                            <field name="NAME2">=</field>
+                                                            <value name="NAME1">
+                                                              <block type="variables_get" id="Wf!WS/*jwil0jffDsi[5">
+                                                                <field name="VAR" id="Kr{O`7x]Ck.*fkPho~i}">i</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="NAME3">
+                                                              <block type="any_in_brackets" id="TiG}i{9T)9C(G|LBm2#}">
+                                                                <value name="NAME1">
+                                                                  <block type="block_get_anyconcat" id="`L`V88U~P;Le3)U-](DI">
+                                                                    <field name="NAME2">.</field>
+                                                                    <value name="NAME1">
+                                                                      <block type="variables_get" id="MF9)a@b:.5uc6Y+,%(4U">
+                                                                        <field name="VAR" id="$x0#xx,_LBD7h$zLEHyt">res</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="NAME3">
+                                                                      <block type="python_any" id="WIgjZdgygVkm?O,:.(b+">
+                                                                        <field name="NAME">text.find</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="NAME2">
+                                                                  <block type="block_comma" id="Q%T)n/-qb*(ZFmOK:)QB">
+                                                                    <value name="NAME1">
+                                                                      <block type="text" id="8e%g3JQbxiB:_*FisOK@">
+                                                                        <field name="TEXT">/watch?v=</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="NAME2">
+                                                                      <block type="math_number" id="8Dta.[U?$aKD-mg$p4[G">
+                                                                        <field name="NUM">0</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="block_anyconcat" id="g43bstA29`Q=Sum=Q0}/">
+                                                                <field name="NAME2">=</field>
+                                                                <value name="NAME1">
+                                                                  <block type="variables_get" id="AfCD2XmDk:3y^^L)ktp^">
+                                                                    <field name="VAR" id=":}zUtWN-jwbT/E_!*)t9">j</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="NAME3">
+                                                                  <block type="any_in_brackets" id="5{ydsF(tCKu|.KESv$i3">
+                                                                    <value name="NAME1">
+                                                                      <block type="block_get_anyconcat" id="alF:?!#Z1df*5I*m(~0-">
+                                                                        <field name="NAME2">.</field>
+                                                                        <value name="NAME1">
+                                                                          <block type="variables_get" id=":F]**(E2h(iv%{H:G741">
+                                                                            <field name="VAR" id="$x0#xx,_LBD7h$zLEHyt">res</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="NAME3">
+                                                                          <block type="python_any" id="FVOPnzQO$~1YMRz|Zpnl">
+                                                                            <field name="NAME">text.find</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="NAME2">
+                                                                      <block type="block_comma" id="_V:PVq2TATg.-Gqv](|D">
+                                                                        <value name="NAME1">
+                                                                          <block type="text" id="I*xz?)6w}ORq36)_KZ)z">
+                                                                            <field name="TEXT">"</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="NAME2">
+                                                                          <block type="variables_get" id="0CTs3a5SO(9=N$ocTt(Q">
+                                                                            <field name="VAR" id="Kr{O`7x]Ck.*fkPho~i}">i</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="block_anyconcat" id="QBZavG6lgeY]{+U,nVs.">
+                                                                    <field name="NAME2">=</field>
+                                                                    <value name="NAME1">
+                                                                      <block type="variables_get" id="j5H_,GckpR^*F*lE7vVC">
+                                                                        <field name="VAR" id="#klgGr`p]qy;${Vw9K_N">vid</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="NAME3">
+                                                                      <block type="block_get_anyconcat" id="MJ@~*48K8sA]sA{MO#cL">
+                                                                        <field name="NAME2">.</field>
+                                                                        <value name="NAME1">
+                                                                          <block type="variables_get" id="#i!C?I0Bt/z21sR5t|f9">
+                                                                            <field name="VAR" id="$x0#xx,_LBD7h$zLEHyt">res</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="NAME3">
+                                                                          <block type="numpy_var_dim1" id="C=bU|orc=qu$^=q;0@Y9">
+                                                                            <field name="ARRAY_NAME" id="lB$GY]AaY8K%Uv9c-weN">text</field>
+                                                                            <value name="DIM1_START">
+                                                                              <shadow type="math_number" id="e/[7igk7a]]BzJ53?Hg4">
+                                                                                <field name="NUM">0</field>
+                                                                              </shadow>
+                                                                              <block type="variables_get" id="`l;zbf:rAznZ0Cb$=;Sl">
+                                                                                <field name="VAR" id="Kr{O`7x]Ck.*fkPho~i}">i</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <value name="DIM1_END">
+                                                                              <shadow type="math_number" id="$6GFtqskW)UBd6LoGHmT">
+                                                                                <field name="NUM">0</field>
+                                                                              </shadow>
+                                                                              <block type="variables_get" id="f#NKJv01P4|7H[|Rr;(Q">
+                                                                                <field name="VAR" id=":}zUtWN-jwbT/E_!*)t9">j</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="return" id=",a1[CO+=eDH3USeWD@cd">
+                                                                        <value name="NAME2">
+                                                                          <block type="variables_get" id="Y9jU3n5?prrE$pqA5vF^">
+                                                                            <field name="VAR" id="#klgGr`p]qy;${Vw9K_N">vid</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="statement_var" id="g!PvCIro~xH/{^|be`hA">
+                                                    <field name="NAME">def</field>
+                                                    <value name="NAME">
+                                                      <block type="python_any" id="7l@g1]w{:2?==(c]/ciN">
+                                                        <field name="NAME">SpeechProcess()</field>
+                                                      </block>
+                                                    </value>
+                                                    <statement name="NAME1">
+                                                      <block type="any_indent_statement" id="},~l0)%z[QdzGnTQ-.~E">
+                                                        <field name="NAME">while True:</field>
+                                                        <statement name="NAME">
+                                                          <block type="python_any_statement" id="=@Gh-KSezbZ8wM/m_NX:">
+                                                            <field name="NAME1">#偵測音量，有聲段存至 1.wav</field>
+                                                            <next>
+                                                              <block type="obj_method" id=";!}|*Me;:1c1hOf2}fDC">
+                                                                <field name="NAME1">mic</field>
+                                                                <field name="NAME2">record</field>
+                                                                <value name="NAME2">
+                                                                  <block type="cammaconcat" id="Z]sXAjB+R8cbI]Aj!_M-">
+                                                                    <field name="NAME3">filename="1.wav"</field>
+                                                                    <value name="NAME1">
+                                                                      <block type="cammaconcat" id="[S,1J_V^P|u$k?L,`w8e">
+                                                                        <field name="NAME3">,</field>
+                                                                        <value name="NAME1">
+                                                                          <block type="cammaconcat" id="/,[;e~[2z3vq0#)N9Cg{">
+                                                                            <field name="NAME3">dur=25</field>
+                                                                            <value name="NAME1">
+                                                                              <block type="cammaconcat" id="en4c}_4nX2bheWLlpV}U">
+                                                                                <field name="NAME3">,</field>
+                                                                                <value name="NAME1">
+                                                                                  <block type="cammaconcat" id="8Mk.3T5R}jz1sYL#E,Nd">
+                                                                                    <field name="NAME3">TH=0.02</field>
+                                                                                    <value name="NAME1">
+                                                                                      <block type="cammaconcat" id="+EZH7h4he+KesJ!|eu{E">
+                                                                                        <field name="NAME3">,SilenceNum=</field>
+                                                                                        <value name="NAME1">
+                                                                                          <block type="python_any" id="eXNFhE?;!cEbbHuxZZsT">
+                                                                                            <field name="NAME">50</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="any_func_call" id="$Y+e0;1a;DKrJ5MKs(89">
+                                                                    <field name="NAME1">sr</field>
+                                                                    <field name="NAME2">Recognizer</field>
+                                                                    <field name="NAME3"></field>
+                                                                    <value name="NAME">
+                                                                      <block type="python_any" id="ZnzL=:O@uB4d!vBJTCpP">
+                                                                        <field name="NAME">r</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="python_any_statement" id="yYR3*r0WKy|;9)(IOz[5">
+                                                                        <field name="NAME1">#由1.wav 讀出待辨識 audio</field>
+                                                                        <next>
+                                                                          <block type="statement_var" id="4[QWN,aa;o(e.r1U)Biu">
+                                                                            <field name="NAME">with</field>
+                                                                            <value name="NAME">
+                                                                              <block type="cammaconcat" id="|?yX8igJFSM5K@*LIMmE">
+                                                                                <field name="NAME3">sr.WavFile("1.wav") as </field>
+                                                                                <value name="NAME1">
+                                                                                  <block type="python_any" id="0Tl/:ZBWX3a-aCzJZdqT">
+                                                                                    <field name="NAME">source</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                            <statement name="NAME1">
+                                                                              <block type="block_anyconcat" id="=E4n98:zvX7__vC.a(5}">
+                                                                                <field name="NAME2">=</field>
+                                                                                <value name="NAME1">
+                                                                                  <block type="python_any" id="uNT#XWZ.mF!1=3K}o.;}">
+                                                                                    <field name="NAME">audio</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <value name="NAME3">
+                                                                                  <block type="block_get_anyconcat" id="hkNb#(;Gg/nEr$Dp4jK@">
+                                                                                    <field name="NAME2">.</field>
+                                                                                    <value name="NAME1">
+                                                                                      <block type="python_any" id="Z#@dVbjeeRtqjI2EJ:_^">
+                                                                                        <field name="NAME">r</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <value name="NAME3">
+                                                                                      <block type="any_func_value" id="Tjqb`}g.e/GAR0fmiH}v">
+                                                                                        <field name="NAME">record</field>
+                                                                                        <value name="NAME">
+                                                                                          <block type="python_any" id="zR_rFOhq~*#jj*b!}SM)">
+                                                                                            <field name="NAME">source</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </statement>
+                                                                            <next>
+                                                                              <block type="try_except" id="}=Z?bizYdx3^W$^id6Q,">
+                                                                                <statement name="NAME1">
+                                                                                  <block type="python_any_statement" id="6qK5g#:Rd](Xo]5tqf+j">
+                                                                                    <field name="NAME1">#取得google語音有中文辨識結果</field>
+                                                                                    <next>
+                                                                                      <block type="block_anyconcat" id="ht[[5%(!@cgM(Aw`i_:L">
+                                                                                        <field name="NAME2">=</field>
+                                                                                        <value name="NAME1">
+                                                                                          <block type="variables_get" id="4iMT`Yd9bM8qZZQvD-sg">
+                                                                                            <field name="VAR" id="lVE9?%C0s%jHnl0NVWcJ">result</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="NAME3">
+                                                                                          <block type="block_get_anyconcat" id="3:KH7l:loSTfr~5KMaGn">
+                                                                                            <field name="NAME2">.</field>
+                                                                                            <value name="NAME1">
+                                                                                              <block type="python_any" id="G{]:xf,5G^{+*y3XN,Zs">
+                                                                                                <field name="NAME">r</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <value name="NAME3">
+                                                                                              <block type="any_func_value" id="LPn+c}r0?=,^uxjR/`%@">
+                                                                                                <field name="NAME">recognize_google</field>
+                                                                                                <value name="NAME">
+                                                                                                  <block type="cammaconcat" id="3b?a~k6-dvUFIaUXV9OW">
+                                                                                                    <field name="NAME3">audio</field>
+                                                                                                    <value name="NAME1">
+                                                                                                      <block type="cammaconcat" id="R+uZ*L}E(;H3D;CW(U9j">
+                                                                                                        <field name="NAME3">,language=</field>
+                                                                                                        <value name="NAME1">
+                                                                                                          <block type="python_any" id="boo^fs6C.P5oUmH6bf^a">
+                                                                                                            <field name="NAME">'zh-TW'</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="block_anyconcat" id=")uVT-75vrG9O19aP:8cQ">
+                                                                                            <field name="NAME2">=</field>
+                                                                                            <value name="NAME1">
+                                                                                              <block type="variables_get" id=").8)4-(o)EQZlx7XYu]^">
+                                                                                                <field name="VAR" id="Kr{O`7x]Ck.*fkPho~i}">i</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <value name="NAME3">
+                                                                                              <block type="any_in_brackets" id="];7@.s-8|)t{a?r:`%uC">
+                                                                                                <value name="NAME1">
+                                                                                                  <block type="block_get_anyconcat" id="2~Xl_wX#3lGj88t(}osG">
+                                                                                                    <field name="NAME2">.</field>
+                                                                                                    <value name="NAME1">
+                                                                                                      <block type="variables_get" id="6dP/0Fiajc=kFgTb-J(_">
+                                                                                                        <field name="VAR" id="lVE9?%C0s%jHnl0NVWcJ">result</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <value name="NAME3">
+                                                                                                      <block type="python_any" id="Qv/4p^91aTT-@q@/W:@O">
+                                                                                                        <field name="NAME">find</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <value name="NAME2">
+                                                                                                  <block type="python_any" id="JC%+?jIB-g4JJK-0cu4O">
+                                                                                                    <field name="NAME">"播放"</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="block_anyconcat" id="-/9W5s1u#BZMOHmgo13}">
+                                                                                                <field name="NAME2">=</field>
+                                                                                                <value name="NAME1">
+                                                                                                  <block type="variables_get" id="`IRUp_78dAman9^j8f_.">
+                                                                                                    <field name="VAR" id="#klgGr`p]qy;${Vw9K_N">vid</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <value name="NAME3">
+                                                                                                  <block type="any_in_brackets" id="8r816$1fXb%LTiXBCZ7o">
+                                                                                                    <value name="NAME1">
+                                                                                                      <block type="python_any" id="q/uFqba1Ar=Dd[x=OY_*">
+                                                                                                        <field name="NAME">search_youtube</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <value name="NAME2">
+                                                                                                      <block type="numpy_var_dim1" id="{841;G[$?k:Is9y*Yg}w">
+                                                                                                        <field name="ARRAY_NAME" id="lVE9?%C0s%jHnl0NVWcJ">result</field>
+                                                                                                        <value name="DIM1_START">
+                                                                                                          <shadow type="math_number" id="R@kL%V98!$kh)}I%Ps/#">
+                                                                                                            <field name="NUM">0</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="variables_get" id="OU0gv4oHB=jBt~t,8qXH">
+                                                                                                            <field name="VAR" id="Kr{O`7x]Ck.*fkPho~i}">i</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <value name="DIM1_END">
+                                                                                                          <shadow type="math_number" id="=on!%:WCQc9|9Ex~f|i#">
+                                                                                                            <field name="NUM">0</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="python_any" id="flO[=i%jUK6)sXFX:s%c">
+                                                                                                            <field name="NAME"></field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                  <block type="obj_method" id="]V#g;}/O+Lp)9kY*M~Q(">
+                                                                                                    <field name="NAME1">webbrowser</field>
+                                                                                                    <field name="NAME2">open</field>
+                                                                                                    <value name="NAME2">
+                                                                                                      <block type="block_get_anyconcat" id="D1m,sUyXR!B+XA,jf]lA">
+                                                                                                        <field name="NAME2">+</field>
+                                                                                                        <value name="NAME1">
+                                                                                                          <block type="python_any" id="ZY64?PD)DtlsdS2;ujrv">
+                                                                                                            <field name="NAME">"https://www.youtube.com"</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <value name="NAME3">
+                                                                                                          <block type="variables_get" id="F|j+bBSdkJg(`)!7?l`X">
+                                                                                                            <field name="VAR" id="#klgGr`p]qy;${Vw9K_N">vid</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="python_any_statement" id="U^3A?P?94rh[C]HRj4)B">
+                                                                                                        <field name="NAME1">break</field>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </statement>
+                                                                                <value name="NAME2">
+                                                                                  <block type="variables_get" id="qwa/B5R=W$0D}=f*0`dL">
+                                                                                    <field name="VAR" id="T/s.]f3ab.DzK.ENG8:?">e</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <statement name="NAME3">
+                                                                                  <block type="python_any_statement" id="T:??Y%1Q9gS?OR[;oNs}">
+                                                                                    <field name="NAME1">pass</field>
+                                                                                  </block>
+                                                                                </statement>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </statement>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="python_transform_mode" id="6;)JDq/T:%}-E*]cCxh)">
+                                                        <value name="NAME">
+                                                          <block type="python_any" id="jzrA=+6+.z0Z_nM5CF8?">
+                                                            <field name="NAME">SpeechProcess()</field>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="cv2_vdeocapture" id="mGdA2{K%i7-f3%dY-=^+">
+                                                            <field name="NAME1">1</field>
+                                                            <field name="NAME2">cv2.CAP_DSHOW</field>
+                                                            <next>
+                                                              <block type="mp_pose_predefine" id="Svx39,?Vv(BN!@?XSovC">
+                                                                <next>
+                                                                  <block type="with_mp_pose_as_pose" id="jVW|I_bw+w-*{ZGnyONi">
+                                                                    <statement name="NAME3">
+                                                                      <block type="while" id="p|!cL;$xZMPA?BW0!L:E">
+                                                                        <value name="NAME">
+                                                                          <block type="logic_boolean" id="WT:Zs=_U)i+)BMR$M,Vv">
+                                                                            <field name="NAME1">True</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <statement name="NAME1">
+                                                                          <block type="cv2_cap_read" id="V}s)JaGAtlTS;{uNm00T">
+                                                                            <field name="RET_NAME" id=")O+e{Of)F!bNJ[|Y-/,~">ret</field>
+                                                                            <field name="IMG_NAME" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                            <next>
+                                                                              <block type="if" id="WL!j::.T9`9puxF1Uc7,">
+                                                                                <value name="NAME1">
+                                                                                  <block type="logic_negate" id="36%Bc$i_x~bC`td~QT?[">
+                                                                                    <value name="BOOL">
+                                                                                      <block type="variables_get" id="kM4Cv+BJ9^7Y%hmi`Rhk">
+                                                                                        <field name="VAR" id=")O+e{Of)F!bNJ[|Y-/,~">ret</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <statement name="NAME2">
+                                                                                  <block type="python_continue" id="u_i!TCDg3PY#2(OS)#sk"></block>
+                                                                                </statement>
+                                                                                <next>
+                                                                                  <block type="block_anyconcat" id="19JhdIEK$Vz7IWa7F_WU">
+                                                                                    <field name="NAME2">=</field>
+                                                                                    <value name="NAME1">
+                                                                                      <block type="variables_get" id="3*{]1z))mGrdb3EtqMX%">
+                                                                                        <field name="VAR" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <value name="NAME3">
+                                                                                      <block type="cv2_flip" id="OjTcSj}SzpY%w1_Mo8p=">
+                                                                                        <field name="NAME2">1</field>
+                                                                                        <value name="NAME1">
+                                                                                          <block type="variables_get" id="43(9b*E;3#AwwvXUE{15">
+                                                                                            <field name="VAR" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="img_flags_writeable" id="INH|-1BdK+9i9v{`[k}M">
+                                                                                        <field name="NAME1" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                        <field name="NAME2">False</field>
+                                                                                        <next>
+                                                                                          <block type="pose_process" id="]G-wQ5}L8r}7l`~5=i*?">
+                                                                                            <field name="NAME1" id="aQ8q+{-oLH@mL(*gR8yQ">poseResult</field>
+                                                                                            <value name="NAME">
+                                                                                              <block type="variables_get" id="FO~;HsXz5PbzV]=XZZ+W">
+                                                                                                <field name="VAR" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="pose_landmarks" id=".4aN]x1c*Zr8^`T:+o8h">
+                                                                                                <field name="NAME1" id="ZijpNKb~HnF([]ZYBX=W">poseLandmarks</field>
+                                                                                                <field name="NAME2" id="aQ8q+{-oLH@mL(*gR8yQ">poseResult</field>
+                                                                                                <next>
+                                                                                                  <block type="if" id="hyN.O2+2,d*!91PEoXVm">
+                                                                                                    <value name="NAME1">
+                                                                                                      <block type="variables_get" id="XPf]wLLY3P|G/Y1uPZU)">
+                                                                                                        <field name="VAR" id="ZijpNKb~HnF([]ZYBX=W">poseLandmarks</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <statement name="NAME2">
+                                                                                                      <block type="if" id="+cI|zepYDhO{(RX=OGzI">
+                                                                                                        <value name="NAME1">
+                                                                                                          <block type="logic_operation" id=";B0@)FBk;m5fOMIpj}*x">
+                                                                                                            <field name="NAME3">&lt;=</field>
+                                                                                                            <value name="NAME1">
+                                                                                                              <block type="get_poselandmark" id="m*aKgJ.`R-{r;~IKgLyw">
+                                                                                                                <field name="NAME1" id="ZijpNKb~HnF([]ZYBX=W">poseLandmarks</field>
+                                                                                                                <field name="NAME">y</field>
+                                                                                                                <value name="NAME2">
+                                                                                                                  <shadow type="math_number" id="-h`V]T[[e8vItI/_MCv.">
+                                                                                                                    <field name="NUM">16</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <value name="NAME2">
+                                                                                                              <block type="math_number" id="dIFV.S-cFPUAhg.31s:J">
+                                                                                                                <field name="NUM">0.2</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <statement name="NAME2">
+                                                                                                          <block type="pyautogui_click" id="Kiw!pi;2;fU0u|bKhmI~">
+                                                                                                            <value name="NAME1">
+                                                                                                              <shadow type="math_number" id="6b7a+Bn0?n;)C$o/GgzU">
+                                                                                                                <field name="NUM">112</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <value name="NAME2">
+                                                                                                              <shadow type="math_number" id="(+XRAp$!@64|%dzlI3Hr">
+                                                                                                                <field name="NUM">693</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="for_i_in_" id="(eY|;ZrGYOOMZOKaKr3C">
+                                                                                                                <field name="NAME2" id="Kr{O`7x]Ck.*fkPho~i}">i</field>
+                                                                                                                <value name="NAME1">
+                                                                                                                  <block type="python_range" id="n~g[2LW:CS[E_qbXYj2!">
+                                                                                                                    <value name="NAME">
+                                                                                                                      <shadow type="math_number" id="R@JXHkim}zbMj+qKoy4p">
+                                                                                                                        <field name="NUM">50</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <statement name="3">
+                                                                                                                  <block type="cv2_cap_read" id=".@g_$hH!h{$`/a!F!`wL">
+                                                                                                                    <field name="RET_NAME" id=")O+e{Of)F!bNJ[|Y-/,~">ret</field>
+                                                                                                                    <field name="IMG_NAME" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                                                  </block>
+                                                                                                                </statement>
+                                                                                                                <next>
+                                                                                                                  <block type="pyautogui_moveto" id="PE,6c|/7hvF[Wd5B[p`Z">
+                                                                                                                    <value name="NAME1">
+                                                                                                                      <shadow type="math_number" id="n(y;Q@vAekhw=I!/_SQC">
+                                                                                                                        <field name="NUM">1010</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="NAME2">
+                                                                                                                      <shadow type="math_number" id="w#2Tklbl/w{euRH=S3Ar">
+                                                                                                                        <field name="NUM">626</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="NAME3">
+                                                                                                                      <shadow type="math_number" id="KJ-N_n`PB:=+0DkM|Av$">
+                                                                                                                        <field name="NUM">0.3</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <next>
+                                                                                                                      <block type="python_transform_mode" id="c9,};loF[BNWcfPi00X-">
+                                                                                                                        <value name="NAME">
+                                                                                                                          <block type="any_func_value" id="/f~5|kGH#dEas-Q`}of.">
+                                                                                                                            <field name="NAME">time.sleep</field>
+                                                                                                                            <value name="NAME">
+                                                                                                                              <block type="python_any" id="OXs7,Ox]@_P+Knu@N6W^">
+                                                                                                                                <field name="NAME">2</field>
+                                                                                                                              </block>
+                                                                                                                            </value>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                        <next>
+                                                                                                                          <block type="mp_drawing_draw_landmarks" id="^kTx3/Vh.p{%eVh1oU1U">
+                                                                                                                            <field name="NAME2" id="ZijpNKb~HnF([]ZYBX=W">poseLandmarks</field>
+                                                                                                                            <value name="NAME1">
+                                                                                                                              <block type="variables_get" id="})aR1`w_=vJw`clvMOIo">
+                                                                                                                                <field name="VAR" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                                                              </block>
+                                                                                                                            </value>
+                                                                                                                          </block>
+                                                                                                                        </next>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </statement>
+                                                                                                      </block>
+                                                                                                    </statement>
+                                                                                                    <next>
+                                                                                                      <block type="if" id="mn0#qsA/XaXI,bYSEoRG">
+                                                                                                        <value name="NAME1">
+                                                                                                          <block type="logic_compare" id="ddXD0xc+sh#|Xl7BHcLd">
+                                                                                                            <field name="OP">EQ</field>
+                                                                                                            <value name="A">
+                                                                                                              <block type="cv2_waitkey" id="o[zo@CUkiZA|_(^_hSDZ">
+                                                                                                                <value name="NAME1">
+                                                                                                                  <shadow type="math_number" id="Rjg7YA%vlU`*sMrF(Kw5">
+                                                                                                                    <field name="NUM">50</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <value name="B">
+                                                                                                              <block type="python_ord" id="hl[gLr#%nCdo[|t*xm%0">
+                                                                                                                <value name="python_ord_V">
+                                                                                                                  <shadow type="text" id="V}P|NYkfqX3s[Laz_j65">
+                                                                                                                    <field name="TEXT">q</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <statement name="NAME2">
+                                                                                                          <block type="python_any_statement" id="Tut`DI6WUuv}5uyU/alC">
+                                                                                                            <field name="NAME1">break</field>
+                                                                                                          </block>
+                                                                                                        </statement>
+                                                                                                        <next>
+                                                                                                          <block type="img_flags_writeable" id="/gua5K8./XtefC;^QZ9M">
+                                                                                                            <field name="NAME1" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                                            <field name="NAME2">True</field>
+                                                                                                            <next>
+                                                                                                              <block type="cv2_imshow" id="K!4X!n9xB1*ZtpPd2,eV">
+                                                                                                                <value name="TITLE">
+                                                                                                                  <shadow type="text" id="q.JS2SD].PUb3evdG|Ve">
+                                                                                                                    <field name="TEXT"></field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                                <value name="IMG">
+                                                                                                                  <block type="variables_get" id="s3)O.J?fs(rqh$K]%Q$%">
+                                                                                                                    <field name="VAR" id="Zg}Vf#Z^/QS(lp.ECTrY">img</field>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </statement>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <next>
+                                                                      <block type="cv2_cap_release" id="_px^sFd#]3Hz7gc$=A/J">
+                                                                        <next>
+                                                                          <block type="cv2_destroyallwindows" id="0|kL$7X2{yPLb-elHxDk"></block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
