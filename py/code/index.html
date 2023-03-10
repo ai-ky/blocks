@@ -123,6 +123,49 @@
 				</block>
 			</value>
 		</block>
+		<block type="numpy_var_dim1">
+			<!--<value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>-->
+			<!--<value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>-->
+		</block>
+	    <block type="numpy_var_dim2">
+			<value name="DIM21_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM21_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM22_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM22_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+		<block type="list_getDim1">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+		<block type="list_append">
+			<value name="list_append_V1">
+			<block type="variables_get">
+            <field name="VAR">L</field>
+			</block>
+			</value>
+		</block>
+		<block type="empty_list"></block>
+	    <block type="list_by3">
+			<value name="VALUE_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE_DIM3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>	
+	    <block type="list_by2">
+			<value name="VALUE2_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE2_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>    
+		<block type="build_tuple3">
+			<value name="TUPLE3_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE3_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE3_V3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="build_tuple2">
+			<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
 	</category>
 	<category name="語音與文字處理" colour="#8ca55b">
 		<!--#偵測音量，有聲段自動編號儲存-->
