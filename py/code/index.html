@@ -92,7 +92,10 @@
      	<block type="import_as"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
 		<!--#隨機取0~9之間的整數-->
 		<block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">random</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">randint</field></block></value><next><block type="python_any_statement"><field name="NAME1">#隨機取0~9之間的整數</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">r</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">randint</field></block></value><value name="NAME2"><block type="block_comma"><value name="NAME1"><block type="math_number"><field name="NUM">0</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">9</field></block></value></block></value></block></value></block></next></block></next></block>
+		<!--#function 有介接指定-->
 		<block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
+		<!--#function 無介接指定-->
+		<block type="block_func"></block>
 		<block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="python_any"><field name="NAME">filename="1.wav",dur=25,TH=0.02,SilenceNum=50</field></block></value></block>
 		<block type="cammaconcat"></block><!--,-->
 		<block type="python_any"></block><!--\n-->

@@ -274,6 +274,33 @@ Blockly.Python['any_func_call_value'] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
+//<block type="block_func"></block>
+//======================================
+Blockly.Blocks['block_func'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("(");
+    this.appendValueInput("NAME2")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_func'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name1+"("+value_name2+")\n";
+  return code;
+};
 //<block type="any_func_call"></block>
 //======================================
 Blockly.Blocks['any_func_call'] = {
