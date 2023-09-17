@@ -21,7 +21,28 @@ Blockly.Blocks['import_as'] = {
 Blockly.Python['import_as'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
-  var code = 'import '+value_name1+' '+value_name2;
+  var code = 'import '+value_name1+' as '+value_name2+"\n";
+  return code;
+};
+//<block type="tb_connection"></block>
+//======================================
+Blockly.Blocks['tb_connection'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['tb_connection'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name+'\n';
   return code;
 };
 //<block type="from_import"></block>
