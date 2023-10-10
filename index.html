@@ -1,12 +1,1322 @@
-<html>
+<!DOCTYPE html> 
+<html>  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" value="notranslate">
+  <title>AI python積木 code python blockly</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../javascript_compressed.js"></script>
+  <script src="../../python_compressed.js"></script>
+  <script src="code.js"></script>
+  <script src="block_ScratchClient.js"></script>
+  <script src="block_httpServer.js"></script>  
+  <script src="block_opencv.js"></script>  
+  <script src="block_numpy.js"></script>  
+  <script src="block_python_functions.js"></script>  
+  <script src="block_pyautogui.js"></script>
+  <script src="block_google_colab.js"></script>
+  <script src="block_keras.js"></script>
+  <script src="block_Data_HandWrite.js"></script>
+  <script src="block_sklearn.js"></script>
+  <script src="block_mediapipe.js"></script>
+  <script src="block_thread.js"></script>
+  <script src="block_serial.js"></script>
+  <script src="block_pygame.js"></script>
+  <script src="block_openai.js"></script>
+  <script src="block_string.js"></script>
+  <script src="block_comma.js"></script>
+</head>
+
 <body>
-<center>
-<h1> 
-點擊下方連結進入主頁
-<br>
-<br>
-<a href="py/code/index.html">AI python積木</a>
-</h1>
-</center>
+  <table width="100%" height="100%">
+    <tr>
+      <td>
+        <h1><a href="https://drive.google.com/drive/folders/1oTW1X0ZrJl0TFvS71yXIpNk1N__8_gGv?usp=share_link" target="_blank">範例下載</a>&rlm; &gt;
+          <span id="title">...</span>
+        </h1>
+      </td>
+      <td class="farSide">
+        <select id="languageMenu"></select>
+        <a class="privacyLink" href="https://policies.google.com/privacy">Privacy</a>
+      </td>
+    </tr>
+	<tr>
+	<input id="input_save" type="button" value="Save" style="font-size:16px">
+	<input id="input_load" type="button" value="Load" style="font-size:16px">
+	</tr>
+    <tr>
+      <td colspan=2>
+        <table width="100%">
+          <tr id="tabRow" height="1em">
+            <td id="tab_blocks" class="tabon">...</td>
+            
+            <td class="tabmin tab_collapse">&nbsp;</td>
+            <td id="tab_python" class="taboff tab_collapse">Python</td>
+            
+            <td id="tab_code" class="taboff">
+              <select id="code_menu"></select>
+            </td>
+            <td class="tabmax">
+              <button id="trashButton" class="notext" title="...">
+                <img src='../../media/1x1.gif' class="trash icon21">
+              </button>
+              <button id="linkButton" class="notext" title="...">
+                <img src='../../media/1x1.gif' class="link icon21">
+              </button>
+              <button id="runButton" class="notext primary" title="...">
+                <img src='../../media/1x1.gif' class="run icon21">
+              </button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="99%" colspan=2 id="content_area">
+      </td>
+    </tr>
+  </table>
+  <div id="content_blocks" class="content"></div>
+  <pre id="content_javascript" class="content prettyprint lang-js"></pre>
+  <pre id="content_python" class="content prettyprint lang-py"></pre>
+  <textarea id="content_xml" class="content" wrap="off">
+  
+  </textarea>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+	<category name="常用方塊" colour="#8ca55b">
+	    <!--#延遲0.5秒-->
+		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">time</field></block></value><next><block type="python_any_statement"><field name="NAME1">#延遲0.5秒</field><next><block type="python_transform_mode"><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">time</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">sleep</field></block></value></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0.5</field></block></value></block></value></block></next></block></next></block> 
+     	<!--#import as-->
+		<block type="import_as"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
+		<!--#隨機取0~9之間的整數-->
+		<block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">random</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">randint</field></block></value><next><block type="python_any_statement"><field name="NAME1">#隨機取0~9之間的整數</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">r</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">randint</field></block></value><value name="NAME2"><block type="block_comma"><value name="NAME1"><block type="math_number"><field name="NUM">0</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">9</field></block></value></block></value></block></value></block></next></block></next></block>
+		<!--#function 有介接指定-->
+		<block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
+		<!--#function 無介接指定-->
+		<block type="block_func"></block>
+		<block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="python_any"><field name="NAME">filename="1.wav",dur=25,TH=0.02,SilenceNum=50</field></block></value></block>
+		<block type="cammaconcat"></block><!--,-->
+		<block type="python_any"></block><!--\n-->
+		<!--逗點-->
+		<block type="block_comma2"></block>
+		<!--上下連接-->
+		<block type="tb_connection"></block>
+		<!--#any statement-->
+		<block type="python_any_statement"></block>
+		<!--transform to statement-->
+		<block type="python_transform_mode"></block>
+		<!--indent statement like ...def ... -->
+		<block type="any_indent_statement"></block>
+		<block type="statement_var"></block>
+		<block type="return"><value name="NAME2"><block type="variables_get"><field name="VAR">v</field></block></value></block>
+		
+		<block type="block_get_anyconcat"></block><!-- . -->
+		<block type="block_anyconcat"></block><!-- = -->
+		<block type="block_comma"></block><!-- , -->
+		<block type="python_global"></block>
+		<block type="python_big_parantheses"></block>
+		<block type="create_arrayin"></block>
+		<block type="python_in"></block>
+		<block type="python_int"></block>
+		<block type="python_bytes"></block>
+		<block type="python_ord">
+			<value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value>
+		</block>
+		<block type="python_str"></block>		
+		<block type="try_except">
+			<value name="NAME2">
+				<block type="variables_get">
+				<field name="VAR">e</field>
+				</block>
+			</value>
+		</block>
+		<block type="numpy_var_dim1">
+			<!--<value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>-->
+			<!--<value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>-->
+		</block>
+	    <block type="numpy_var_dim2">
+			<value name="DIM21_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM21_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM22_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM22_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+		<block type="list_getDim1">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+		<block type="list_append">
+			<value name="list_append_V1">
+			<block type="variables_get">
+            <field name="VAR">L</field>
+			</block>
+			</value>
+		</block>
+		<block type="empty_list"></block>
+	    <block type="list_by3">
+			<value name="VALUE_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE_DIM3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>	
+	    <block type="list_by2">
+			<value name="VALUE2_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE2_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>    
+		<block type="build_tuple3">
+			<value name="TUPLE3_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE3_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE3_V3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="build_tuple2">
+			<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	</category>
+	<category name="語音與文字處理" colour="#8ca55b">
+		<!--#偵測音量，有聲段自動編號儲存-->
+		<block type="import_any_as_any"><field name="NAME1">pyMicVoiceDetection</field><field name="NAME2">mic</field><next><block type="python_any_statement"><field name="NAME1">#偵測音量，有聲段自動編號儲存,5秒後結束錄音，能量門檻值0.08</field><next><block type="python_any_statement"><field name="NAME1">#能量門檻值0.08</field><next><block type="python_any_statement"><field name="NAME1">#連續10個音框之能量小於門檻值時才做音訊切割</field><next><block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">recordSerialAndPlot</field><value name="NAME2"><block type="cammaconcat"><field name="NAME3">dur=5</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">TH=0.08</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,SilenceNum=</field><value name="NAME1"><block type="python_any"><field name="NAME">10</field></block></value></block></value></block></value></block></value></block></value></block></next></block></next></block></next></block></next></block>
+		<block type="python_any_statement"><field name="NAME1">#連續語音辨識</field><next><block type="import_any_as_any"><field name="NAME1">pyMicVoiceDetection</field><field name="NAME2">mic</field><next><block type="import_any_as_any"><field name="NAME1">speech_recognition</field><field name="NAME2">sr</field><next><block type="any_indent_statement"><field name="NAME">while True:</field><statement name="NAME"><block type="python_any_statement"><field name="NAME1">#偵測音量，有聲段存至 1.wav</field><next><block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="cammaconcat"><field name="NAME3">filename="1.wav"</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">dur=25</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">TH=0.02</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,SilenceNum=</field><value name="NAME1"><block type="python_any"><field name="NAME">50</field></block></value></block></value></block></value></block></value></block></value></block></value></block></value><next><block type="any_func_call"><field name="NAME1">sr</field><field name="NAME2">Recognizer</field><field name="NAME3"></field><value name="NAME"><block type="python_any"><field name="NAME">r</field></block></value><next><block type="python_any_statement"><field name="NAME1">#由1.wav 讀出待辨識 audio</field><next><block type="statement_var"><field name="NAME">with</field><value name="NAME"><block type="cammaconcat"><field name="NAME3">sr.WavFile("1.wav") as </field><value name="NAME1"><block type="python_any"><field name="NAME">source</field></block></value></block></value><statement name="NAME1"><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">audio</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">r</field></block></value><value name="NAME3"><block type="any_func_value"><field name="NAME">record</field><value name="NAME"><block type="python_any"><field name="NAME">source</field></block></value></block></value></block></value></block></statement><next><block type="try_except"><statement name="NAME1"><block type="python_any_statement"><field name="NAME1">#取得google語音有中文辨識結果</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">result</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">r</field></block></value><value name="NAME3"><block type="any_func_value"><field name="NAME">recognize_google</field><value name="NAME"><block type="cammaconcat"><field name="NAME3">audio</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,language=</field><value name="NAME1"><block type="python_any"><field name="NAME">'zh-TW'</field></block></value></block></value></block></value></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="python_any"><field name="NAME">result</field></block></value></block></next></block></next></block></statement><value name="NAME2"><block type="variables_get"><field name="VAR">e</field></block></value><statement name="NAME3"><block type="python_any_statement"><field name="NAME1">pass</field></block></statement></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block>
+		<block type="python_any_statement"><field name="NAME1">#使用gtts產生語音</field><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">gtts</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">gTTS</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">tts</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">gTTS</field></block></value><value name="NAME2"><block type="block_comma"><value name="NAME1"><block type="text"><field name="TEXT">好的請稍後</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">lang='zh-TW'</field></block></value></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">tts</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">save</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">temp.mp3</field></block></value></block></value></block></next></block></next></block></next></block>
+	</category>
+	<category name="pygame音樂播控" colour="#5b8ca5">
+		<block type="import_pygame"><next><block type="import_any"><field name="NAME">keyboard</field><next><block type="pygame_init__"><next><block type="pygame_mixer_music_load"><value name="NAME1"><shadow type="text"><field name="TEXT">1.mp3</field></shadow></value><next><block type="python_any_statement"><field name="NAME1">#監聽 hotkey : 'p'鍵按下時觸發下列函式</field><next><block type="pygame_mixer_music_funcs"><field name="NAME1">play()</field><next><block type="any_indent_statement"><field name="NAME">def on_hotkey_triggered():</field><statement name="NAME"><block type="python_any_statement"><field name="NAME1">#如果音樂正在播放就暫停，否則繼續</field><next><block type="ifelse"><value name="NAME1"><block type="pygame_mixer_music_get_busy"></block></value><statement name="NAME2"><block type="pygame_mixer_music_funcs"><field name="NAME1">pause()</field></block></statement><statement name="NAME3"><block type="pygame_mixer_music_funcs"><field name="NAME1">unpause()</field></block></statement></block></next></block></statement><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">keyboard.add_hotkey</field><value name="NAME"><block type="block_comma"><value name="NAME1"><block type="python_any"><field name="NAME">'p'</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">on_hotkey_triggered</field></block></value></block></value></block></value><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">keyboard.wait</field><value name="NAME"><block type="python_any"><field name="NAME"></field></block></value></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
+	</category>	
+	<category name="爬蟲相關" colour="#8ca55b">
+		<block type="import_any"><field name="NAME">requests</field><next><block type="import_any"><field name="NAME">webbrowser</field><next><block type="python_any_statement"><field name="NAME1">#search_youtube函式:傳入關鍵字，回傳youtube搜尋到的第一個網址</field><next><block type="statement_var"><field name="NAME">def</field><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">search_youtube</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">keyword</field></block></value></block></value><statement name="NAME1"><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">params</field></block></value><value name="NAME3"><block type="python_big_parantheses"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">"search_query":</field><value name="NAME1"><block type="variables_get"><field name="VAR">keyword</field></block></value></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">res</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">requests</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">get</field></block></value></block></value><value name="NAME2"><block type="cammaconcat"><field name="NAME3">"https://www.youtube.com/results"</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">,</field><value name="NAME1"><block type="variables_get"><field name="VAR">params</field></block></value></block></value></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="variables_get"><field name="VAR">res</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">text.find</field></block></value></block></value><value name="NAME2"><block type="block_comma"><value name="NAME1"><block type="text"><field name="TEXT">/watch?v=</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">j</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="variables_get"><field name="VAR">res</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">text.find</field></block></value></block></value><value name="NAME2"><block type="block_comma"><value name="NAME1"><block type="text"><field name="TEXT">"</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">i</field></block></value></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">vid</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="variables_get"><field name="VAR">res</field></block></value><value name="NAME3"><block type="numpy_var_dim1"><field name="ARRAY_NAME">text</field><value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="variables_get"><field name="VAR">i</field></block></value><value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="variables_get"><field name="VAR">j</field></block></value></block></value></block></value><next><block type="return"><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2">+</field><value name="NAME1"><block type="python_any"><field name="NAME">"https://www.youtube.com"</field></block></value><value name="NAME3"><block type="variables_get"><field name="VAR">vid</field></block></value></block></value></block></next></block></next></block></next></block></next></block></next></block></statement><next><block type="obj_method"><field name="NAME1">webbrowser</field><field name="NAME2">open</field><value name="NAME2"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">search_youtube</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">五月天的突然好想你</field></block></value></block></value></block></next></block></next></block></next></block></next></block>
+	</category>
+	<category name="keyboard監聽" colour="#8ca55b">
+		<block type="any_func_value"><field name="NAME">keyboard.is_pressed</field><value name="NAME"><block type="python_any"><field name="NAME">'p'</field></block></value></block>
+		<!--監聽-->
+		<block type="import_any"><field name="NAME">keyboard</field><next><block type="python_any_statement"><field name="NAME1">#監聽 hotkey : 'p'鍵按下時觸發下列函式</field><next><block type="any_indent_statement"><field name="NAME">def on_hotkey_triggered():</field><statement name="NAME"><block type="python_any_statement"><field name="NAME1">pass</field></block></statement><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">keyboard.add_hotkey</field><value name="NAME"><block type="block_comma"><value name="NAME1"><block type="python_any"><field name="NAME">'p'</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">on_hotkey_triggered</field></block></value></block></value></block></value><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">keyboard.wait</field><value name="NAME"><block type="python_any"><field name="NAME"></field></block></value></block></value></block></next></block></next></block></next></block></next></block>
+	</category>
+	<category name="鍵鼠外掛" colour="#5ba55b">
+		<block type="import_pyautogui"><next><block type="import_any"><field name="NAME">time</field><next><block type="pyautogui_click"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value><next><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="python_any_statement"><field name="NAME1">#每隔2秒取得鼠標位置</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">X</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">Y</field></block></value></block></value><value name="NAME3"><block type="pyautogui_position__"></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">X</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">Y</field></block></value></block></value><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">2</field></block></value></block></value></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block>
+		<block type="import_pyautogui"></block>
+		<block type="import_any"></block><!--import time-->
+		<block type="python_transform_mode"><!--time.sleep-->
+			<value name="NAME">
+				<block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">0.5</field></block></value></block>
+			</value>
+		</block>	 
+		<block type="python_any_statement"><field name="NAME1">#取得螢幕擷圖,存檔至 1.png, 擷圖區域左上座標(0,0)長300寬200</field>
+		<next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="pyautogui_screenshot_"><field name="NAME1">"1.png",region=(0,0,300,200)</field></block></value></block></next></block>	 
+		<block type="python_any_statement"><field name="NAME1">#取得鼠標位置</field>
+			<next>
+			<block type="block_anyconcat">
+				<field name="NAME2">=</field>
+				<value name="NAME1">
+				  <block type="block_comma">
+					<value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value>
+					<value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value>
+				  </block>
+				</value>
+				<value name="NAME3"><block type="pyautogui_position__"></block></value>
+			</block></next>
+		</block>	
+	    <block type="pyautogui_click">
+			<value name="NAME1"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+		</block>
+	    <block type="pyautogui_press">
+			<value name="NAME1">
+				<shadow type="text"><field name="TEXT">up</field></shadow>
+			</value>
+		</block>
+		<block type="pyautoui_any"></block>
+	    <block type="pyautogui_moveto">
+			<value name="NAME1"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME3"><shadow type="math_number">
+			<field name="NUM">0.3</field></shadow>
+			</value>
+		</block>
+		<block type="python_any_statement"><field name="NAME1">#取得(20,20)處像素RGB值</field><next>
+			<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1">
+				<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3">
+				<block type="pyautogui_screenshot_"><field name="NAME1"></field></block></value><next>
+				<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">pix</field></block></value><value name="NAME3"><block type="pyautogui_getpixel_"><value name="NAME1">
+				<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">20</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">20</field></shadow></value></block></value></block></value></block></next> 
+			</block></next>
+		</block>	
+		<block type="pyautogui_pixel">
+			<value name="NAME1"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number">
+			<field name="NUM">10</field></shadow>
+			</value>
+		</block>
+		<block type="python_any_statement"><field name="NAME1">#定位 1.png 於螢幕上之位置</field>
+			<next>
+				<block type="block_anyconcat">
+					<field name="NAME2">=</field>
+					<value name="NAME1">
+					  <block type="block_comma">
+						<value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value>
+						<value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value>
+					  </block>
+					</value>
+					<value name="NAME3"><block type="pyautogui_locatecenteronscreen"><value name="NAME1"><shadow type="text"><field name="TEXT">1.png</field></shadow></value></block></value>
+				</block>
+			</next>
+		</block>
+		<block type="pyautogui_mousedown"></block>
+		<block type="pyautogui_mouseup"></block>
+	</category>
+	<category name="瀏覽器" colour="#8ca55b">
+		<block type="import_any"><field name="NAME">webbrowser</field><next><block type="obj_method"><field name="NAME1">webbrowser</field><field name="NAME2">open</field><value name="NAME2"><block type="text"><field name="TEXT">https://github.com/ai-ky/blocks</field></block></value></block></next></block>
+	</category>
+	<category name="opencv影像處理" colour="#a56b5d">
+	    <block type="opencv_import"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="python_any_statement"><field name="NAME1">#webcam影像貼圖迴圈</field><next><block type="any_indent_statement"><field name="NAME">while True:</field><statement name="NAME"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="controls_if"><value name="IF0"><block type="block_get_anyconcat"><field name="NAME2">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME3"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="DO0"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT"></field></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></block></next></block></next></block></next></block></next></block></next></block>
+	    <block type="cv2_namedwindow">
+			<value name="NAME">
+				<shadow type="text"></shadow>
+			</value>
+		</block>
+	    <block type="cv2_movewindow">
+			<value name="NAME1">
+				<shadow type="text"></shadow>
+			</value>
+			<value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value>
+			<value name="NAME3"><shadow type="math_number"><field name="NUM">10</field></shadow></value>
+		</block>
+	    <block type="cv2_cap_set">
+			<value name="CAP_PROP_FRAME_VALUE">
+				<shadow type="math_number"><field name="NUM">200</field></shadow>
+			</value>
+		</block>
+				
+		<block type="python_any_statement"><field name="NAME1">#webcam影像貼圖迴圈</field><next><block type="any_indent_statement"><field name="NAME">while True:</field><statement name="NAME"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">0</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="controls_if"><value name="IF0"><block type="block_get_anyconcat"><field name="NAME2">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME3"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="DO0"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT"/></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block>
+		</block>
+		    
+	    <block type="cv2_rectangle">
+			<value name="CV2_RECTANGLE_IMG">
+			<block type="variables_get"><field name="VAR">img</field>
+			</block>
+			</value>
+			<value name="CV2_RECTANGLE_STARTPOINT">
+				<block type="build_tuple2">
+				<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+				<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+				</block>
+			</value>
+			<value name="CV2_RECTANGLE_ENDPOINT">
+				<block type="build_tuple2">
+				<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+				<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+				</block>
+			</value>
+			<value name="CV2_RECTANGLE_THICKNESS"><shadow type="math_number"><field name="NUM">2</field></shadow></value>
+		</block>
+		
+		<block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block>
+		<block type="block_anyconcat">
+		<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+		<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
+		</block>
+		<block type="cv2_imwrite">
+			<value name="NAME1"><shadow type="text"></shadow></value>
+			<value name="NAME2">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+	    <block type="cv2_imread">
+			<value name="NAME1"><shadow type="text"></shadow></value>
+		</block>
+	    <block type="cv2_threshold">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+			<value name="NAME2">
+			<shadow type="math_number"></shadow>
+			</value>
+			<value name="NAME3">
+				<shadow type="math_number"><field name="NUM">255</field></shadow>
+			</value>
+		</block>
+	    <block type="cv2_puttext">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">img</field>
+			</block>
+			</value>
+			<value name="NAME2">
+				<shadow type="text"></shadow>
+			</value>
+			<value name="NAME3">
+				<block type="build_tuple2">
+				<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+				<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+				</block>
+			</value>
+    	</block>
+		<block type="cv2_resize">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+			<value name="NAME2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+			<value name="NAME3"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+		</block>
+		<block type="block_anyconcat">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+			<value name="NAME3">
+				<block type="cv2_resize">
+					<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+					<value name="NAME2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+					<value name="NAME3"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
+				</block>
+			</value>
+		</block>
+		<block type="img_flags_writeable"></block>
+		<block type="cv2_empty"></block>
+	</category>
+	<category name="mediapip手部偵測" colour="#a58c5b">
+		<block type="import_mediapipe_as_mp"></block>
+		<block type="import_mediapipe_as_mp"><next><block type="opencv_import"><next><block type="mediapipe_hands_predefine"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="with_mp_hands_hands"><statement name="NAME"><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">False</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_BGR2RGB</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="mediapipe_hands_process"><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_RGB2BGR</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME2"><block type="for_loop"><value name="NAME1"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value><value name="NAME2"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME3"><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow><block type="get_handslandmark"><field name="NAME1">hand_landmarks</field><field name="NAME">y</field><value name="NAME2"><shadow type="math_number"><field name="NUM">8</field></shadow><block type="math_number"><field name="NUM">8</field><comment pinned="true" h="45" w="170">取 index finger y座標</comment></block></value></block></value><next><block type="hands_mp_drawing"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value></block></next></block></statement></block></statement><next><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME2"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">True</field><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT">mediapipe hands demo</field></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block></next></block></next></block></next></block>
+		</next>
+		<block type="mediapipe_hands_predefine"></block>
+		<block type="block_anyconcat">
+			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
+			<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
+		</block>	
+		<block type="mediapipe_hands_process">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">result</field>
+				</block>
+			</value>
+			<value name="NAME2">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+		<block type="with_mp_hands_hands"></block>
+		<block type="multi_hand_landmarks">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">result</field>
+				</block>
+			</value>
+		</block>
+		<block type="for_loop">
+		<value name="NAME1">
+			<block type="variables_get">
+			<field name="VAR">hand_landmarks</field>
+			</block>
+		</value>
+		<value name="NAME2">
+			<block type="multi_hand_landmarks">
+				<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">result</field>
+				</block>
+				</value>
+			</block>
+		</value>
+	</block>
+		<block type="get_handslandmark">
+			<value name="NAME2">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+	</block>
+		<block type="hands_mp_drawing">
+		<value name="NAME1">
+			<block type="variables_get">
+				<field name="VAR">img</field>
+			</block>
+		</value>
+		<value name="NAME2">
+			<block type="variables_get">
+				<field name="VAR">hand_landmarks</field>
+			</block>
+		</value>
+	</block>
+	</category>
+	
+	<category name="mediapipe姿態偵測" colour="#a58c5b">
+		<block type="import_mediapipe_as_mp"></block>
+		<block type="import_mediapipe_as_mp"><next><block type="opencv_import"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="mp_pose_predefine"><next><block type="with_mp_pose_as_pose"><statement name="NAME3"><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="if"><value name="NAME1"><block type="logic_negate"><value name="BOOL"><block type="variables_get"><field name="VAR">ret</field></block></value></block></value><statement name="NAME2"><block type="python_continue"></statement><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">False</field><next><block type="pose_process"><field name="NAME1">poseResult</field><value name="NAME"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="pose_landmarks"><field name="NAME1">poseLandmarks</field><field name="NAME2">poseResult</field><next><block type="if"><value name="NAME1"><block type="variables_get"><field name="VAR">poseLandmarks</field></block></value><statement name="NAME2"><block type="mp_drawing_draw_landmarks"><field name="NAME2">poseLandmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow><block type="get_poselandmark"><field name="NAME1">poseLandmarks</field><field name="NAME">y</field><value name="NAME2"><shadow type="math_number"><field name="NUM">16</field></shadow></value></block></value></block></next></block></statement><next><block type="if"><value name="NAME1"><block type="logic_compare"><field name="OP">EQ</field><value name="A"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="B"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">True</field><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT"/></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block></next></block></next></block></next></block>
+		</next></next>
+		
+		<block type="mp_pose_predefine"></block>
+		<block type="with_mp_pose_as_pose"></block>
+		<block type="pose_process">
+			<value name="NAME">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+		<block type="pose_landmarks"></block>
+		<block type="get_poselandmark">
+			<value name="NAME2">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+		</block>
+		<block type="mp_drawing_draw_landmarks">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category name="chatGPT" colour="#a56b5d">
+		<!--chatGPT-->
+		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">openai</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">openai.api_key</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">在此輸入api key</field></block></value><next><block type="python_any_statement"><field name="NAME1">#互動問題放在下方prompt變數中</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">prompt</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">"請幫我寫一個python程式:1.按下p鍵時滑鼠會移到座標10,10\n2.使用pyautogui和keyboard包"</field></block></value><next><block type="python_any_statement"><field name="NAME1">#呼叫API</field><next><block type="python_any_statement"><field name="NAME1">#參數詳見==>https://platform.openai.com/docs/api-reference/completions/create</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">response</field></block></value><value name="NAME3"><block type="openai_completion_create_"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">engine</field></block></value><value name="NAME3"><block type="engines"><field name="NAME">'text-davinci-003'</field></block></value></block></value><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">prompt</field></block></value><value name="NAME3"><block type="variables_get"><field name="VAR">prompt</field></block></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">max_tokens= 1000</field></block></value><value name="NAME"><block type="python_any"><field name="NAME">temperature=0.8</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="list_getDim1"><value name="NAME1"><block type="python_any"><field name="NAME">response.choices</field></block></value><value name="NAME2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">text</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
+	</category>
+	<category name="DALL.e" colour="#a56b5d">
+		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">openai</field></block></value><next><block type="import_any"><field name="NAME">webbrowser</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">openai.api_key</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">在此輸入api key</field></block></value><next><block type="python_any_statement"><field name="NAME1">#繪圖要求放在下方prompt變數中</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">prompt</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">3D model of a future car</field></block></value><next><block type="openai_image_create_"><value name="NAME1"><block type="python_any"><field name="NAME">response</field></block></value><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">prompt</field></block></value><value name="NAME3"><block type="variables_get"><field name="VAR">prompt</field></block></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">n=1</field></block></value><value name="NAME4"><block type="python_any"><field name="NAME">size='512x512'</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">response["data"][0]["url"]</field></block></value><next><block type="obj_method"><field name="NAME1">webbrowser</field><field name="NAME2">open</field><value name="NAME2"><block type="variables_get"><field name="VAR">result</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
+	</category>
+	<category name="colab" colour="#a56b5d">
+	    <block type="googlecolab_import_colabcam"><next><block type="googlecolab_import_cv2_imshow"><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="googlecolab_colabcam_take_img"></block></value><next><block type="googlecolab_cv2_imshow"><value name="NAME"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block>
+	</category>
+	
+	<category name="Data_HandWrite" colour="#a56b5d">
+		<block type="data_handwrite_import"></block>
+		<block type="data_handwrite_downloadData"></block>
+		<block type="data_handwrite_loaddata">
+		<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">X</field>
+			</block>
+		</value>
+		<value name="NAME2">
+			<block type="variables_get">
+            <field name="VAR">Y</field>
+			</block>
+		</value>
+		<value name="NAME3"><shadow type="text">
+			<field name="TEXT"></field></shadow>
+		</value>
+		</block>
+	</category>
+	<category name="scikit-learn" colour="#a56b5d">
+	
+		<block type="from_sklearn_import_kmeans"></block>
+		<block type="block_kmeans">
+			<value name="NAME2">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+		</block>
+		<block type="block_kmeans_fit"></block>
+		<block type="block_kmeans_predict"></block>
+	</category>	
+	<category name="神經網路 keras" colour="#a56b5d">
+		<block type="keras_import_load_model"></block>
+		<block type="keras_import_np_utils"></block>
+		<block type="keras_import_Sequential"></block>
+		<block type="keras_import_layers_all"></block>
+		<block type="keras_sequential">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+		</block>
+		<block type="keras_dense">
+			<value name="NAME1">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+			<value name="NAME2">
+				<shadow type="math_number"><field name="NUM">0</field></shadow>
+			</value>
+		</block>
+		<block type="keras_model_add">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+			<value name="NAME2">
+			<block type="variables_get">
+            <field name="VAR">dense</field>
+			</block>
+			</value>
+		</block>
+		<block type="keras_model_compile">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+		</block>
+		<block type="keras_model_fit">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+			<value name="NAME2">
+			<block type="variables_get">
+            <field name="VAR">x_train</field>
+			</block>
+			</value>
+			<value name="NAME3">
+			<block type="variables_get">
+            <field name="VAR">y_train</field>
+			</block>
+			</value>
+			<value name="NAME4">
+				<shadow type="math_number"><field name="NUM">80</field></shadow>
+			</value>
+			<value name="NAME5">
+				<shadow type="math_number"><field name="NUM">64</field></shadow>
+			</value>
+		</block>
+		<block type="keras_model_evalueate">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">loss</field>
+			</block>
+			</value>
+			<value name="NAME2">
+			<block type="variables_get">
+            <field name="VAR">accuracy</field>
+			</block>
+			</value>
+			<value name="NAME3">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+			<value name="NAME4">
+			<block type="variables_get">
+            <field name="VAR">x_test</field>
+			</block>
+			</value>
+			<value name="NAME5">
+			<block type="variables_get">
+            <field name="VAR">y_test</field>
+			</block>
+			</value>
+		</block>
+		
+		<block type="keras_load_model">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+			<value name="NAME2"><shadow type="text">
+				<field name="TEXT"></field></shadow>
+			</value>
+		</block>
+		<block type="keras_predict">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">model</field>
+			</block>
+			</value>
+			<value name="NAME2">
+			<block type="variables_get">
+            <field name="VAR">x_test</field>
+			</block>
+			</value>
+		</block>
+		<block type="np_utils_to_categorical">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">y_train</field>
+			</block>
+			</value>
+		</block>
+	</category>	
+	<category name="knn" colour="#a56b5d">
+	    <block type="cv2_create_knn"></block>
+	    <block type="cv2_knn_setdefaultk">
+			<value name="knn">
+				<shadow type="math_number"><field name="NUM">5</field></shadow>
+			</value>
+		</block>
+	    <block type="cv2_knn_setisclassifier"></block>
+	    <block type="cv2_knn_train">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">x_train</field>
+			</block>
+			</value>
+			<value name="NAME3">
+			<block type="variables_get">
+            <field name="VAR">y_train</field>
+			</block>
+			</value>
+		</block>
+	    <block type="cv2_knn_save">
+			<value name="NAME">
+				<shadow type="text"></shadow>
+			</value>
+		</block>
+	    <block type="cv2_ml_knearest_load">
+			<value name="NAME1">
+				<shadow type="text"></shadow>
+			</value>
+		</block>
+	    <block type="cv2_knn_predict">
+			<value name="NAME">
+			<block type="variables_get">
+            <field name="VAR">x_test</field>
+			</block>
+			</value>
+		</block>
+	</category>
+	<category name="多執行緒" colour="#8ca55b">
+	    <block type="import_threading"><next><block type="import_pyautogui"><next><block type="statement_var"><field name="NAME">def </field><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">thread_job</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"/></block></value></block></value><statement name="NAME1"><block type="pyautogui_mousedown"><next><block type="pyautogui_moveto"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME3"><shadow type="math_number"><field name="NUM">1</field></shadow></value><next><block type="pyautogui_mouseup"></next></block></next></block></statement><next><block type="threading_thread"><field name="NAME1">thread1</field><field name="NAME2">thread_job</field><next><block type="thread_start"><field name="NAME1">thread1</field></block></next></block></next></block></next></block></next></block>
+		<block type="import_threading"></block>
+		<block type="threading_thread"></block>
+		<block type="threading_thread2"></block>
+		<block type="thread_start"></block>
+		<block type="thread_join"></block>
+		<block type="create_threading_lock">
+			<value name="NAME">
+				<block type="variables_get">
+					<field name="VAR">lock</field>
+				</block>
+			</value>
+		</block>
+		<block type="with_var">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">lock</field>
+				</block>
+			</value>
+		</block>
+	</category>
+	<category name="檔案處理" colour="#8ca55b">
+		<block type="python_with_open">
+			<value name="NAME1"><shadow type="text"></shadow></value>
+		</block>
+		<block type="python_f_readlines"></block>
+		<block type="python_f_readline"></block>
+		<block type="python_f_write">
+			<value name="NAME1"><shadow type="text"></shadow></value>
+		</block>
+		
+	</category>
+	<category name="字串處理" colour="#8ca55b">
+		<block type="text"></block>
+		<block type="bytestring"></block>
+		<block type="string_split">
+			<value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow></value>
+		</block>
+		<block type="string_strip">
+			<value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow></value>
+		</block>
+		<block type="string_decode">
+			<value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow></value>
+		</block>
+		<block type="string_encode">
+			<value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow></value>
+		</block>
+		<!--<block type="str_"></block>-->
+		<block type="python_str"></block>
+		
+		<block type="plus2"></block>
+		<block type="print_"></block>
+	</category>
+	<category name="序列埠控制" colour="#8c5ba5">
+		<block type="import_serial"></block>
+		<block type="serial_create">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">serialPort</field>
+			</block>
+			</value>
+			<value name="NAME2"><shadow type="text"><field name="TEXT">COM3</field></shadow></value>
+			<value name="NAME3"><shadow type="math_number"><field name="NUM">9600</field></shadow></value>
+		</block>
+		<block type="serialport_in_waiting">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">serialPort</field>
+			</block>
+			</value>
+		</block>
+		<block type="serialport_readline">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">serialPort</field>
+			</block>
+			</value>
+		</block>
+		<block type="serialport_writable">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">serialPort</field>
+			</block>
+		</block>
+		<block type="serialport_write">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">serialPort</field>
+			</block>
+			</value>
+			<value name="NAME2">
+			<block type="variables_get">
+            <field name="VAR">apdu</field>
+			</block>
+			</value>
+		</block>
+		<block type="import_serial"><next><block type="import_any"><field name="NAME">keyboard</field><next><block type="import_any"><field name="NAME">time</field><next><block type="python_any_statement"><field name="NAME1">#開啟COM埠，遂次讀取一行由COM埠傳來的訊息每隔20</field><next><block type="serial_create"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value><value name="NAME2"><shadow type="text"><field name="TEXT">COM3</field></shadow></value><value name="NAME3"><shadow type="math_number"><field name="NUM">9600</field></shadow></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME3"><block type="math_number"><field name="NUM">0</field></block></value><next><block type="controls_whileUntil"><field name="MODE">WHILE</field><value name="BOOL"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="DO"><block type="if"><value name="NAME1"><block type="logic_compare"><field name="OP">GT</field><value name="A"><block type="serialport_in_waiting"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">#讀取序列埠傳來之資料並印出</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME3"><block type="serialport_readline"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value></block></next></block></next></block></statement><next><block type="if"><value name="NAME1"><block type="any_func_value"><field name="NAME">keyboard.is_pressed</field><value name="NAME"><block type="python_any"><field name="NAME">'p'</field></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">#按下p鍵後由序列埠寫入位元字串 b"ok"</field><next><block type="if"><value name="NAME1"><block type="serialport_writable"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><statement name="NAME2"><block type="serialport_write"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value><value name="NAME2"><block type="bytestring"><field name="NAME">ok</field></block></value><next><block type="obj_method"><field name="NAME1">time</field><field name="NAME2">sleep</field><value name="NAME2"><block type="math_number"><field name="NUM">0.1</field></block></value></block></next></block></statement></block></next></block></statement></block></next></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block>
+		<block type="import_serial"><next><block type="python_any_statement"><field name="NAME1">#開啟COM埠，遂次讀取一行由COM埠傳來的訊息每隔20</field><next><block type="serial_create"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value><value name="NAME2"><shadow type="text"><field name="TEXT">COM3</field></shadow></value><value name="NAME3"><shadow type="math_number"><field name="NUM">9600</field></shadow></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME3"><block type="math_number"><field name="NUM">0</field></block></value><next><block type="controls_whileUntil"><field name="MODE">WHILE</field><value name="BOOL"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="DO"><block type="if"><value name="NAME1"><block type="logic_compare"><field name="OP">GT</field><value name="A"><block type="serialport_in_waiting"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">#每隔20行，顯示一次讀入之訊息以免顯示速度跟不上傳送速度</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME3"><block type="serialport_readline"><value name="NAME1"><block type="variables_get"><field name="VAR">serialPort</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="logic_operation"><field name="NAME3">%</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">20</field></block></value></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><statement name="NAME2"><block type="print_"><field name="NAME2">end=""</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value></block></statement><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">i</field></block></value><value name="NAME3"><block type="math_arithmetic"><field name="OP">ADD</field><value name="A"><shadow type="math_number"><field name="NUM">1</field></shadow><block type="variables_get"><field name="VAR">i</field></block></value><value name="B"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block></value></block></next></block></next></block></next></block></statement></block></statement></block></next></block></next></block></next></block></next></block>
+	</category>
+	</category>
+	
+	
+	<category name="ScratchClient" colour="#aa5b80">
+	    <block type="scratchclient_import"></block>
+	    <block type="scratchclient_createsession">
+		<value name="USER"><shadow type="text"><field name="TEXT"></field></shadow></value>
+		<value name="PW"><shadow type="text"><field name="TEXT"></field></shadow></value>
+		</block>
+	    <block type="scratchclient_createconnection">
+			<value name="PID"> 
+			<shadow type="math_number"><field name="NUM"></field></shadow>
+			</value>
+		</block>	
+	    <block type="scratchclient_set_cloud_variable">
+			<value name="NAME"><shadow type="text"><field name="TEXT"></field></shadow></value>
+			<value name="VALUE"><shadow type="math_number"><field name="NUM"></field></shadow></value>
+		</block>		
+        <block type="scratchclient_on_set"></block>
+    </category>
+	<category name="httpServer" colour="#5b8ca5">
+	   <block type="Flask_import"></block>
+	   <block type="Flask_on_request_value"></block>
+	   <block type="app_run">
+	   <value name="NAME1"><shadow type="text"><field name="TEXT">0.0.0.0</field></shadow></value>
+	   </block>
+	   <block type="app_run_https">
+	   <value name="NAME1"><shadow type="text"><field name="TEXT">0.0.0.0</field></shadow></value>
+	   <value name="NAME3"><shadow type="text"><field name="TEXT">adhoc</field></shadow></value>
+	   </block>
+	</category>	
+	<sep></sep>
+	<category name="numpy" colour="#a55b5b">
+	    <block type="numpy_import"></block>
+	    <block type="np_array">
+			<value name="np_array_ARRAYNAME">
+			<block type="variables_get">
+            <field name="VAR">L</field>
+			</block>
+			</value>
+		</block>
+		<block type="np_argmax">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+	    <block type="numpyarray_copy">
+			<value name="COPY_ARRAY_NAME">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+		<block type="numpy_array_shape">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+	    <block type="numpyarray_astype">
+			<value name="numpyArray_astype_ARRAYNAME">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+	    <block type="numpyarray_reshape2">
+			<value name="numpyArray_reshape2_ARRAYNAME">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+			<value name="numpyArray_reshape2_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="numpyArray_reshape2_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="numpyarray_reshape3">
+			<value name="numpyArray_reshape3_ARRAYNAME">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+			<value name="numpyArray_reshape3_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="numpyArray_reshape3_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="numpyArray_reshape3_d3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+		<block type="numpyarray_reshape4">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+			<value name="NAME2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="NAME3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="NAME4"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="NAME5"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="numpyarray_flatten">
+			<value name="numpyArray_flatten_ARRAYNAME">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+		</block>
+	    <block type="np_clip">
+			<value name="NAME1">
+				<block type="variables_get">
+				<field name="VAR">img</field>
+				</block>
+			</value>
+			<value name="NAME2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="NAME3"><shadow type="math_number"><field name="NUM">255</field></shadow></value>
+		</block>
+	    <!--<block type="var_equal"></block>-->
+	    <block type="numpy_var_dim1">
+			<value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="numpy_var_dim2">
+			<value name="DIM21_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM21_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM22_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="DIM22_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+		<block type="empty_list"></block>
+	    <block type="list_by3">
+			<value name="VALUE_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE_DIM3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+		
+	    <block type="list_by2">
+			<value name="VALUE2_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="VALUE2_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>  
+		<block type="build_tuple3">
+			<value name="TUPLE3_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE3_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE3_V3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="build_tuple2">
+			<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+			<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+		</block>
+	    <block type="list_getDim1">
+			<value name="NAME1">
+			<block type="variables_get">
+            <field name="VAR">A</field>
+			</block>
+			</value>
+			<value name="NAME2"> <shadow type="math_number"><field name="NUM">0</field>
+			</shadow></value>
+		</block>
+		<block type="list_append">
+			<value name="list_append_V1">
+			<block type="variables_get">
+            <field name="VAR">L</field>
+			</block>
+			</value>
+		</block>
+		<block type="cv2_empty"></block>
+	</category>
+	<!--<category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">-->
+    <category name="邏輯 LOGIC" colour="%{BKY_LOGIC_HUE}">
+	  <block type="if"></block>
+	  <block type="ifelse"></block>
+      <block type="controls_if"></block>
+      <!--<block type="logic_compare"></block>-->
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <!--<block type="logic_ternary"></block>-->
+    </category>
+    <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
+	<category name="迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
+      <!--<block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>-->
+	  <block type="while">
+		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
+	  </block>
+	  
+      <!--<block type="controls_whileUntil"></block>-->
+	  <block type="for_loop"></block>
+	  <block type="for_i_in_">
+		<field name="NAME2">i</field>
+		<value name="NAME1"><block type="python_range"><value name="NAME"><shadow type="math_number"><field name="NUM">5</field></shadow></value></block></value>
+	  </block>
+	  <block type="python_range">
+		<value name="NAME">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+	  </block>
+	  <block type="python_range2">
+		<value name="NAME1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+		</value>
+		<value name="NAME2">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+	  </block>
+	  <block type="python_continue"></block>
+      <!--<block type="controls_for"><value name="FROM"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="TO"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="BY"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block>-->
+      <!--<block type="controls_forEach"></block>-->
+      <block type="controls_flow_statements"></block>
+	  <block type="cv2_empty"></block>
+    </category>
+	<!--<category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>-->
+	<category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <!--<category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">-->
+	<category name="數學 MATH" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <block type="math_atan2">
+        <value name="X">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="Y">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+	  <block type="cv2_empty"></block>
+    </category> 
+	<!--<category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">-->
+	<category name="文字 TEXT" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+	  <!--
+      <block type="text_print">
+        <value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow></value>
+      </block>-->
+	  <block type="print_"></block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+	  <block type="cv2_empty"></block>
+    </category>
+	<!--<category name="%{BKY_CA	TLISTS}" colour="%{BKY_LISTS_HUE}">-->
+	
+	<category name="串列 LISTS" colour="%{BKY_LISTS_HUE}">
+	  <block type="build_empty_list"></block>
+      <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <shadow type="text">
+            <field name="TEXT">,</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_sort"></block>
+	  <block type="cv2_empty"></block>
+    </category>
+    <!--<category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">-->
+	<category name="顏色 COLOUR" colour="%{BKY_COLOUR_HUE}">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb">
+        <value name="RED">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+        <value name="GREEN">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="BLUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="colour_blend">
+        <value name="COLOUR1">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+        <value name="COLOUR2">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#3333ff</field>
+          </shadow>
+        </value>
+        <value name="RATIO">
+          <shadow type="math_number">
+            <field name="NUM">0.5</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <sep></sep>
+    
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+  </xml>
+<script>
+    function loadxml(xml) {
+		if (typeof xml != "string" || xml.length < 5) {alert("No Input");return false;return;}
+		try {
+			var dom = Blockly.Xml.textToDom(xml);
+			Blockly.mainWorkspace.clear();
+			Blockly.Xml.domToWorkspace(Blockly.mainWorkspace,dom);
+			return true;
+		}catch (e) {alert("Invalid xml");return false;}
+	}
+	
+    function createAndDownloadFile(filename, data) {
+		var clickEvent = new MouseEvent('click', {
+		'view': window,'bubbles': true,'cancelable': false
+		});
+		var a = document.createElement('a');
+		a.href = window.URL.createObjectURL(data);
+		a.download = filename;
+		a.textContent = 'Download file!';
+		a.dispatchEvent(clickEvent);
+	};
+	document.getElementById('input_load').addEventListener
+	('click', function(){
+			let input = document.createElement('input');
+			input.type = 'file';
+			input.onchange = _this => {
+				let files =   Array.from(input.files);
+				var reader = new FileReader();
+				reader.onload = function() {loadxml(reader.result);}
+				reader.readAsText(files[0]);
+				console.log(files);
+			};
+			input.click();
+		}
+	);
+	
+	document.getElementById('input_save').addEventListener
+	('click', function() {
+	    var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+		var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+		var fileName = prompt('File Name for XML:', 'myblocks.xml');
+		if (!fileName) return;	
+		var data = new Blob([xmlText], {type: 'text/xml'});
+		createAndDownloadFile(fileName, data);
+	  }
+	);
+</script>
 </body>
 </html>
