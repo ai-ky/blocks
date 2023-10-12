@@ -458,6 +458,58 @@ Blockly.Python['ifelse'] = function(block) {
 				statements_name3;
   return code;
 };
+//<block type="elif"></block>
+//======================================
+Blockly.Blocks['elif'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField("elif");
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendStatementInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['elif'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var statements_name2 = Blockly.Python.statementToCode(block, 'NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = 'elif '+value_name1+':'+'\n'+
+				statements_name2;
+  if(statements_name2.indexOf('\n')<0) code+="\n";
+  return code;
+};
+
+//<block type="else"></block>
+//======================================
+Blockly.Blocks['else'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("else:");
+    this.appendStatementInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['else'] = function(block) {
+  var statements_name2 = Blockly.Python.statementToCode(block, 'NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = 'else :\n'+
+				statements_name2;
+  return code;
+};
 //<block type="if"></block>
 //======================================
 Blockly.Blocks['if'] = {
@@ -483,9 +535,9 @@ Blockly.Python['if'] = function(block) {
   // TODO: Assemble Python into code variable.
   var code = 'if '+value_name1+':'
   if(statements_name2.indexOf('\n')<0)
-    code+=statements_name2;
+    code+=statements_name2+"\n";
   else	code+='\n'+statements_name2;
-  return code+'\n';
+  return code;
 };
 //<block type="logic_operation"></block>
 //======================================
@@ -877,7 +929,7 @@ Blockly.Blocks['python_f_write'] = {
 Blockly.Python['python_f_write'] = function(block) {
   var value_name = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = 'f.write('+value_name+')';
+  var code = 'f.write('+value_name+')\n';
   return code;
 };
 //============================================
@@ -913,6 +965,151 @@ Blockly.Python['python_any'] = function(block) {
   var text_name = block.getFieldValue('NAME');
   // TODO: Assemble Python into code variable.
   var code = text_name;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+//<block type="block_assign"></block>
+//======================================
+Blockly.Blocks['block_assign'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("=");
+    this.appendValueInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_assign'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name1+" = "+value_name2+'	\n';
+  return code;
+};
+//<block type="block_string_double_quotes"></block>
+//======================================
+Blockly.Blocks['block_string_double_quotes'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("\"")
+        .appendField(new Blockly.FieldTextInput(""), "NAME")
+        .appendField("\"");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_string_double_quotes'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  // TODO: Assemble Python into code variable.
+  var code = '\"'+text_name+'\"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="block_string"></block>
+//======================================
+Blockly.Blocks['block_string'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("'")
+        .appendField(new Blockly.FieldTextInput(""), "NAME")
+        .appendField("'");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_string'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  // TODO: Assemble Python into code variable.
+  var code = "\'"+text_name+"\'";
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="block_fstring"></block>
+//======================================
+Blockly.Blocks['block_fstring'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("f\"")
+        .appendField(new Blockly.FieldTextInput(""), "NAME1")
+        .appendField("\"");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_fstring'] = function(block) {
+  var text_name1 = block.getFieldValue('NAME1');
+  // TODO: Assemble Python into code variable.
+  var code = 'f\"'+text_name1+'\"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="block_colon_a_b"></block>
+//======================================
+Blockly.Blocks['block_colon_a_b'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendValueInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_colon_a_b'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name1+':'+value_name2;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="block_colon_a_b_c"></block>
+//======================================
+Blockly.Blocks['block_colon_a_b_c'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendValueInput("NAME2")
+        .setCheck(null)
+        .appendField(":");
+    this.appendValueInput("NAME3")
+        .setCheck(null)
+        .appendField(":");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_colon_a_b_c'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  var value_name3 = Blockly.Python.valueToCode(block, 'NAME3', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = value_name1+':'+value_name2+':'+value_name3;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
@@ -959,6 +1156,30 @@ Blockly.Python['python_big_parantheses'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = '{'+value_name1+'}';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+//<block type="block_parentheses"></block>
+//======================================
+Blockly.Blocks['block_parentheses'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("(");
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_parentheses'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = '('+value_name1+')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
@@ -1107,7 +1328,58 @@ Blockly.Python['block_anyconcat'] = function(block) {
   return code;
 };
 
-
+//<block type="block_def"></block>
+//======================================
+Blockly.Blocks['block_def'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField("def");
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendStatementInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_def'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var statements_name2 = Blockly.Python.statementToCode(block, 'NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = "def "+value_name1+':\n'+statements_name2;
+  return code;
+};
+//<block type="block_class"></block>
+//======================================
+Blockly.Blocks['block_class'] = {
+  init: function() {
+    this.appendValueInput("NAME1")
+        .setCheck(null)
+        .appendField("class");
+    this.appendDummyInput()
+        .appendField(":");
+    this.appendStatementInput("NAME2")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_class'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var statements_name2 = Blockly.Python.statementToCode(block, 'NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = "class "+value_name1+':\n'+statements_name2;
+  return code;
+};
 //<block type="any_indent_statement"></block>
 //======================================
 Blockly.Blocks['any_indent_statement'] = {
@@ -1131,6 +1403,7 @@ Blockly.Python['any_indent_statement'] = function(block) {
   var code = text_name+'\n'+statements_name;
   return code;
 };
+
 //<block type="create_arrayin"></block>
 //======================================
 Blockly.Blocks['create_arrayin'] = {
