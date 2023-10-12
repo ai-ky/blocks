@@ -27,6 +27,7 @@
   <script src="block_pygame.js"></script>
   <script src="block_openai.js"></script>
   <script src="block_string.js"></script>
+  <script src="block_comma.js"></script>
 </head>
 
 <body>
@@ -100,6 +101,8 @@
 		<block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="python_any"><field name="NAME">filename="1.wav",dur=25,TH=0.02,SilenceNum=50</field></block></value></block>
 		<block type="cammaconcat"></block><!--,-->
 		<block type="python_any"></block><!--\n-->
+		<!--逗點-->
+		<block type="block_comma2"></block>
 		<!--上下連接-->
 		<block type="tb_connection"></block>
 		<!--#any statement-->
