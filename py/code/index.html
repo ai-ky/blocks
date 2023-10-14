@@ -1338,6 +1338,47 @@
 		createAndDownloadFile(fileName, data);
 	  }
 	);
+	lastSelected_blocklyTreeRow = null;
+
+	
+
+	window.onload=function(){	
+		
+		//zoomout_btn = document.querySelector(".blocklyZoom > image");
+		//console.log(zoomout_btn);
+
+		aa  = document.querySelector("#content_blocks")
+		//aa.addEventListener('mouseup', handleMouseup);
+		aa.addEventListener('click', handleClick);
+		function handleClick(e) {
+			
+			ee = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
+			if(e.pageX>200)
+			{
+				if(lastSelected_blocklyTreeRow!=null)
+				{
+					lastSelected_blocklyTreeRow.click();
+					lastSelected_blocklyTreeRow = null;
+					console.log(e.pageX);
+				}
+			}
+			else 
+			{
+				console.log("select treeRow");
+				if(ee != null) lastSelected_blocklyTreeRow = ee;
+			
+			}	
+		}
+	}
+		
+
+	
+	//boxEle.addEventListener('click', handleClick);
+	
+	
+	
+	
 </script>
 </body>
 </html>
+ 
