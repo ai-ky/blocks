@@ -849,7 +849,23 @@ Blockly.Python['python_continue'] = function(block) {
   var code = 'continue\n';
   return code;
 };
-
+//==================================================
+Blockly.Blocks['python_break'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("break");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(105);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['python_break'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'break\n';
+  return code;
+};
 //==================================================
 Blockly.Blocks['python_with_open'] = {
   init: function() {
