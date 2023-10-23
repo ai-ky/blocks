@@ -47,7 +47,7 @@
             <td class="tabmin tab_collapse">&nbsp;</td>
             <td width="15%" id="tab_python" class="taboff tab_collapse">Arduino C++</td>
 			
-			<td width="60%" id="tab_hint1" class="tab_hint" style="visibility:hidden"><font size=5>按住ctrl鍵拖曳可維持選單</font></td>
+			<td width="60%" id="tab_hint1" class="tab_hint" style="visibility:hidden"><font size=4>按住shift鍵拖曳可維持選單,按住ctrl鍵可拖曳單一方塊</font></td>
 			
             <td id="tab_code" class="taboff">
               <select id="code_menu"></select>
@@ -299,12 +299,10 @@
 			blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
 			if(blocklyTreeRow!=null) document.querySelector("#tab_hint1").style.visibility ="visible";
 			else document.querySelector("#tab_hint1").style.visibility ="hidden";
-			if(e.pageX>1000)
-				lastSelected_blocklyTreeRow = null;
-			else if(e.pageX>200)
+			if(e.pageX>200)
 			{
 				if(lastSelected_blocklyTreeRow!=null)
-					if (e.ctrlKey) 
+					if (e.shiftKey) 
 						lastSelected_blocklyTreeRow.click();
 			}
 			else 
