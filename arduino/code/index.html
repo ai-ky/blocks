@@ -1,0 +1,330 @@
+<!DOCTYPE html> 
+<html>  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" value="notranslate">
+  <title>AI python積木 code python blockly</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../blocks_compressed.js"></script>
+  <script src="../../javascript_compressed.js"></script>
+  <script src="../../python_compressed.js"></script>
+  <script src="code.js"></script>
+  <!--<script src="block_python_functions.js"></script> -->
+  <script src="block_arduino_c.js"></script>
+  <script src="block_string.js"></script>
+  <script src="block_comma.js"></script>
+  <script src="block_logic.js"></script>
+  <script src="block_loop.js"></script>
+</head>
+
+<body>
+  <table width="100%" height="100%">
+	<tr>
+		<td>
+			<input id="input_save" type="button" value="Save" style="font-size:16px">
+			<input id="input_load" type="button" value="Load" style="font-size:16px">
+		</td>
+	</tr>
+    <tr>
+      <td>
+        <h1><a href="https://drive.google.com/drive/folders/1oTW1X0ZrJl0TFvS71yXIpNk1N__8_gGv?usp=share_link" target="_blank">範例下載</a>&rlm; &gt;
+          <span id="title">...</span>
+        </h1>
+      </td>
+      <td class="farSide">
+        <select id="languageMenu"></select>
+        <a class="privacyLink" href="https://policies.google.com/privacy">Privacy</a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2>
+        <table width="100%">
+          <tr id="tabRow" height="1em">
+            <td id="tab_blocks" class="tabon">...</td>
+            
+            <td class="tabmin tab_collapse">&nbsp;</td>
+            <td width="15%" id="tab_python" class="taboff tab_collapse">Arduino C++</td>
+			
+			<td width="60%" id="tab_hint1" class="tab_hint" style="visibility:hidden"><font size=5>按住ctrl鍵拖曳可維持選單</font></td>
+			
+            <td id="tab_code" class="taboff">
+              <select id="code_menu"></select>
+            </td>
+			
+            <td class="tabmax">
+              <button id="trashButton" class="notext" title="...">
+                <img src='../../media/1x1.gif' class="trash icon21">
+              </button>
+              <button id="linkButton" class="notext" title="...">
+                <img src='../../media/1x1.gif' class="link icon21">
+              </button>
+              <button id="runButton" class="notext primary" title="...">
+                <img src='../../media/1x1.gif' class="run icon21">
+              </button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="99%" colspan=2 id="content_area">
+      </td>
+    </tr>
+  </table>
+  <div id="content_blocks" class="content"></div>
+  <pre id="content_javascript" class="content prettyprint lang-js"></pre>
+  <pre id="content_python" class="content prettyprint lang-py"></pre>
+  <textarea id="content_xml" class="content" wrap="off">
+  
+  </textarea>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+	
+	<category name="基本架構" colour="#8ca55b">
+	<block type="block_include"></block>
+	<block type="block_setupfunc"></block>
+	<block type="block_loopfunc"></block>
+	<block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_setupfunc"><statement name="NAME"><block type="block_serial"><field name="NAME2">begin</field><value name="NAME1"><block type="math_number"><field name="NUM">9600</field></block></value></block></statement><next><block type="block_loopfunc"><statement name="NAME"><block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">OK</field></block></value></block></statement></block></next></block></next></block>
+	<block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_setupfunc"><statement name="NAME"><block type="block_serial"><field name="NAME2">begin</field><value name="NAME1"><block type="math_number"><field name="NUM">9600</field></block></value></block></statement><next><block type="block_loopfunc"><statement name="NAME"><block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">OK</field></block></value><next><block type="while"><value name="NAME"><block type="block_serial_"><field name="NAME2">available</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value><statement name="NAME1"><block type="block_typedef"><field name="NAME2">char</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">c</field></block></value><value name="NAME2"><block type="block_serial_"><field name="NAME2">read</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value></block></value></block></statement></block></next></block></statement></block></next></block></next></block>
+	
+	</category>
+	<category name="序列埠通訊" colour="#ffa55b">
+		<!--Serial.available()-->
+		<block type="block_serial_"><field name="NAME2">available</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block>
+		<!--Serial.println()-->
+	    <block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">OK</field></block></value></block>
+		<block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">counter</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_typedef"><field name="NAME2">String</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">res</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_setupfunc"><statement name="NAME"><block type="block_serial"><field name="NAME2">begin</field><value name="NAME1"><block type="math_number"><field name="NUM">9600</field></block></value></block></statement><next><block type="block_loopfunc"><statement name="NAME"><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">0</field></block></value></block></value><statement name="NAME2"><block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="logic_operation"><field name="NAME3">+</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">req:</field></block></value><value name="NAME2"><block type="block_tostring"><value name="NAME"><block type="block_any_"><field name="NAME">counter</field></block></value></block></value></block></value><next><block type="block_assign"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_semicolon"><value name="NAME1"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement><next><block type="else"><statement name="NAME2"><block type="while"><value name="NAME"><block type="block_serial_"><field name="NAME2">available</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value><statement name="NAME1"><block type="block_typedef"><field name="NAME2">char</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">c</field></block></value><value name="NAME2"><block type="block_serial_"><field name="NAME2">read</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value></block></value><next><block type="block_semicolon_"><value name="NAME1"><block type="logic_operation"><field name="NAME3">+=</field><value name="NAME1"><block type="block_any_"><field name="NAME">res</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">c</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="block_string_start_end"><field name="NAME2">endsWith</field><value name="NAME1"><block type="block_any_"><field name="NAME">res</field></block></value><value name="NAME2"><block type="block_string"><field name="NAME">\n</field></block></value></block></value><statement name="NAME2"><block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="logic_operation"><field name="NAME3">+</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">echo:</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">res</field></block></value></block></value><next><block type="block_assign"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_semicolon"><value name="NAME1"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></next></block></statement></block></next></block></next></block></statement></block></statement></block></next></block></statement></block></next></block></next></block></next></block></next></block><block type="block_any_"><field name="NAME">counter</field></block>
+	</category>
+	<category name="常用方塊" colour="#8ca55b">
+		<!--變數型態宣告-->
+		<block type="block_typedef"></block>
+		<!--delay-->
+		<block type="block_delay"><value name="NAME"><block type="math_number"><field name="NUM">1000</field></block></value></block>		
+		<!--digitalWrite()-->
+		<block type="block_digitalwrite"><value name="NAME1"><block type="math_number"><field name="NUM">5</field></block></value><value name="NAME2"><block type="block_highlow"><field name="NAME">LOW</field></block></value></block>
+		<!--digitalRead()-->
+		<block type="block_digitalread"><value name="NAME1"><block type="block_any_"><field name="NAME">8</field></block></value></block>
+		<!--analogWrite()-->
+		<block type="block_analogwrite"><value name="NAME1"><block type="block_any_"><field name="NAME">5</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">255</field></block></value></block>
+		<!--analogRead()-->
+		<block type="block_analogread"><value name="NAME1"><block type="block_any_"><field name="NAME">8</field></block></value></block>
+		<!--HIGH/LOW-->
+		<block type="block_highlow"></block>
+		<!-- (左結合)加分號-->
+		<block type="block_semicolon"></block>
+		<!-- (上下結合)加分號-->
+		<block type="block_semicolon_"></block>
+		<!--向右延伸型方塊-->
+		<block type="cammaconcat"></block>
+		<!--變數or常數值任向輸入-->
+		<block type="block_any_"></block><!--\n-->
+		<!--逗點-->
+		<block type="block_comma2"></block>
+		<!--上下連接-->
+		<block type="tb_connection"></block>
+		<!--等號指定值-->
+		<block type="block_assign"></block>
+		<!--等號(左結合)-->
+		<block type="block_equal_"></block>
+		<!--transform to statement-->
+		<block type="block_transform_mode"></block>
+		<!--註解-->
+		<block type="block_comment"></block>
+		<!--註解(左結合)-->
+		<block type="block_comment_"></block>
+		<!--
+		<block type="statement_var"></block>
+		
+		<block type="return"><value name="NAME2"><block type="variables_get"><field name="VAR">v</field></block></value></block>
+		-->
+		
+		<block type="block_get_anyconcat"></block><!-- . -->
+	
+		<block type="block_anyconcat"></block><!-- = -->
+		
+		<block type="block_parentheses"></block>
+		<block type="python_big_parantheses"></block>
+		<block type="create_arrayin"></block>
+		<!--
+		<block type="python_in"></block>
+		<block type="python_int"></block>
+		<block type="python_bytes"></block>
+		<block type="python_str"></block>		
+		<block type="try_except">
+			<value name="NAME2">
+				<block type="variables_get">
+				<field name="VAR">e</field>
+				</block>
+			</value>
+		</block>
+		-->
+	
+	</category>
+	
+
+	
+	
+	<!--<category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">-->
+    <category name="邏輯 LOGIC" colour="%{BKY_LOGIC_HUE}">
+	  <block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">0</field></block></value></block></value></block>
+	  <block type="elseIf"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">1</field></block></value></block></value></block>
+	  <block type="else"></block>
+	  <block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">a</field></block></value><value name="NAME2"><block type="block_true_false"><field name="NAME1">true</field></block></value></block>
+	  <block type="block_true_false"></block>
+	  <block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">0</field></block></value></block></value><next><block type="elseIf"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">1</field></block></value></block></value><next><block type="else"></block></next></block></next></block>
+    </category>
+    <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
+	<category name="迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
+	  <block type="while"><value name="NAME"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">a</field></block></value><value name="NAME2"><block type="block_true_false"><field name="NAME1">true</field></block></value></block></value></block>
+	  <block type="block_for_"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value><value name="NAME3"><block type="math_number"><field name="NUM">0</field></block></value></block></value><value name="NAME2"><block type="logic_operation"><field name="NAME3">&lt;=</field><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">5</field></block></value></block></value><value name="NAME3"><block type="block_plusplus"><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value></block></value></block>
+      <block type="block_continue"></block>
+	  <block type="block_break"></block>
+	  <!--
+	  
+		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
+	  </block>
+      <block type="python_continue"></block>
+	  <block type="python_break"></block>
+	  -->
+      <!--<block type="controls_for"><value name="FROM"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="TO"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="BY"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block>-->
+      <!--<block type="controls_forEach"></block>-->
+      <!--<block type="controls_flow_statements"></block>-->
+	  
+    </category>
+	<!--<category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>-->
+	<category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <!--<category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">-->
+	<category name="數學 MATH" colour="%{BKY_MATH_HUE}">
+	  <block type="block_plusplus"><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value></block>
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+	  <block type="logic_operation"><field name="NAME3">+</field><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">1</field></block></value></block>
+	  <<block type="block_mathfunc"><field name="NAME">random</field><value name="NAME1"><block type="block_comma2"><value name="NAME1"><block type="block_any_"><field name="NAME">from</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">to</field></block></value></block></value></block>
+	  
+    </category> 
+	<!--<category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">-->
+	<category name="文字 TEXT" colour="%{BKY_TEXTS_HUE}">
+	  <!--字串雙引號-->
+	  <block type="block_string_double_quotes"></block>
+	  <!--字元單引號-->
+	  <block type="block_string"></block>
+	  
+	  <block type="block_tostring"></block>
+      <block type="block_string_"><field name="NAME2">length</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME"></field></block></value></block>
+      <block type="block_string_convert"><field name="NAME2">toInt</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">5</field></block></value></block>
+	  <block type="block_string_"><field name="NAME2">substring</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_comma2"><value name="NAME1"><block type="block_any_"><field name="NAME">from</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">to</field></block></value></block></value></block>
+	  <block type="block_string_start_end"><field name="NAME2">endsWith</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_string"><field name="NAME">\n</field></block></value></block>
+	  <block type="block_string_"><field name="NAME2">trim</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME"></field></block></value></block>
+	  
+    </category>
+	<!--<category name="%{BKY_CA	TLISTS}" colour="%{BKY_LISTS_HUE}">-->
+	
+  </xml>
+<script>
+	
+    function loadxml(xml) {
+		if (typeof xml != "string" || xml.length < 5) {alert("No Input");return false;return;}
+		try {
+			var dom = Blockly.Xml.textToDom(xml);
+			Blockly.mainWorkspace.clear();
+			Blockly.Xml.domToWorkspace(Blockly.mainWorkspace,dom);
+			return true;
+		}catch (e) {alert("Invalid xml");return false;}
+	}
+	
+    function createAndDownloadFile(filename, data) {
+		var clickEvent = new MouseEvent('click', {
+		'view': window,'bubbles': true,'cancelable': false
+		});
+		var a = document.createElement('a');
+		a.href = window.URL.createObjectURL(data);
+		a.download = filename;
+		a.textContent = 'Download file!';
+		a.dispatchEvent(clickEvent);
+	};
+	document.getElementById('input_load').addEventListener
+	('click', function(){
+			let input = document.createElement('input');
+			input.type = 'file';
+			input.onchange = _this => {
+				let files =   Array.from(input.files);
+				var reader = new FileReader();
+				reader.onload = function() {loadxml(reader.result);}
+				reader.readAsText(files[0]);
+				console.log(files);
+			};
+			input.click();
+		}
+	);
+	
+	document.getElementById('input_save').addEventListener
+	('click', function() {
+	    var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+		var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+		var fileName = prompt('File Name for XML:', 'myblocks.xml');
+		if (!fileName) return;	
+		var data = new Blob([xmlText], {type: 'text/xml'});
+		createAndDownloadFile(fileName, data);
+	  }
+	);
+	lastSelected_blocklyTreeRow = null;
+
+	
+	window.onload=function(){	
+		document.addEventListener('keyup', handleKeyup);
+		function handleKeyup(e){
+			if(e.keyCode==27){lastSelected_blocklyTreeRow = null;}//esc
+			if(e.keyCode==38||e.keyCode==40)//按下鍵or上鍵
+			{
+				blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
+				lastSelected_blocklyTreeRow = blocklyTreeRow;
+			}
+		}
+		
+		content_blocks  = document.querySelector("#content_blocks");
+		topElement=document.querySelector("body > table");
+		topElement.addEventListener('click', handleTopClick);
+		content_blocks.addEventListener('click', handleClick);
+		function handleTopClick(e) {
+			if(lastSelected_blocklyTreeRow!=null)
+			{
+				lastSelected_blocklyTreeRow.click();
+				lastSelected_blocklyTreeRow = null;
+			}
+		}
+		function handleClick(e) {
+			blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
+			if(blocklyTreeRow!=null) document.querySelector("#tab_hint1").style.visibility ="visible";
+			else document.querySelector("#tab_hint1").style.visibility ="hidden";
+			if(e.pageX>1000)
+				lastSelected_blocklyTreeRow = null;
+			else if(e.pageX>200)
+			{
+				if(lastSelected_blocklyTreeRow!=null)
+					if (e.ctrlKey) 
+						lastSelected_blocklyTreeRow.click();
+			}
+			else 
+			{
+				console.log("select treeRow");
+				//if(blocklyTreeRow != null) 
+				lastSelected_blocklyTreeRow = blocklyTreeRow;
+			
+			}	
+		}
+	}
+		
+
+	
+	//boxEle.addEventListener('click', handleClick);
+	
+	
+	
+	
+</script>
+</body>
+</html>
+ 
