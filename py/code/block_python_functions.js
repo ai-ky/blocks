@@ -421,7 +421,7 @@ Blockly.Blocks['str_'] = {
 Blockly.Python['str_'] = function(block) {
   var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = '...\n';
+  var code = 'str('+value_name+')\n';
   return code;
 };
 //<block type="ifelse"></block>
