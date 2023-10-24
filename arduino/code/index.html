@@ -95,21 +95,33 @@
 		<block type="block_serial_"><field name="NAME2">available</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block>
 		<!--Serial.println()-->
 	    <block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">OK</field></block></value></block>
+		<!--Serial.write(buf,len)-->
+		<block type="block_serial"><field name="NAME2">write</field><value name="NAME1"><block type="block_comma2"><value name="NAME1"><block type="block_any_"><field name="NAME">buf</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">len</field></block></value></block></value></block>
+		<!--int inByte=Serial.read();-->
+		<block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">inByte</field></block></value><value name="NAME2"><block type="block_serial_"><field name="NAME2">read</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value></block></value></block>
+		<!--Serial.flush();-->
+		<block type="block_serial"><field name="NAME2">flush</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block>
+		
 		<block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_typedef"><field name="NAME2">int</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">counter</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_typedef"><field name="NAME2">String</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">res</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value><next><block type="block_setupfunc"><statement name="NAME"><block type="block_serial"><field name="NAME2">begin</field><value name="NAME1"><block type="math_number"><field name="NUM">9600</field></block></value></block></statement><next><block type="block_loopfunc"><statement name="NAME"><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">0</field></block></value></block></value><statement name="NAME2"><block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="logic_operation"><field name="NAME3">+</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">req:</field></block></value><value name="NAME2"><block type="block_tostring"><value name="NAME"><block type="block_any_"><field name="NAME">counter</field></block></value></block></value></block></value><next><block type="block_assign"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_semicolon"><value name="NAME1"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement><next><block type="else"><statement name="NAME2"><block type="while"><value name="NAME"><block type="block_serial_"><field name="NAME2">available</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value><statement name="NAME1"><block type="block_typedef"><field name="NAME2">char</field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">c</field></block></value><value name="NAME2"><block type="block_serial_"><field name="NAME2">read</field><value name="NAME1"><block type="block_any_"><field name="NAME"></field></block></value></block></value></block></value><next><block type="block_semicolon_"><value name="NAME1"><block type="logic_operation"><field name="NAME3">+=</field><value name="NAME1"><block type="block_any_"><field name="NAME">res</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">c</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="block_string_start_end"><field name="NAME2">endsWith</field><value name="NAME1"><block type="block_any_"><field name="NAME">res</field></block></value><value name="NAME2"><block type="block_string"><field name="NAME">\n</field></block></value></block></value><statement name="NAME2"><block type="block_serial"><field name="NAME2">println</field><value name="NAME1"><block type="logic_operation"><field name="NAME3">+</field><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">echo:</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">res</field></block></value></block></value><next><block type="block_assign"><value name="NAME1"><block type="block_any_"><field name="NAME">state</field></block></value><value name="NAME2"><block type="block_semicolon"><value name="NAME1"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></next></block></statement></block></next></block></next></block></statement></block></statement></block></next></block></statement></block></next></block></next></block></next></block></next></block><block type="block_any_"><field name="NAME">counter</field></block>
+	</category>
+	
+	<category name="輸入輸出" colour="#8ca55b">
+		<!--digitalWrite()-->
+		<block type="block_digitalwrite"><value name="NAME1"><block type="math_number"><field name="NUM">5</field></block></value><value name="NAME2"><block type="block_highlow"><field name="NAME">LOW</field></block></value></block>
+		<!--digitalRead()-->
+		<block type="block_digitalread"><value name="NAME1"><block type="block_any_"><field name="NAME">8</field></block></value></block>
+		<!--analogWrite()-->
+		<block type="block_comment"><field name="NAME">//類比寫入值 0~255 (Arduino PWM 之解析度為8bit)</field><next><block type="block_analogwrite"><value name="NAME1"><block type="block_any_"><field name="NAME">5</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">255</field></block></value></block></next></block>
+		<!--analogRead()-->
+		<block type="block_comment"><field name="NAME">//類比讀取值 0~1023 (Arduino ADC之解析度為10bit)</field><next><block type="block_analogread"><value name="NAME1"><block type="block_any_"><field name="NAME">A0</field></block></value></block></next></block>
+		<!--HIGH/LOW-->
+		<block type="block_highlow"></block>
 	</category>
 	<category name="常用方塊" colour="#8ca55b">
 		<!--變數型態宣告-->
 		<block type="block_typedef"></block>
 		<!--delay-->
 		<block type="block_delay"><value name="NAME"><block type="math_number"><field name="NUM">1000</field></block></value></block>		
-		<!--digitalWrite()-->
-		<block type="block_digitalwrite"><value name="NAME1"><block type="math_number"><field name="NUM">5</field></block></value><value name="NAME2"><block type="block_highlow"><field name="NAME">LOW</field></block></value></block>
-		<!--digitalRead()-->
-		<block type="block_digitalread"><value name="NAME1"><block type="block_any_"><field name="NAME">8</field></block></value></block>
-		<!--analogWrite()-->
-		<block type="block_analogwrite"><value name="NAME1"><block type="block_any_"><field name="NAME">5</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">255</field></block></value></block>
-		<!--analogRead()-->
-		<block type="block_analogread"><value name="NAME1"><block type="block_any_"><field name="NAME">8</field></block></value></block>
 		<!--HIGH/LOW-->
 		<block type="block_highlow"></block>
 		<!-- (左結合)加分號-->
