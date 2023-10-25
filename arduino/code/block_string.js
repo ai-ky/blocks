@@ -1,3 +1,22 @@
+//<block type="block_emptystring"></block>
+//======================================
+Blockly.Blocks['block_emptystring'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("\"\"");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_emptystring'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = '\"\"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
 //<block type="bytestring"></block>
 //======================================
 Blockly.Blocks['bytestring'] = {
