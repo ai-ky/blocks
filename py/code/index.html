@@ -140,6 +140,8 @@
 		<block type="block_anyconcat"></block><!-- = -->
 		<block type="block_dot1"></block><!-- . -->
 		<block type="block_comma"></block><!-- , -->
+		<block type="block_comma3"></block><!-- , -->
+		
 		<block type="python_global"></block>
 		<block type="block_parentheses"></block>
 		<block type="python_big_parantheses"></block>
@@ -202,6 +204,19 @@
 			<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
 		</block>
 	</category>
+	
+	<category name="逗號集合" colour="#8ca55b">
+		<block type="block_comma2"></block>
+		<block type="block_comma3"></block>
+		<block type="block_comma4"></block>
+		<block type="block_comma5"></block>
+		<block type="block_comma6"></block>
+		<block type="block_comma7"></block>
+		<block type="block_comma8"></block>
+		<block type="block_comma9"></block>
+		<block type="block_comma10"></block>
+	</category>
+	
 	<category name="youtube工具" colour="#Fca55b">
 		<block type="python_any_statement"><field name="NAME1">#youtube mp3下載</field><next><block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">os</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">cwd</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="python_any"><field name="NAME">os</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">getcwd</field></block></value></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block></value><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">pytube</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">YouTube</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">yt</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">YouTube</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">此處貼上Youtube網址</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="text"><field name="TEXT">下載中…</field></block></value><next><block type="block_func"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="variables_get"><field name="VAR">yt</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">streams</field></block></value></block></value><value name="NAME2"><block type="block_dot1"><value name="NAME1"><block type="python_any"><field name="NAME">filter().get_audio_only()</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">download</field></block></value></block></value></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">filename</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">1.mp3</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="text"><field name="TEXT">已下載至下列位置</field></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">+</field><value name="NAME1"><block type="python_any"><field name="NAME">cwd</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">+</field><value name="NAME1"><block type="text"><field name="TEXT">/</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">1.mp3</field></block></value></block></value></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
 		<block type="python_any_statement"><field name="NAME1">#youtube mp4下載</field><next><block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">os</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">cwd</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="python_any"><field name="NAME">os</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">getcwd</field></block></value></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block></value><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">pytube</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">YouTube</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">yt</field></block></value><value name="NAME3"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">YouTube</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">此處貼上Youtube網址</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="text"><field name="TEXT">下載中…</field></block></value><next><block type="block_func"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="variables_get"><field name="VAR">yt</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">streams.filter()</field></block></value></block></value><value name="NAME2"><block type="block_dot1"><value name="NAME1"><block type="python_any"><field name="NAME">get_highest_resolution()</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">download</field></block></value></block></value></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">filename</field></block></value><value name="NAME2"><block type="text"><field name="TEXT">1.mp4</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="text"><field name="TEXT">已下載至下列位置</field></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">+</field><value name="NAME1"><block type="python_any"><field name="NAME">cwd</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">+</field><value name="NAME1"><block type="text"><field name="TEXT">/</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">1.mp4</field></block></value></block></value></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
@@ -331,26 +346,8 @@
 				
 		<block type="python_any_statement"><field name="NAME1">#webcam影像貼圖迴圈</field><next><block type="any_indent_statement"><field name="NAME">while True:</field><statement name="NAME"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">0</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="controls_if"><value name="IF0"><block type="block_get_anyconcat"><field name="NAME2">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME3"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="DO0"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT"/></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></next></block></next></block></next></block>
 		</block>
-		    
-	    <block type="cv2_rectangle">
-			<value name="CV2_RECTANGLE_IMG">
-			<block type="variables_get"><field name="VAR">img</field>
-			</block>
-			</value>
-			<value name="CV2_RECTANGLE_STARTPOINT">
-				<block type="build_tuple2">
-				<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-				<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-				</block>
-			</value>
-			<value name="CV2_RECTANGLE_ENDPOINT">
-				<block type="build_tuple2">
-				<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
-				<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
-				</block>
-			</value>
-			<value name="CV2_RECTANGLE_THICKNESS"><shadow type="math_number"><field name="NUM">2</field></shadow></value>
-		</block>
+		<block type="python_any_statement"><field name="NAME1">#畫矩形框</field><next><block type="cv2_rectangle"><field name="NAME_COLOR">(0,0,255)</field><value name="CV2_RECTANGLE_IMG"><block type="variables_get"><field name="VAR">img</field></block></value><value name="CV2_RECTANGLE_STARTPOINT"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block></value><value name="CV2_RECTANGLE_ENDPOINT"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">50</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="CV2_RECTANGLE_THICKNESS"><shadow type="math_number"><field name="NUM">2</field></shadow></value></block></next></block>
+	    
 		
 		<block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block>
 		<block type="block_anyconcat">
@@ -381,22 +378,9 @@
 				<shadow type="math_number"><field name="NUM">255</field></shadow>
 			</value>
 		</block>
-	    <block type="cv2_puttext">
-			<value name="NAME1">
-			<block type="variables_get">
-            <field name="VAR">img</field>
-			</block>
-			</value>
-			<value name="NAME2">
-				<shadow type="text"></shadow>
-			</value>
-			<value name="NAME3">
-				<block type="build_tuple2">
-				<value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-				<value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-				</block>
-			</value>
-    	</block>
+		<block type="python_any_statement"><field name="NAME1">#由(0,0) 到 (99,99)畫一條紅線寬度為3</field><next><block type="block_func"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="python_any"><field name="NAME">cv2</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">line</field></block></value></block></value><value name="NAME2"><block type="block_comma5"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="block_parentheses"><value name="NAME1"><block type="block_comma2"><value name="NAME1"><block type="python_any"><field name="NAME">0</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">0</field></block></value></block></value></block></value><value name="NAME3"><block type="block_parentheses"><value name="NAME1"><block type="block_comma2"><value name="NAME1"><block type="python_any"><field name="NAME">99</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">99</field></block></value></block></value></block></value><value name="NAME4"><block type="block_parentheses"><value name="NAME1"><block type="block_comma3"><value name="NAME1"><block type="python_any"><field name="NAME">255</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">0</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">0</field></block></value></block></value></block></value><value name="NAME5"><block type="math_number"><field name="NUM">3</field></block></value></block></value></block></next></block>
+		<block type="python_any_statement"><field name="NAME1">#顯示文字</field><next><block type="cv2_puttext"><field name="NAME4">cv2.FONT_HERSHEY_SIMPLEX</field><field name="NAME6">1</field><field name="NAME5">(0,0,255)</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><shadow type="text"><field name="TEXT"></field></shadow></value><value name="NAME3"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block></value></block></next></block>
+	    
 		<block type="cv2_resize">
 			<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
 			<value name="NAME2"><shadow type="math_number"><field name="NUM">50</field></shadow></value>
