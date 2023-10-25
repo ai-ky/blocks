@@ -23,7 +23,8 @@ Blockly.Python['block_assign'] = function(block) {
   // TODO: Assemble Python into code variable.
   var code = value_name1+" = "+value_name2+'\n';
   return code;
-};//<block type="block_equal_"></block>
+};
+//<block type="block_equal_"></block>
 //======================================
 Blockly.Blocks['block_equal_'] = {
   init: function() {
