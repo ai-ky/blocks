@@ -133,9 +133,9 @@ Blockly.Python['import_var'] = function(block) {
   var code = 'import '+value_name2+'\n';
   return code;
 };
-//<block type="return"></block>
+//<block type="block_return_"></block>
 //======================================
-Blockly.Blocks['return'] = {
+Blockly.Blocks['block_return_'] = {
   init: function() {
     this.appendValueInput("NAME2")
         .setCheck(null)
@@ -148,10 +148,10 @@ Blockly.Blocks['return'] = {
  this.setHelpUrl("");
   }
 };
-Blockly.Python['return'] = function(block) {
+Blockly.Python['block_return_'] = function(block) {
   var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = 'return '+value_name2;
+  var code = 'return '+value_name2 + "\n";
   return code;
 };
 //<block type="any_in_brackets"></block>
