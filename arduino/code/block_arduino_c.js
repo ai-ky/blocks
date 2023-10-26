@@ -1,4 +1,32 @@
-
+//<block type="block_pinmode"></block>
+//======================================
+Blockly.Blocks['block_pinmode'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("pinMode(");
+    this.appendValueInput("NAME1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(",")
+        .appendField(new Blockly.FieldDropdown([["INPUT","INPUT"], ["OUTPUT","OUTPUT"], ["INPUT_PULLUP","INPUT_PULLUP"]]), "NAME2")
+        .appendField(")");
+    this.setInputsInline(true);
+   // this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_pinmode'] = function(block) {
+  var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
+  var dropdown_name2 = block.getFieldValue('NAME2');
+  // TODO: Assemble Python into code variable.
+  var code = 'pindMode('+value_name1+','+dropdown_name2+");\n";
+  // TODO: Change ORDER_NONE to the correct strength.
+  return code;
+};
 //<block type="block_assign"></block>
 //======================================
 Blockly.Blocks['block_assign'] = {
