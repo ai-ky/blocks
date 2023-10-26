@@ -23,7 +23,7 @@ Blockly.Python['block_pinmode'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   var dropdown_name2 = block.getFieldValue('NAME2');
   // TODO: Assemble Python into code variable.
-  var code = 'pindMode('+value_name1+','+dropdown_name2+");\n";
+  var code = 'pinMode('+value_name1+','+dropdown_name2+");\n";
   // TODO: Change ORDER_NONE to the correct strength.
   return code;
 };
