@@ -466,6 +466,27 @@ Blockly.Python['str_'] = function(block) {
   var code = 'str('+value_name+')\n';
   return code;
 };
+
+//<block type="block_if_single"></block>
+//======================================
+Blockly.Blocks['block_if_single'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("if");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_if_single'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = 'if '+value_name+'\n';
+  return code;
+};
 //<block type="ifelse"></block>
 //======================================
 Blockly.Blocks['ifelse'] = {
