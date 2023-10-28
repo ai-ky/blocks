@@ -55,6 +55,9 @@
             </td>
 			
             <td class="tabmax">
+			  <a target="_blank" href="https://www.youtube.com/playlist?list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s">
+				教學影片
+			  </a>
               <button id="trashButton" class="notext" title="...">
                 <img src='../../media/1x1.gif' class="trash icon21">
               </button>
@@ -335,7 +338,16 @@
 		}
 		function handleClick(e) {
 			blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
-			if(blocklyTreeRow!=null) document.querySelector("#tab_hint1").style.visibility ="visible";
+			e_tab_hint1=document.querySelector("#tab_hint1")
+			if(blocklyTreeRow!=null) {
+				hintHTML = "<font size=3>(按住shift鍵拖曳可維持選單,按住ctrl鍵可拖曳單一方塊)</font>";
+				e_tab_hint1.innerHTML = hintHTML;
+				document.querySelector("#tab_hint1").style.visibility ="visible";
+				tabText="輸入輸出";
+				ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=3";
+				if(blocklyTreeRow.textContent.includes(tabText)){linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';e_tab_hint1.innerHTML = linkHTML+hintHTML;}
+
+			}
 			else document.querySelector("#tab_hint1").style.visibility ="hidden";
 			if(e.pageX>200)
 			{

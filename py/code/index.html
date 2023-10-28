@@ -57,11 +57,14 @@
             
             <td class="tabmin tab_collapse">&nbsp;</td>
             <td id="tab_python" class="taboff tab_collapse">Python</td>
-            <td width="50%" id="tab_hint1" class="tab_hint" style="visibility:hidden"><font size=5>按住shift鍵拖曳可維持選單,按住ctrl鍵可拖曳單一方塊</font></td>
+            <td width="50%" id="tab_hint1" class="tab_hint" style="visibility:hidden"></td>
             <td id="tab_code" class="taboff">
               <select id="code_menu"></select>
             </td>
             <td class="tabmax">
+			  <a target="_blank" href="https://www.youtube.com/playlist?list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s">
+				教學影片
+			  </a>
               <button id="trashButton" class="notext" title="...">
                 <img src='../../media/1x1.gif' class="trash icon21">
               </button>
@@ -69,7 +72,7 @@
                 <img src='../../media/1x1.gif' class="link icon21">
               </button>
               <button id="runButton" class="notext primary" title="...">
-                <img src='../../media/1x1.gif' class="run icon21">
+				<img src='../../media/1x1.gif' class="run icon21">
               </button>
             </td>
           </tr>
@@ -1135,8 +1138,32 @@
 		}
 		function handleClick(e) {
 			blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
-			if(blocklyTreeRow!=null) document.querySelector("#tab_hint1").style.visibility ="visible";
-			else document.querySelector("#tab_hint1").style.visibility ="hidden";
+			e_tab_hint1=document.querySelector("#tab_hint1")
+			if(blocklyTreeRow!=null) 
+			{
+				hintHTML = "<font size=3>(按住shift鍵拖曳可維持選單,按住ctrl鍵可拖曳單一方塊)</font>";
+				e_tab_hint1.innerHTML = hintHTML;
+				
+				tabText="opencv影像處理";
+				ytLink = "https://www.youtube.com/watch?v=1ctcuUD7ci8&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=1";
+				if(blocklyTreeRow.textContent.includes(tabText)){linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';e_tab_hint1.innerHTML = linkHTML+hintHTML;}
+				tabText="mediapip手部偵測";
+				ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=4";
+				if(blocklyTreeRow.textContent.includes(tabText)){linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';e_tab_hint1.innerHTML = linkHTML+hintHTML;}
+				tabText="鍵鼠外掛";
+				ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=5";
+				if(blocklyTreeRow.textContent.includes(tabText)){linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';e_tab_hint1.innerHTML = linkHTML+hintHTML;}
+				tabText="語音與文字處理";
+				ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=6";
+				if(blocklyTreeRow.textContent.includes(tabText)){linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';e_tab_hint1.innerHTML = linkHTML+hintHTML;}
+				tabText="youtube工具";
+				ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=7";
+				if(blocklyTreeRow.textContent.includes(tabText)){linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';e_tab_hint1.innerHTML = linkHTML+hintHTML;}
+
+					
+				e_tab_hint1.style.visibility ="visible";
+			}
+			else e_tab_hint1.style.visibility ="hidden";
 			if(e.pageX>200)
 			{
 				if(lastSelected_blocklyTreeRow!=null)
