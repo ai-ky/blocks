@@ -743,7 +743,7 @@ Blockly.Blocks['block_plusplus'] = {
 Blockly.Python['block_plusplus'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = value_name1+'++\n';
+  var code = value_name1+'++';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
