@@ -243,13 +243,14 @@
     <!--<category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">-->
 	<category name="數學 MATH" colour="%{BKY_MATH_HUE}">
 	  <block type="block_plusplus"><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value></block>
-      <block type="math_number">
-        <field name="NUM">123</field>
-      </block>
+     	  <block type="math_number"><field name="NUM">123</field></block>
 	  <block type="logic_operation"><field name="NAME3">+</field><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">1</field></block></value></block>
-	  <<block type="block_mathfunc"><field name="NAME">random</field><value name="NAME1"><block type="block_comma2"><value name="NAME1"><block type="block_any_"><field name="NAME">from</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">to</field></block></value></block></value></block>
+	  <block type="block_mathfunc"><field name="NAME">random</field><value name="NAME1"><block type="block_comma2"><value name="NAME1"><block type="block_any_"><field name="NAME">from</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">to</field></block></value></block></value></block>
 	  
-    </category> 
+	  <!--strTemp.toInt()-->
+	  <block type="block_string_convert"><field name="NAME2">toInt</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">5</field></block></value></block>
+        
+	</category> 
 	<!--<category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">-->
 	<category name="文字 TEXT" colour="%{BKY_TEXTS_HUE}">
 	  <!--字串宣告-->
@@ -260,12 +261,17 @@
 	  <block type="block_string"></block>
 	  <!--空字串-->
 	  <block type="block_emptystring"></block>
-	  
+	  <!--String(...)-->
 	  <block type="block_tostring"></block>
-      <block type="block_string_"><field name="NAME2">length</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME"></field></block></value></block>
-      <block type="block_string_convert"><field name="NAME2">toInt</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">5</field></block></value></block>
+	  <!--strTemp.length()-->
+	  <block type="block_string_"><field name="NAME2">length</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME"></field></block></value></block>
+	  <!--strTemp.toInt()-->
+	  <block type="block_string_convert"><field name="NAME2">toInt</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">5</field></block></value></block>
+	  <!--strTemp.substring()-->
 	  <block type="block_string_"><field name="NAME2">substring</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_comma2"><value name="NAME1"><block type="block_any_"><field name="NAME">from</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">to</field></block></value></block></value></block>
+	  <!--strTemp.endWith()-->
 	  <block type="block_string_start_end"><field name="NAME2">endsWith</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_string"><field name="NAME">\n</field></block></value></block>
+	  <!--strTemp.trim()-->
 	  <block type="block_string_"><field name="NAME2">trim</field><value name="NAME1"><block type="block_any_"><field name="NAME">strTemp</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME"></field></block></value></block>
 	  
     </category>
