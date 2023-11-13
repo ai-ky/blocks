@@ -321,6 +321,7 @@
 				</block>
 			</next>
 		</block>
+		<block type="python_any_statement"><field name="NAME1">#定位 1.png 於螢幕上之位置，設定圖片比對有5%的容錯(confidence=0.95)</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">X</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">Y</field></block></value></block></value><value name="NAME3"><block type="pyautogui_locatecenteronscreen"><value name="NAME1"><shadow type="text"><field name="TEXT">1.png</field></shadow><block type="block_comma2"><value name="NAME1"><block type="python_any"><field name="NAME">"1.png"</field></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">confidence</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0.95</field></block></value></block></value></block></value></block></value></block></next></block>
 		<block type="pyautogui_mousedown"></block>
 		<block type="pyautogui_mouseup"></block>
 	</category>
