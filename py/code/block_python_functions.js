@@ -1,3 +1,24 @@
+python_functions_colour=80;
+//<block type="block_any_line"></block>
+//======================================
+Blockly.Blocks['block_any_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(" "), "NAME");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_any_line'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  // TODO: Assemble Python into code variable.
+  var code = text_name+'\n';
+  return code;
+};
 //<block type="block_emptystring"></block>
 //======================================
 Blockly.Blocks['block_emptystring'] = {
@@ -41,7 +62,7 @@ Blockly.Python['block_dot1'] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
-python_functions_colour=80
+
 //<block type="import_as"></block>
 //======================================
 Blockly.Blocks['import_as'] = {
