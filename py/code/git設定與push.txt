@@ -1,0 +1,9 @@
+git config --global user.name "...profile裡面有"
+git config --global user.email "...profile裡面有"
+=========
+會需要網頁驗証時，上面的設定要正確
+========
+cd 到資料夾根目錄
+git add .
+git git commit -m "訊息"
+git push -u origin main
