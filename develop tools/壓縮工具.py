@@ -29,11 +29,11 @@ with open(file_path,encoding='utf-8') as f:
     j=text.find("</xml>")
     text = text[i:j]
     for line in text.split("\n"):
-        ii=line.find('id=')
+        ii=line.find('" id="')
         
         if ii>0:
             jj=line.find('>',ii)
-            S+=line[:ii].strip()+line[jj:].strip()
+            S+=line[:ii+1].strip()+line[jj:].strip()
         else: S+=line.strip()
     if user_input!='':
         S=f'<category name={user_input} colour="#8ca55b">\n\t\t'+S+'\n\t</category>'
