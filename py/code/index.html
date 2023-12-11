@@ -537,9 +537,7 @@
 		</block>
 	</category>
 	<category name="檔案處理" colour="#8ca55b">
-		<block type="python_with_open">
-			<value name="NAME1"><shadow type="text"></shadow></value>
-		</block>
+		<block type="python_with_open"><value name="NAME1"><shadow type="text"><field name="TEXT"></field></shadow><block type="block_comma2"><value name="NAME1"><block type="block_string_double_quotes"><field name="NAME">檔名</field></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">encoding</field></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">utf-8</field></block></value></block></value></block></value></block>
 		<block type="python_f_readlines"></block>
 		<block type="python_f_readline"></block>
 		<block type="python_f_write">
