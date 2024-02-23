@@ -40,4 +40,4 @@ with open(file_path,encoding='utf-8') as f:
     print(S)
     print('方塊壓縮html碼已複制至剪貼簿')
     pyperclip.copy(S)
-    input('press enter to end')input('press enter to end')
+    input('press enter to end')
