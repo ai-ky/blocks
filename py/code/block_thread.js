@@ -151,3 +151,33 @@ Blockly.Python['threading_thread2'] = function(block) {
   var code = variable_name1+'= threading.Thread( target='+text_name2+',args=('+text_name3+',))\n';
   return code;
 };
+//<block type="block_thread2"></block>
+//======================================
+Blockly.Blocks['block_thread2'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("thread2"), "NAME1");
+    this.appendValueInput("NAME2")
+        .setCheck(null)
+        .appendField("=threading.Thread(target=");
+    this.appendValueInput("NAME3")
+        .setCheck(null)
+        .appendField(",args=(");
+    this.appendDummyInput()
+        .appendField(",))");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(python_functions_colour);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_thread2'] = function(block) {
+  var variable_name1 = Blockly.Python.nameDB_.getName(block.getFieldValue('NAME1'), Blockly.Names.NameType.VARIABLE);
+  var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
+  var value_name3 = Blockly.Python.valueToCode(block, 'NAME3', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  var code = variable_name1+'= threading.Thread( target='+value_name2+',args=('+value_name3+',))\n';
+  return code;
+};
