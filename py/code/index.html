@@ -521,7 +521,7 @@
 		</block>
 		<block type="import_threading"></block>
 		<block type="threading_thread"></block>
-		<block type="block_thread2"></block>
+		<block type="import_threading"><next><block type="import_pyautogui"><next><block type="block_thread2"><field name="NAME1">thread2</field><value name="NAME2"><block type="python_any"><field name="NAME">pyautogui.press</field></block></value><value name="NAME3"><block type="block_string_double_quotes"><field name="NAME">Up</field></block></value><next><block type="thread_start"><field name="NAME1">thread2</field></block></next></block></next></block></next></block>
 		<block type="thread_start"></block>
 		<block type="thread_join"></block>
 		<block type="create_threading_lock">
