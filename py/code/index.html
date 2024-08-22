@@ -257,92 +257,32 @@
 	<category name="鍵鼠外掛" colour="#5ba55b">
 		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">whereisthemouse</field></block></value><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">whereisthemouse</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">start</field></block></value></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block></next></block>
 		<block type="python_any_statement"><field name="NAME1">whereisthemouse滑鼠定位工具下載</field><next><block type="python_any_statement"><field name="NAME1">https://nlacsoft.net/whereisthemouse</field></block></next></block>
-		
-		<block type="python_any_statement"><field name="NAME1">#pyautogui無法控制或反應速度太慢的狀況可改試pydirectinput</field><next><block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">pydirectinput</field></block></value><next><block type="python_any_statement"><field name="NAME1">#外掛滑鼠點擊指定座標</field><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">pydirectinput</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">click</field></block></value></block></value><value name="NAME2"><block type="block_comma2"><value name="NAME1"><block type="math_number"><field name="NUM">200</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">300</field></block></value></block></value><next><block type="python_any_statement"><field name="NAME1">#外掛按鍵控制</field><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">pydirectinput</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">press</field></block></value></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">x</field></block></value></block></next></block></next></block></next></block></next></block></next></block>
-		
 		<block type="import_pyautogui"></block>
-		
 		<block type="import_pyautogui"><next><block type="import_any"><field name="NAME">time</field><next><block type="pyautogui_click"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value><next><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="python_any_statement"><field name="NAME1">#每隔2秒取得鼠標位置</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">X</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">Y</field></block></value></block></value><value name="NAME3"><block type="pyautogui_position__"></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">X</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">Y</field></block></value></block></value><next><block type="python_transform_mode"><value name="NAME"><block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">2</field></block></value></block></value></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block>
 		<block type="import_any"></block><!--import time-->
-		<block type="python_transform_mode"><!--time.sleep-->
-			<value name="NAME">
-				<block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">0.5</field></block></value></block>
-			</value>
-		</block>	 
+		<block type="python_transform_mode"><!--time.sleep--><value name="NAME"><block type="any_func_value"><field name="NAME">time.sleep</field><value name="NAME"><block type="python_any"><field name="NAME">0.5</field></block></value></block></value></block>	 
 		<block type="python_any_statement"><field name="NAME1">#取得螢幕擷圖,存檔至 1.png, 擷圖區域左上座標(0,0)長300寬200</field>
 		<next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="pyautogui_screenshot_"><field name="NAME1">"1.png",region=(0,0,300,200)</field></block></value></block></next></block>	 
-		<block type="python_any_statement"><field name="NAME1">#取得鼠標位置</field>
-			<next>
-			<block type="block_anyconcat">
-				<field name="NAME2">=</field>
-				<value name="NAME1">
-				  <block type="block_comma">
-					<value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value>
-					<value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value>
-				  </block>
-				</value>
-				<value name="NAME3"><block type="pyautogui_position__"></block></value>
-			</block></next>
-		</block>	
-	    <block type="pyautogui_click">
-			<value name="NAME1"><shadow type="math_number">
-			<field name="NUM">10</field></shadow>
-			</value>
-			<value name="NAME2"><shadow type="math_number">
-			<field name="NUM">10</field></shadow>
-			</value>
-		</block>
-	    <block type="pyautogui_press">
-			<value name="NAME1">
-				<shadow type="text"><field name="TEXT">up</field></shadow>
-			</value>
-		</block>
+		<block type="python_any_statement"><field name="NAME1">#取得鼠標位置</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value><value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value></block></value><value name="NAME3"><block type="pyautogui_position__"></block></value></block></next></block>	
+	        <block type="pyautogui_click"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>
+	        <block type="pyautogui_press"><value name="NAME1"><shadow type="text"><field name="TEXT">up</field></shadow></value></block>
 		<block type="pyautoui_any"></block>
-	    <block type="tb_connection"><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">pyautogui</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">.</field><value name="NAME1"><block type="python_any"><field name="NAME">write</field></block></value></block></value></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">123456789</field></block></value></block></value></block>
-	    <block type="pyautogui_moveto">
-			<value name="NAME1"><shadow type="math_number">
-			<field name="NUM">10</field></shadow>
-			</value>
-			<value name="NAME2"><shadow type="math_number">
-			<field name="NUM">10</field></shadow>
-			</value>
-			<value name="NAME3"><shadow type="math_number">
-			<field name="NUM">0.3</field></shadow>
-			</value>
-		</block>
+	        <block type="tb_connection"><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">pyautogui</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">.</field><value name="NAME1"><block type="python_any"><field name="NAME">write</field></block></value></block></value></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">123456789</field></block></value></block></value></block>
+	        <block type="pyautogui_moveto"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME3"><shadow type="math_number"><field name="NUM">0.3</field></shadow></value></block>
 		<block type="python_any_statement"><field name="NAME1">#取得(20,20)處像素RGB值</field><next>
-			<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1">
-				<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3">
-				<block type="pyautogui_screenshot_"><field name="NAME1"></field></block></value><next>
-				<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">pix</field></block></value><value name="NAME3"><block type="pyautogui_getpixel_"><value name="NAME1">
-				<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">20</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">20</field></shadow></value></block></value></block></value></block></next> 
-			</block></next>
-		</block>	
-		<block type="pyautogui_pixel">
-			<value name="NAME1"><shadow type="math_number">
-			<field name="NUM">10</field></shadow>
-			</value>
-			<value name="NAME2"><shadow type="math_number">
-			<field name="NUM">10</field></shadow>
-			</value>
-		</block>
-		<block type="python_any_statement"><field name="NAME1">#定位 1.png 於螢幕上之位置</field>
-			<next>
-				<block type="block_anyconcat">
-					<field name="NAME2">=</field>
-					<value name="NAME1">
-					  <block type="block_comma">
-						<value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value>
-						<value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value>
-					  </block>
-					</value>
-					<value name="NAME3"><block type="pyautogui_locatecenteronscreen"><value name="NAME1"><shadow type="text"><field name="TEXT">1.png</field></shadow></value></block></value>
-				</block>
-			</next>
-		</block>
+		<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1">
+		<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3">
+		<block type="pyautogui_screenshot_"><field name="NAME1"></field></block></value><next>
+		<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">pix</field></block></value><value name="NAME3"><block type="pyautogui_getpixel_"><value name="NAME1">
+		<block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">20</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">20</field></shadow></value></block></value></block></value></block></next> </block></next></block>	
+		<block type="pyautogui_pixel"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>
+		<block type="python_any_statement"><field name="NAME1">#定位 1.png 於螢幕上之位置</field><next>
+		<block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">x</field></block></value><value name="NAME2"><block type="variables_get" ><field name="VAR">y</field></block></value></block></value><value name="NAME3"><block type="pyautogui_locatecenteronscreen"><value name="NAME1"><shadow type="text"><field name="TEXT">1.png</field></shadow></value></block></value></block></next></block>
 		<block type="python_any_statement"><field name="NAME1">#定位 1.png 於螢幕上之位置，設定圖片比對有5%的容錯(confidence=0.95)</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">X</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">Y</field></block></value></block></value><value name="NAME3"><block type="pyautogui_locatecenteronscreen"><value name="NAME1"><shadow type="text"><field name="TEXT">1.png</field></shadow><block type="block_comma2"><value name="NAME1"><block type="python_any"><field name="NAME">"1.png"</field></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">confidence</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0.95</field></block></value></block></value></block></value></block></value></block></next></block>
 		<block type="pyautogui_mousedown"></block>
 		<block type="pyautogui_mouseup"></block>
+		<block type="python_any_statement"><field name="NAME1">#pyautogui無法控制或反應速度太慢的狀況可改試pydirectinput</field><next><block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">pydirectinput</field></block></value><next><block type="python_any_statement"><field name="NAME1">#外掛滑鼠點擊指定座標</field><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">pydirectinput</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">click</field></block></value></block></value><value name="NAME2"><block type="block_comma2"><value name="NAME1"><block type="math_number"><field name="NUM">200</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">300</field></block></value></block></value><next><block type="python_any_statement"><field name="NAME1">#外掛按鍵控制</field><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">pydirectinput</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">press</field></block></value></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">x</field></block></value></block></next></block></next></block></next></block></next></block></next></block>
+
 	</category>
 	<category name="瀏覽器" colour="#8ca55b">
 		<block type="import_any"><field name="NAME">webbrowser</field><next><block type="obj_method"><field name="NAME1">webbrowser</field><field name="NAME2">open</field><value name="NAME2"><block type="text"><field name="TEXT">https://github.com/ai-ky/blocks</field></block></value></block></next></block>
