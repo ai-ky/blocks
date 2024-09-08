@@ -98,12 +98,10 @@
 		<!--#function 有介接指定-->
 		<block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
 		<!--#function 無介接指定-->
-		<block type="block_func"></block>
+		<block type="block_func"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
 		<block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="python_any"><field name="NAME">filename="1.wav",dur=25,TH=0.02,SilenceNum=50</field></block></value></block>
 		<block type="python_any"></block><!--\n-->
 		<block type="block_any_line"></block>
-		<!--逗點-->
-		<block type="block_comma2"></block>
 		<!--上下連接-->
 		<block type="tb_connection"></block>
 		<!--等號指定值-->
@@ -128,9 +126,6 @@
 		<block type="python_transform_mode"></block>
 		<!--def function :statement-->
 		<block type="block_def"><value name="NAME1"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">foo</field></block></value><value name="NAME2"><block type="cammaconcat"><field name="NAME3">n,m=1</field></block></value></block></value></block>
-		
-		<block type="block_func"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
-		
 		<!--indent statement like ...def ... -->
 		<block type="any_indent_statement"></block>
 		<!--class ___:statement-->
