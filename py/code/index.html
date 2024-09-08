@@ -102,7 +102,6 @@
 		<!--#function 無介接指定-->
 		<block type="block_func"></block>
 		<block type="obj_method"><field name="NAME1">mic</field><field name="NAME2">record</field><value name="NAME2"><block type="python_any"><field name="NAME">filename="1.wav",dur=25,TH=0.02,SilenceNum=50</field></block></value></block>
-		<block type="cammaconcat"></block><!--,-->
 		<block type="python_any"></block><!--\n-->
 		<block type="block_any_line"></block>
 		<!--逗點-->
@@ -849,7 +848,7 @@
 	    <block type="numpyarray_copy"><value name="COPY_ARRAY_NAME"><block type="variables_get"><field name="VAR">A</field></block></value></block>
 	    <block type="numpy_array_shape"><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value></block>
 	    <block type="numpyarray_astype"><value name="numpyArray_astype_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block></value></block>
-	    <block type="numpyarray_reshape2"><value name="numpyArray_reshape2_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block></value><value name="numpyArray_reshape2_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape2_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
+	    <block type="numpyarray_reshape2"><value name="numpyArray_reshape2_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block> </value><value name="numpyArray_reshape2_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape2_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
 	    <block type="numpyarray_reshape3"><value name="numpyArray_reshape3_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block></value><value name="numpyArray_reshape3_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape3_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape3_d3"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
 	    <block type="numpyarray_reshape4">
 			<value name="NAME1">
