@@ -784,71 +784,17 @@
 			</value>
 		</block>
 	</category>
-	<category name="bard API" colour="#a56b5d">
-		<block type="python_any_statement"><field name="NAME1">#載入 selenium chromedriver 各種工具包</field><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">selenium</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">webdriver</field></block></value><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">selenium.webdriver.chrome.service</field></block></value><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2"> as </field><value name="NAME1"><block type="python_any"><field name="NAME">Service</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">ChromeService</field></block></value></block></value><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">webdriver_manager.chrome</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">ChromeDriverManager</field></block></value><next><block type="python_any_statement"><field name="NAME1">#載入 bardapi 工具包</field><next><block type="from_import"><value name="NAME1"><block type="python_any"><field name="NAME">bardapi </field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">Bard</field></block></value><next><block type="python_any_statement"><field name="NAME1">#載入 google自動登入工具包</field><next><block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">seleniumGoogleLogin</field></block></value><next><block type="python_any_statement"><field name="NAME1">#載入 自動取得 bard token工具包</field><next><block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">bardToken</field></block></value><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">email</field></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">此處放入 gmail 帳號</field></block></value><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">password</field></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">此處放入 gmail 密碼</field></block></value><next><block type="python_any_statement"><field name="NAME1">#取得chromedriver自動開啟瀏器</field><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">driver</field></block></value><value name="NAME2"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">webdriver.Chrome</field></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">service</field></block></value><value name="NAME2"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">ChromeService</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">ChromeDriverManager().install()</field></block></value></block></value></block></value></block></value><next><block type="if"><value name="NAME1"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">seleniumGoogleLogin.start</field></block></value><value name="NAME2"><block type="block_comma3"><value name="NAME1"><block type="variables_get"><field name="VAR">driver</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">email</field></block></value><value name="NAME3"><block type="variables_get"><field name="VAR">password</field></block></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">#取得token,等待時間上限10秒</field><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">token</field></block></value><value name="NAME2"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">bardToken.get</field></block></value><value name="NAME2"><block type="block_comma"><value name="NAME1"><block type="variables_get"><field name="VAR">driver</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">10</field></block></value></block></value></block></value><next><block type="python_any_statement"><field name="NAME1">#向bard發問並輸出bard回答內容</field><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">bard</field></block></value><value name="NAME2"><block type="any_in_brackets"><value name="NAME1"><block type="python_any"><field name="NAME">Bard</field></block></value><value name="NAME2"><block type="block_equal_"><value name="NAME1"><block type="python_any"><field name="NAME">token</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">token</field></block></value></block></value></block></value><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">ans</field></block></value><value name="NAME2"><block type="any_in_brackets"><value name="NAME1"><block type="block_dot1"><value name="NAME1"><block type="variables_get"><field name="VAR">bard</field></block></value><value name="NAME2"><block type="python_any"><field name="NAME">get_answer</field></block></value></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">此處放入與bard的對話</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="list_getDim1"><value name="NAME1"><block type="variables_get"><field name="VAR">ans</field></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">content</field></block></value></block></value></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
-	</category>
-	<category name="chatGPT" colour="#a56b5d">
-		<!--chatGPT-->
-		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">openai</field></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">openai.api_key</field></block></value><value name="NAME3"><block type="text"><field name="TEXT">在此輸入api key</field></block></value><next><block type="python_any_statement"><field name="NAME1">#互動問題放在下方prompt變數中</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">prompt</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">"請幫我寫一個python程式:1.按下p鍵時滑鼠會移到座標10,10\n2.使用pyautogui和keyboard包"</field></block></value><next><block type="python_any_statement"><field name="NAME1">#呼叫API</field><next><block type="python_any_statement"><field name="NAME1">#參數詳見==>https://platform.openai.com/docs/api-reference/completions/create</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">response</field></block></value><value name="NAME3"><block type="openai_completion_create_"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">engine</field></block></value><value name="NAME3"><block type="engines"><field name="NAME">'text-davinci-003'</field></block></value></block></value><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="python_any"><field name="NAME">prompt</field></block></value><value name="NAME3"><block type="variables_get"><field name="VAR">prompt</field></block></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">max_tokens= 1000</field></block></value><value name="NAME"><block type="python_any"><field name="NAME">temperature=0.8</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME3"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="list_getDim1"><value name="NAME1"><block type="python_any"><field name="NAME">response.choices</field></block></value><value name="NAME2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block></value><value name="NAME3"><block type="python_any"><field name="NAME">text</field></block></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
-	</category>
 	<sep></sep>
 	<category name="numpy" colour="#a55b5b">
 	    <block type="numpy_import"></block>
-	    <block type="np_array">
-			<value name="np_array_ARRAYNAME">
-			<block type="variables_get">
-            <field name="VAR">L</field>
-			</block>
-			</value>
-		</block>
-		<block type="np_argmax">
-			<value name="NAME1">
-			<block type="variables_get">
-            <field name="VAR">A</field>
-			</block>
-			</value>
-		</block>
-	    <block type="numpyarray_copy">
-			<value name="COPY_ARRAY_NAME">
-			<block type="variables_get">
-            <field name="VAR">A</field>
-			</block>
-			</value>
-		</block>
-		<block type="numpy_array_shape">
-			<value name="NAME1">
-			<block type="variables_get">
-            <field name="VAR">A</field>
-			</block>
-			</value>
-		</block>
-	    <block type="numpyarray_astype">
-			<value name="numpyArray_astype_ARRAYNAME">
-			<block type="variables_get">
-            <field name="VAR">A</field>
-			</block>
-			</value>
-		</block>
-	    <block type="numpyarray_reshape2">
-			<value name="numpyArray_reshape2_ARRAYNAME">
-			<block type="variables_get">
-            <field name="VAR">A</field>
-			</block>
-			</value>
-			<value name="numpyArray_reshape2_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-			<value name="numpyArray_reshape2_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-		</block>
-	    <block type="numpyarray_reshape3">
-			<value name="numpyArray_reshape3_ARRAYNAME">
-			<block type="variables_get">
-            <field name="VAR">A</field>
-			</block>
-			</value>
-			<value name="numpyArray_reshape3_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-			<value name="numpyArray_reshape3_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-			<value name="numpyArray_reshape3_d3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
-		</block>
-		<block type="numpyarray_reshape4">
+	    <block type="np_array"><value name="np_array_ARRAYNAME"><block type="variables_get"><field name="VAR">L</field></block></value></block>
+	    <block type="np_argmax"><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value></block>
+	    <block type="numpyarray_copy"><value name="COPY_ARRAY_NAME"><block type="variables_get"><field name="VAR">A</field></block></value></block>
+	    <block type="numpy_array_shape"><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value></block>
+	    <block type="numpyarray_astype"><value name="numpyArray_astype_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block></value></block>
+	    <block type="numpyarray_reshape2"><value name="numpyArray_reshape2_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block></value><value name="numpyArray_reshape2_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape2_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
+	    <block type="numpyarray_reshape3"><value name="numpyArray_reshape3_ARRAYNAME"><block type="variables_get"><field name="VAR">A</field></block></value><value name="numpyArray_reshape3_d1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape3_d2"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="numpyArray_reshape3_d3"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
+	    <block type="numpyarray_reshape4">
 			<value name="NAME1">
 			<block type="variables_get">
             <field name="VAR">A</field>
