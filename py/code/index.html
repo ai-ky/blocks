@@ -91,6 +91,22 @@
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 	<category name="常用方塊" colour="#8ca55b">
+		<category name="list and tuple" colour="#a55b5b">
+			<block type="list_by3"><value name="VALUE_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="VALUE_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="VALUE_DIM3"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>	
+		        <block type="list_by2"><value name="VALUE2_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="VALUE2_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>    
+			<block type="build_tuple3"><value name="TUPLE3_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE3_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE3_V3"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
+		        <block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
+			<block type="numpy_var_dim1"><!--<value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>--><!--<value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>--></block>
+		        <block type="numpy_var_dim2"><value name="DIM21_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="DIM21_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="DIM22_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="DIM22_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
+			<block type="list_getDim1"><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value></block>
+			<block type="list_append"><value name="list_append_V1"><block type="variables_get"><field name="VAR">L</field></block></value></block>
+			<block type="empty_list"></block>
+		</category>
+		<category name="逗號集合" colour="#8ca55b">
+			<block type="block_comma2"></block><block type="block_comma3"></block><block type="block_comma4"></block>
+			<block type="block_comma5"></block><block type="block_comma6"></block><block type="block_comma7"></block>
+			<block type="block_comma8"></block><block type="block_comma9"></block><block type="block_comma10"></block>
+		</category>
 	        <!--#import as-->
 		<block type="import_as"><value name="NAME1"><block type="python_any"><field name="NAME"></field></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block>
 		<!--#隨機取0~9之間的整數-->
@@ -108,17 +124,6 @@
 		<block type="block_assign"></block>
 		<!--等號左結合-->
 		<block type="block_equal_"></block>
-		<category name="list and tuple" colour="#a55b5b">
-			<block type="list_by3"><value name="VALUE_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="VALUE_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="VALUE_DIM3"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>	
-		        <block type="list_by2"><value name="VALUE2_DIM1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="VALUE2_DIM2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>    
-			<block type="build_tuple3"><value name="TUPLE3_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE3_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE3_V3"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
-		        <block type="build_tuple2"><value name="TUPLE2_V1"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="TUPLE2_V2"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
-			<block type="numpy_var_dim1"><!--<value name="DIM1_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value>--><!--<value name="DIM1_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value>--></block>
-		        <block type="numpy_var_dim2"><value name="DIM21_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="DIM21_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="DIM22_START"><shadow type="math_number"><field name="NUM">0</field></shadow></value><value name="DIM22_END"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>
-			<block type="list_getDim1"><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value></block>
-			<block type="list_append"><value name="list_append_V1"><block type="variables_get"><field name="VAR">L</field></block></value></block>
-			<block type="empty_list"></block>
-		</category>
 		<!--字串雙引號-->
 		<block type="block_string_double_quotes"></block>
 		<!--字串單引號-->
@@ -156,18 +161,6 @@
 		<block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block>
 		<block type="python_str"></block>		
 		<block type="try_except"><value name="NAME2"><block type="variables_get"><field name="VAR">e</field></block></value></block>
-	</category>
-	
-	<category name="逗號集合" colour="#8ca55b">
-		<block type="block_comma2"></block>
-		<block type="block_comma3"></block>
-		<block type="block_comma4"></block>
-		<block type="block_comma5"></block>
-		<block type="block_comma6"></block>
-		<block type="block_comma7"></block>
-		<block type="block_comma8"></block>
-		<block type="block_comma9"></block>
-		<block type="block_comma10"></block>
 	</category>
 	<category name="邏輯 LOGIC" colour="%{BKY_LOGIC_HUE}">
 	  <block type="block_if_single"><value name="NAME"><block type="block_colon_a_b"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME2"><block type="block_emptystring"></block></value></block></value><value name="NAME2"><block type="cammaconcat"><field name="NAME3">break</field></block></value></block></value></block>
