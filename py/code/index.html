@@ -219,7 +219,67 @@
 		<block type="block_comma9"></block>
 		<block type="block_comma10"></block>
 	</category>
+	<category name="邏輯 LOGIC" colour="%{BKY_LOGIC_HUE}">
+	  <block type="block_if_single"><value name="NAME"><block type="block_colon_a_b"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME2"><block type="block_emptystring"></block></value></block></value><value name="NAME2"><block type="cammaconcat"><field name="NAME3">break</field></block></value></block></value></block>
+	  <block type="if"></block>
+	  <block type="elif"></block>
+	  <block type="else"></block>
 	  
+	  <block type="ifelse"></block>
+      <!--<block type="controls_if"></block>-->
+      <!--<block type="logic_compare"></block>-->
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <!--<block type="logic_null"></block>-->
+      <!--<block type="logic_ternary"></block>-->
+    </category>
+    <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
+	<category name="迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
+      <!--<block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>-->
+	  <block type="while">
+		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
+	  </block>
+	  
+      <!--<block type="controls_whileUntil"></block>-->
+	  <block type="for_loop"></block>
+	  <block type="for_i_in_">
+		<field name="NAME2">i</field>
+		<value name="NAME1"><block type="python_range"><value name="NAME"><shadow type="math_number"><field name="NUM">5</field></shadow></value></block></value>
+	  </block>
+	  <block type="python_range">
+		<value name="NAME">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+	  </block>
+	  <block type="python_range2">
+		<value name="NAME1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+		</value>
+		<value name="NAME2">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+	  </block>
+	  <block type="python_continue"></block>
+	  <block type="python_break"></block>
+	  <block type="cv2_empty"></block>
+    </category>
+    <!--<category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>-->
+    <category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <!--<category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">-->
+    <category name="數學 MATH" colour="%{BKY_MATH_HUE}">
+      <block type="math_number"><field name="NUM">123</field></block>
+      <block type="math_arithmetic"><value name="A"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="B"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block>
+      <block type="math_single"><value name="NUM"><shadow type="math_number"><field name="NUM">9</field></shadow></value></block>
+      <block type="math_trig"> <value name="NUM"><shadow type="math_number"><field name="NUM">45</field></shadow></value></block>
+      <block type="math_constant"></block>	  
+    </category>  
 	<category name="鍵鼠外掛" colour="#5ba55b">
 		<block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">whereisthemouse</field></block></value><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">whereisthemouse</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">start</field></block></value></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block></next></block>
 		<block type="python_any_statement"><field name="NAME1">whereisthemouse滑鼠定位工具下載</field><next><block type="python_any_statement"><field name="NAME1">https://nlacsoft.net/whereisthemouse</field></block></next></block>
@@ -869,67 +929,7 @@
 		<block type="cv2_empty"></block>
 	</category>
 	<!--<category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">-->
-    <category name="邏輯 LOGIC" colour="%{BKY_LOGIC_HUE}">
-	  <block type="block_if_single"><value name="NAME"><block type="block_colon_a_b"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME2"><block type="block_emptystring"></block></value></block></value><value name="NAME2"><block type="cammaconcat"><field name="NAME3">break</field></block></value></block></value></block>
-	  <block type="if"></block>
-	  <block type="elif"></block>
-	  <block type="else"></block>
-	  
-	  <block type="ifelse"></block>
-      <!--<block type="controls_if"></block>-->
-      <!--<block type="logic_compare"></block>-->
-      <block type="logic_operation"></block>
-      <block type="logic_negate"></block>
-      <block type="logic_boolean"></block>
-      <!--<block type="logic_null"></block>-->
-      <!--<block type="logic_ternary"></block>-->
-    </category>
-    <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
-	<category name="迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
-      <!--<block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>-->
-	  <block type="while">
-		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
-	  </block>
-	  
-      <!--<block type="controls_whileUntil"></block>-->
-	  <block type="for_loop"></block>
-	  <block type="for_i_in_">
-		<field name="NAME2">i</field>
-		<value name="NAME1"><block type="python_range"><value name="NAME"><shadow type="math_number"><field name="NUM">5</field></shadow></value></block></value>
-	  </block>
-	  <block type="python_range">
-		<value name="NAME">
-          <shadow type="math_number">
-            <field name="NUM">5</field>
-          </shadow>
-        </value>
-	  </block>
-	  <block type="python_range2">
-		<value name="NAME1">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-		</value>
-		<value name="NAME2">
-          <shadow type="math_number">
-            <field name="NUM">5</field>
-          </shadow>
-        </value>
-	  </block>
-	  <block type="python_continue"></block>
-	  <block type="python_break"></block>
-	  <block type="cv2_empty"></block>
-    </category>
-    <!--<category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>-->
-    <category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-    <!--<category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">-->
-    <category name="數學 MATH" colour="%{BKY_MATH_HUE}">
-      <block type="math_number"><field name="NUM">123</field></block>
-      <block type="math_arithmetic"><value name="A"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="B"><shadow type="math_number"><field name="NUM">1</field></shadow></value></block>
-      <block type="math_single"><value name="NUM"><shadow type="math_number"><field name="NUM">9</field></shadow></value></block>
-      <block type="math_trig"> <value name="NUM"><shadow type="math_number"><field name="NUM">45</field></shadow></value></block>
-      <block type="math_constant"></block>	  
-    </category> 
+     
     <category name=壓縮XML工具 colour="#8ca55b">
 	    <block type="import_var"><value name="NAME2"><block type="python_any"><field name="NAME">compressXML</field></block></value><next><block type="block_func"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2">.</field><value name="NAME1"><block type="python_any"><field name="NAME">compressXML</field></block></value><value name="NAME3"><block type="python_any"><field name="NAME">start</field></block></value></block></value><value name="NAME2"><block type="python_any"><field name="NAME"></field></block></value></block></next></block>
     </category>	
