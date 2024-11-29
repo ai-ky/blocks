@@ -162,7 +162,7 @@
 		<block type="python_str"></block>		
 		<block type="try_except"><value name="NAME2"><block type="variables_get"><field name="VAR">e</field></block></value></block>
 	</category>
-	<category name="邏輯 LOGIC" colour="%{BKY_LOGIC_HUE}">
+	<category name="邏輯判斷 LOGIC" colour="%{BKY_LOGIC_HUE}">
 	  <block type="block_if_single"><value name="NAME"><block type="block_colon_a_b"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="variables_get"><field name="VAR">line</field></block></value><value name="NAME2"><block type="block_emptystring"></block></value></block></value><value name="NAME2"><block type="cammaconcat"><field name="NAME3">break</field></block></value></block></value></block>
 	  <block type="if"></block>
 	  <block type="elif"></block>
@@ -177,7 +177,7 @@
       <!--<block type="logic_ternary"></block>-->
     </category>
     <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
-	<category name="迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
+	<category name="重複迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
       <!--<block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>-->
 	  <block type="while">
 		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
