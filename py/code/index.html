@@ -252,10 +252,11 @@
 		
 		<block type="python_any_statement"><field name="NAME1">#滑鼠點擊(10,10)</field><next>
 		<block type="pyautogui_click"><value name="NAME1"><shadow type="math_number"><field name="NUM">10</field></shadow></value><value name="NAME2"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>
-	        </next>
+	        </next></block>
 
 		<block type="python_any_statement"><field name="NAME1">#鍵盤按下「上」</field><next>
 		<block type="pyautogui_press"><value name="NAME1"><shadow type="text"><field name="TEXT">up</field></shadow></value></block>
+		</next></block>
 		
 		 <block type="pyautoui_any"></block>
 	        <block type="tb_connection"><value name="NAME"><block type="any_in_brackets"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">pyautogui</field><value name="NAME1"><block type="cammaconcat"><field name="NAME3">.</field><value name="NAME1"><block type="python_any"><field name="NAME">write</field></block></value></block></value></block></value><value name="NAME2"><block type="block_string_double_quotes"><field name="NAME">123456789</field></block></value></block></value></block>
