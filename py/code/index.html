@@ -184,6 +184,7 @@
 	<block type="block_any_line"><field name="NAME"># 繼續迴圈，跳過下方敘述</field><next><block type="python_continue"></block></next></block>
 	<block type="block_any_line"><field name="NAME"># 跳出迴圈</field><next><block type="python_break"></block></next></block> 
 	<block type="block_any_line"><field name="NAME"># 範例：偵測到p鍵按後，跳出重窮迴圈</field><next><block type="block_any_line"><field name="NAME">import keyboard</field><next><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="any_func_value"><field name="NAME">keyboard.is_pressed</field><value name="NAME"><block type="python_any"><field name="NAME">'p'</field></block></value></block></value><value name="NAME2"><block type="logic_boolean"><field name="NAME1">True</field></block></value></block></value><statement name="NAME2"><block type="python_break"></block></statement></block></statement></block></next></block></next></block>
+    	<block type="cv2_empty"></block>
     </category>
     <!--<category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>-->
     <category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
