@@ -177,13 +177,8 @@
       <!--<block type="logic_ternary"></block>-->
     </category>
     <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
-	<category name="重複迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
-      <!--<block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block>-->
-	  <block type="while">
-		<value name="NAME"><block type="logic_boolean" ><field name="NAME1">True</field></block></value>
-	  </block>
-	  
-      <!--<block type="controls_whileUntil"></block>-->
+    <category name="重複迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
+	    <block type="block_any_line"><field name="NAME"># 重複無限次</field><next><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value></block></next></block>
 	  <block type="for_loop"></block>
 	  <block type="for_i_in_">
 		<field name="NAME2">i</field>
