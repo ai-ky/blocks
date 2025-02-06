@@ -1,0 +1,603 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="]O[Sd|dni:aJ?U*mu@4q">Xc</variable>
+    <variable id="z6hcVD^Hv}=P#U1w`yHp">Yc</variable>
+    <variable id="n#Bq_`,.MUnCR8[R6Sn^">check</variable>
+  </variables>
+  <block type="block_any_line" id="g~T.{sfXTc`4$7ff)e31" x="613" y="163">
+    <field name="NAME"># 使用autobf 需事先引入下列package</field>
+    <next>
+      <block type="import_var" id="X3]SRpyr?/C[+PZn1dsE">
+        <value name="NAME2">
+          <block type="python_any" id="O}*3g,pr-/YQPDJ(ODC~">
+            <field name="NAME">time</field>
+          </block>
+        </value>
+        <next>
+          <block type="import_as" id="|#e95S,5!h$~VZ5IidP4">
+            <value name="NAME1">
+              <block type="python_any" id="(k-11Nwa|rh9(Mx3^?6]">
+                <field name="NAME">autobf</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="python_any" id="r0ya~2qzwIa1_[7Sc?ee">
+                <field name="NAME">bf</field>
+              </block>
+            </value>
+            <next>
+              <block type="from_import" id="_#G3eJPzxoa*54=A{n94">
+                <value name="NAME1">
+                  <block type="python_any" id="Y(x`$xUG810^u8mQfnn,">
+                    <field name="NAME">autobf</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="block_comma2" id="ef^!.Zyg:n_ahS5@H7Nx">
+                    <value name="NAME1">
+                      <block type="variables_get" id="Rs2dB8.5gC~~:9qM_}w}">
+                        <field name="VAR" id="z6hcVD^Hv}=P#U1w`yHp">Yc</field>
+                      </block>
+                    </value>
+                    <value name="NAME2">
+                      <block type="variables_get" id="u--r@N1,(IdK#*mG[Z9n">
+                        <field name="VAR" id="]O[Sd|dni:aJ?U*mu@4q">Xc</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="block_any_line" id="kuc0^9.]t$F:U[A~t$~H" x="338" y="263">
+    <field name="NAME"># 繼續迴圈，跳過下方敘述</field>
+    <next>
+      <block type="python_continue" id="?84/MaF-x[T!yd@H?vST"></block>
+    </next>
+  </block>
+  <block type="while" id="H-Txrr*ZQ1=!5(dY-F[X" x="338" y="363">
+    <value name="NAME">
+      <block type="logic_boolean" id="f(Nx6:mNHJS0{0i]))6V">
+        <field name="NAME1">True</field>
+      </block>
+    </value>
+    <statement name="NAME1">
+      <block type="if" id="4#oBeI._RgUf*hqfM9Mx">
+        <value name="NAME1">
+          <block type="logic_operation" id="7sw4`Vg4UM%J!OqhOHN@">
+            <field name="NAME3">==</field>
+          </block>
+        </value>
+        <statement name="NAME2">
+          <block type="block_any_line" id="0s1HkNK=wpe%RGF)OPXb">
+            <field name="NAME"># 跳出迴圈</field>
+            <next>
+              <block type="python_break" id="[8C#+Nwvt!E;|/::@%^Z"></block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="block_any_line" id="Plq%S[DG2Ias`~JTXdJN" x="613" y="363">
+    <field name="NAME"># 找出螢幕上所有顏色類似 color 的像素所在位置，看是否有接近 (x,y) ，若有則回傳真</field>
+    <next>
+      <block type="block_any_line" id="Jp!gYx`9t_[PJxs}NTn{">
+        <field name="NAME"># color_tolorance:顏色容錯範圍</field>
+        <next>
+          <block type="block_any_line" id=";w9{SEHP~3KE{r7gakwx">
+            <field name="NAME"># XY_tolorance:座標容錯範圍</field>
+            <next>
+              <block type="block_assign" id="I1By]1XmN4Cp_Unub~`5">
+                <value name="NAME1">
+                  <block type="variables_get" id="z[|r)8%.RIT1|QpJY7u,">
+                    <field name="VAR" id="n#Bq_`,.MUnCR8[R6Sn^">check</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="block_get_anyconcat" id="Bu8hNF8:1mHGA(lCqc*E">
+                    <field name="NAME2">.</field>
+                    <value name="NAME1">
+                      <block type="python_any" id="~CYTq-XN*$(HW-P^v;Z,">
+                        <field name="NAME">bf</field>
+                      </block>
+                    </value>
+                    <value name="NAME3">
+                      <block type="any_in_brackets" id="9j#2yf`bbbjJDssP/4xG">
+                        <value name="NAME1">
+                          <block type="python_any" id="f04/tYe|tKBtFOsy;Y,g">
+                            <field name="NAME">checkColorByXY</field>
+                          </block>
+                        </value>
+                        <value name="NAME2">
+                          <block type="block_comma4" id="i:^`%#@sySvTEzj}i^gd">
+                            <value name="NAME1">
+                              <block type="block_comma2" id="_{H@2Uc+O$j]cUfD-LN{">
+                                <value name="NAME1">
+                                  <block type="python_any" id="RmLbiOuyrM~8a1,xJhmC">
+                                    <field name="NAME">x</field>
+                                  </block>
+                                </value>
+                                <value name="NAME2">
+                                  <block type="python_any" id="vUjx-;_-;1IK7*}KnHm*">
+                                    <field name="NAME">y</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="NAME2">
+                              <block type="block_equal_" id="?+-88.oxxbfua.aW)i6r">
+                                <value name="NAME1">
+                                  <block type="python_any" id="D?Y,8+_FG`{`(h2ooS,a">
+                                    <field name="NAME">color</field>
+                                  </block>
+                                </value>
+                                <value name="NAME2">
+                                  <block type="block_parentheses" id=":|RJY0[SJ-QW8%4A7BqL">
+                                    <value name="NAME1">
+                                      <block type="block_comma3" id="4,CK9|oap=5rH{zo*hZZ">
+                                        <value name="NAME1">
+                                          <block type="math_number" id="_F^,ZZ?k7Pe~u*oUiubP">
+                                            <field name="NUM">241</field>
+                                          </block>
+                                        </value>
+                                        <value name="NAME2">
+                                          <block type="math_number" id="%RZJ[M0zmwZf$H_y42T{">
+                                            <field name="NUM">234</field>
+                                          </block>
+                                        </value>
+                                        <value name="NAME3">
+                                          <block type="math_number" id="CiT(RKTiiXB{qivVktT=">
+                                            <field name="NUM">41</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="NAME3">
+                              <block type="block_equal_" id="G@3irsX4GOQP.UOoYig8">
+                                <value name="NAME1">
+                                  <block type="python_any" id="%zI~AJMRiDw.Wn+Lu{ni">
+                                    <field name="NAME">color_tolorance</field>
+                                  </block>
+                                </value>
+                                <value name="NAME2">
+                                  <block type="math_number" id="qFGn85P@JCsoti{$f6zn">
+                                    <field name="NUM">25</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="NAME4">
+                              <block type="block_equal_" id="{pQj4JVYKHm#gXf!,UgK">
+                                <value name="NAME1">
+                                  <block type="python_any" id="*h2soE#fg(x`zm|x~R~6">
+                                    <field name="NAME">XY_tolorance</field>
+                                  </block>
+                                </value>
+                                <value name="NAME2">
+                                  <block type="math_number" id="^+o7+oKYu(DT{tkY4Lvf">
+                                    <field name="NUM">8</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="logic_negate" id="(jLNpiRi]G%;L{zxwgHV" x="337" y="563"></block>
+  <block type="block_any_line" id="3YNoBJa7Y{l0][ZcT~tI" x="613" y="588">
+    <field name="NAME"># 重置遊戲</field>
+    <next>
+      <block type="block_func" id="8U:kM{5!@hbPns|W0sJ)">
+        <value name="NAME1">
+          <block type="cammaconcat" id="OvlRzwBOA+]iXsaHGc)E">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="SK@[%Lc*-7Xli9t$`9E6">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="kiL-utv#$olfWc1aiT`j">
+                    <field name="NAME">reset</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="python_any" id="aWD4|*lvmxtF/baAy(k#">
+            <field name="NAME"></field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_def" id="sxC8-W8%O7Yi[:PVR2.g" x="337" y="613">
+    <value name="NAME1">
+      <block type="any_in_brackets" id="bt~|,^.QNzd2[^_4C_D|">
+        <value name="NAME1">
+          <block type="python_any" id="BcV_j`E9!(TZwKTL]h6G">
+            <field name="NAME">fight</field>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="cammaconcat" id="AZK!_`tGm1Bc2v!),RPu">
+            <field name="NAME3"></field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <statement name="NAME2">
+      <block type="block_any_line" id=":qWeMqj5A70sMnQy@?n5">
+        <field name="NAME"># 函數回傳</field>
+        <next>
+          <block type="block_return_" id=".v*haYwiQ(pJk/d;mKs^">
+            <value name="NAME2">
+              <block type="math_number" id="~XC9t}lqa/WF(Xtkr*:7">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="block_any_line" id="URwlY#ya?Fl%eop]H|@r" x="888" y="588">
+    <field name="NAME"># 切換武器：可傳入字串 '1','2','3','4'</field>
+    <next>
+      <block type="block_func" id="j;wwBpx2$O5vd%zRS+3X">
+        <value name="NAME1">
+          <block type="cammaconcat" id="lRjhwLx*9KiL4Q*1*M=%">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="!xk3nnj@bH2Y7;{.Z^yf">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="}DQ)F1g2}.i9qSpGFbj[">
+                    <field name="NAME">switchOn</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="block_string" id="+j4qShcXttIg;F/=D*!)">
+            <field name="NAME">1</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_any_line" id="wVNpsz.*)nq1@tJdTYL4" x="1213" y="588">
+    <field name="NAME"># 滑鼠點擊指定座標，重複repeat次，每次間隔delay秒</field>
+    <next>
+      <block type="block_func" id="^~5qlO/=H=,DAlfp}Fay">
+        <value name="NAME1">
+          <block type="cammaconcat" id="CNKsNV-I-2c1@0OjYH}M">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="0Y!k(N@6WaQGHlyxOQE}">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="L8o:)zb|^**kC^u)2yOA">
+                    <field name="NAME">click</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="block_comma4" id="/kE@iXIl08JnUTyW(#Ac">
+            <value name="NAME1">
+              <block type="variables_get" id="r9+$af+)+Aa~Nv$.=3lt">
+                <field name="VAR" id="]O[Sd|dni:aJ?U*mu@4q">Xc</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="variables_get" id="XHY0`Td?m-x6Nc8uyAOI">
+                <field name="VAR" id="z6hcVD^Hv}=P#U1w`yHp">Yc</field>
+              </block>
+            </value>
+            <value name="NAME3">
+              <block type="block_equal_" id="kkr7MUV.4?7*f@wj`;fd">
+                <value name="NAME1">
+                  <block type="python_any" id="jfVKsQ_hlR;3HrN9~r,:">
+                    <field name="NAME">repeat</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="math_number" id="M|Pt_v0Vt1$Hds~IMFUb">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="NAME4">
+              <block type="block_equal_" id="!A@zeb:^I)sb1[+g_e,t">
+                <value name="NAME1">
+                  <block type="python_any" id="=(@K#6dQp@{rXPu%pD!E">
+                    <field name="NAME">delay</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="math_number" id="[4/XkegL.J)Z_XE*~cv!">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_any_line" id="0L#a}|LygEON#}pT:_hP" x="613" y="688">
+    <field name="NAME"># 拉到最頂端視角</field>
+    <next>
+      <block type="block_func" id="b5.%xY[6j-?jcl}Q]X/|">
+        <value name="NAME1">
+          <block type="cammaconcat" id="EbXA|7~?v,dd`$D$j~*.">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="wfSoQeQ~fDk?)(QW2`UJ">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="JX*NM+t!U$Nc8bYh3.Kh">
+                    <field name="NAME">zoom2max</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="python_any" id="OB=,:GHs;DmvxZnLAZ-7">
+            <field name="NAME"></field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_any_line" id="qPqAsp~_9!Hch_:O62uD" x="1213" y="713">
+    <field name="NAME"># 按下指定按鍵，重複repeat次，每次間隔delay秒</field>
+    <next>
+      <block type="block_func" id="/Ysokt:Xgw,u%XVG-Sck">
+        <value name="NAME1">
+          <block type="cammaconcat" id="fmw+VN0~1Gpe[!V!%B2~">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="Ub/K_stRI]=X0(v@ZZ;d">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="w0oMi1|H0NVx/akW[|;k">
+                    <field name="NAME">press</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="block_comma3" id="G_i9eYqjH!*gj,7R25^b">
+            <value name="NAME1">
+              <block type="block_string" id="4-o}du[2:(-D@I7!Wxqw">
+                <field name="NAME">x</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="block_equal_" id="?-wV$KxZ]e..+lQ:y/SU">
+                <value name="NAME1">
+                  <block type="python_any" id="2fcnUmm`P7#cR4w442,#">
+                    <field name="NAME">repeat</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="math_number" id="Kau@vx29p8{AFA]y4j.I">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="NAME3">
+              <block type="block_equal_" id="YVjU[`3|l-B/A;GaXg~z">
+                <value name="NAME1">
+                  <block type="python_any" id="yYVG:xOZ~F6l;#/^eXfU">
+                    <field name="NAME">delay</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="math_number" id="3S^x2Of`n_IzKUGs`S)!">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_any_line" id="W*Ipl^Hu=.E2#}S)vU*." x="563" y="813">
+    <field name="NAME"># 滑鼠滾輪 滾動量：-500 ， 重複repeat次</field>
+    <next>
+      <block type="block_func" id="]|!BGquL`)vqaXEv~+@j">
+        <value name="NAME1">
+          <block type="cammaconcat" id="tA(p2jPOv+y7hp:Tgv/x">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="oN,Wa%A+[GGvxRGXMH|9">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="kku$a3`VM5-mgswLgG]}">
+                    <field name="NAME">zoom</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="block_comma2" id="zNQK8S1Do:}Bbx@[-W8_">
+            <value name="NAME1">
+              <block type="block_equal_" id="oxoXrbiclR^vi+^cvMRW">
+                <value name="NAME1">
+                  <block type="python_any" id="6abBL=T;L7w,UkppJ{EF">
+                    <field name="NAME">scroll</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="math_number" id="1YB[X3Y}]2Q]OA~Icf_C">
+                    <field name="NUM">-500</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="block_equal_" id="b[sqy/7$C}.qhbhK(Xqk">
+                <value name="NAME1">
+                  <block type="python_any" id="pm{W;Su@}Z4qK{W:G,5S">
+                    <field name="NAME">repeat</field>
+                  </block>
+                </value>
+                <value name="NAME2">
+                  <block type="math_number" id=".+1){hJSn0x4@i^t=1]G">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_any_line" id="}STg~[{tXr,MFS16v]~-" x="1213" y="838">
+    <field name="NAME"># 按往Q鍵滑行指定次數，上:''下左右</field>
+    <next>
+      <block type="block_func" id="DOt*0D8P%P3A8%nrIH%E">
+        <value name="NAME1">
+          <block type="cammaconcat" id="a*sje[qkx^,,uaR^5.hQ">
+            <field name="NAME3">bf</field>
+            <value name="NAME1">
+              <block type="cammaconcat" id="}Da=^Kdwg}d;F~21ai=5">
+                <field name="NAME3">.</field>
+                <value name="NAME1">
+                  <block type="python_any" id="~R^0P`mGocN`hJ[m(IU2">
+                    <field name="NAME">slide</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="block_comma2" id="5Z19o{:!QtK[$#O+*;bn">
+            <value name="NAME1">
+              <block type="block_string" id="^vU6ffVnFpGWPGsH1k+.">
+                <field name="NAME">w</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="math_number" id=",$[GZKS#aW=yEqV-ctcx">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="block_func" id="+571WFh=3jbp.4CM%~P(" x="938" y="1088">
+    <value name="NAME1">
+      <block type="cammaconcat" id="LhzR-LxT,^S}`k3KfOx]">
+        <field name="NAME3">bf</field>
+        <value name="NAME1">
+          <block type="cammaconcat" id="Lw$g:l%;#0F}eLZ|vp3Z">
+            <field name="NAME3">.</field>
+            <value name="NAME1">
+              <block type="python_any" id="$k=Y+BnI`RsB.I~XC[^4">
+                <field name="NAME">row</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <value name="NAME2">
+      <block type="block_comma5" id="_mFIkdOTo6.L~jv.e;`6">
+        <value name="NAME1">
+          <block type="variables_get" id="0q]6`#HqI[Q_*JaX{z=;">
+            <field name="VAR" id="]O[Sd|dni:aJ?U*mu@4q">Xc</field>
+          </block>
+        </value>
+        <value name="NAME2">
+          <block type="variables_get" id="yn/4T|M|TJLd`hR;P?yO">
+            <field name="VAR" id="z6hcVD^Hv}=P#U1w`yHp">Yc</field>
+          </block>
+        </value>
+        <value name="NAME3">
+          <block type="block_equal_" id="KewGkuE1TAtDca8j)c+j">
+            <value name="NAME1">
+              <block type="python_any" id="Cp=;@F/;Zx7b$5eh1,JT">
+                <field name="NAME">dx</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="math_number" id="75:T|F72#1Hv*b$uyQQp">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME4">
+          <block type="block_equal_" id="h~T?l{(L0V4Zh^88-pMJ">
+            <value name="NAME1">
+              <block type="python_any" id="{FtQ7NW-!se@.mVZ(rb;">
+                <field name="NAME">dy</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="math_number" id="T706d;G7bBE#5#c6rtI0">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="NAME5">
+          <block type="block_equal_" id="sIdB$8CMyM9y,?m=mP9}">
+            <value name="NAME1">
+              <block type="python_any" id="_[$#PptQIg3ZZ|--R^j!">
+                <field name="NAME">button</field>
+              </block>
+            </value>
+            <value name="NAME2">
+              <block type="block_string" id="B$A}Ag?Z~J|WtSIB9Tpj">
+                <field name="NAME">right</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>
