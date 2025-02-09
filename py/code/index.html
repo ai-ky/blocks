@@ -189,7 +189,9 @@
     	<block type="cv2_empty"></block>
     </category>
     <!--<category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>-->
-    <category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="變數 VARIABLES" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE">
+	<block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">v</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">check</field></block></value><value name="NAME2"><block type="logic_boolean"><field name="NAME1">True</field></block></value></block><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">temp</field></block></value><value name="NAME2"><block type="block_fstring"><field name="NAME1"></field></block></value></block>
+    </category>
     <!--<category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">-->
     <category name="數學 MATH" colour="%{BKY_MATH_HUE}">
       <block type="math_number"><field name="NUM">123</field></block>
