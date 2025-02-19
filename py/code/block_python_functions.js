@@ -1,4 +1,27 @@
 python_functions_colour=80;
+//<block type="block_input"></block>
+//======================================
+Blockly.Blocks['block_input'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("input(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['block_input'] = function(block) {
+  var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
+  var code = 'input('+value_name+')\n';
+  return code;
+};
+
 //<block type="block_any_line"></block>
 //======================================
 Blockly.Blocks['block_any_line'] = {
