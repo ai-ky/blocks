@@ -19,7 +19,7 @@ Blockly.Blocks['block_input'] = {
 Blockly.Python['block_input'] = function(block) {
   var value_name = Blockly.Python.valueToCode(block, 'NAME', Blockly.Python.ORDER_ATOMIC);
   var code = 'input('+value_name+')\n';
-  return code;
+  return [code, Blockly.Python.ORDER_NONE];
 };
 
 //<block type="block_any_line"></block>
