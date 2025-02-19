@@ -4,7 +4,7 @@ python_functions_colour=80;
 Blockly.Blocks['block_python_type'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["bool","bool"], ["bool","bool"], ["chr","chr"], ["ord","ord"], ["hex","ord"], ["bin","ord"]]), "NAME1");
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["bool","bool"], ["chr","chr"], ["ord","ord"], ["hex","ord"], ["bin","ord"]]), "NAME1");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setColour(80);
