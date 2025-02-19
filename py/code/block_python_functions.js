@@ -1,4 +1,24 @@
 python_functions_colour=80;
+//<block type="block_python_type"></block>
+//======================================
+Blockly.Blocks['block_python_type'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["bool","bool"], ["bool","bool"], ["chr","chr"], ["ord","ord"], ["hex","ord"], ["bin","ord"]]), "NAME1");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(80);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Python['block_python_type'] = function(block) {
+  var dropdown_name1 = block.getFieldValue('NAME1');
+  // TODO: Assemble Python into code variable.
+  var code = dropdown_name1;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
 //<block type="block_input"></block>
 //======================================
 Blockly.Blocks['block_input'] = {
