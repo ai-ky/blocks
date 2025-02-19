@@ -203,7 +203,7 @@
       <block type="math_trig"> <value name="NUM"><shadow type="math_number"><field name="NUM">45</field></shadow></value></block>
       <block type="math_constant"></block>	  
     </category> 
-    <category name="字串處理" colour="#8ca55b">
+    <category name="字串輸入輸出" colour="#8ca55b">
 		<!--字串雙引號-->
 		<block type="block_string_double_quotes"></block>
 		<!--字串單引號-->
@@ -221,6 +221,7 @@
 		<block type="block_any_line"><field name="NAME">'''</field><next><block type="block_any_line"><field name="NAME">Note:字串和數值兩種型態可以互相轉換</field><next><block type="block_any_line"><field name="NAME">str(123) ==&gt;把數值123轉換為字串"123"</field><next><block type="block_any_line"><field name="NAME">int("123") ==&gt;把字串"123"轉換為數值123</field><next><block type="block_any_line"><field name="NAME">'''</field></block></next></block></next></block></next></block></next></block>
 		<block type="python_str"></block>
 		<block type="plus2"></block>
+	        <block type="block_input"></block>
 		<block type="print_"></block>
 	     	<block type="block_any_line"><field name="NAME"># split範例</field><next><block type="block_any_line"><field name="NAME"># 把字串 "1 2 3 4" 按預設的空白字元分割成陣列 ['1','2','3','4' ]</field><next><block type="block_assign"><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value><value name="NAME2"><block type="string_split"><field name="NAME2"></field><value name="NAME1"><shadow type="text"><field name="TEXT">1  2  3  4</field></shadow></value></block></value><next><block type="print_"><field name="NAME2">end="\n"</field><value name="NAME1"><block type="variables_get"><field name="VAR">A</field></block></value></block></next></block></next></block></next></block>
 	    
