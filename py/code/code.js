@@ -197,18 +197,14 @@ Code.LANG = Code.getLang();
  * List of tab names.
  * @private
  */
-Code.TABS_ = [
-  'blocks', 'python'
-];
+Code.TABS_ = ['blocks','python'];
 
 /**
  * List of tab names with casing, for display in the UI.
  * @private
  */
-Code.TABS_DISPLAY_ = [
-  'Blocks', 'Python',
-];
-
+Code.TABS_DISPLAY_ = ['Blocks', 'Python',];
+//Code.TABS_DISPLAY_ = ['Blocks'];
 Code.selected = 'blocks';
 
 /**
@@ -240,6 +236,8 @@ Code.tabClick = function(clickedName) {
   Code.renderContent();
   // The code menu tab is on if the blocks tab is off.
   var codeMenuTab = document.getElementById('tab_code');
+  codeMenuTab.style.visibility = 'hidden';
+  document.getElementById('tab_python').style.visibility = 'hidden';
   if (clickedName === 'blocks') {
     Code.workspace.setVisible(true);
     codeMenuTab.className = 'taboff';
@@ -287,25 +285,29 @@ Code.renderContent = function() {
  * @param generator {!Blockly.Generator} The generator to use.
  */
 Code.attemptCodeGeneration = function(generator) {
+  var code = generator.workspaceToCode(Code.workspace);
+  return code;
+  /*
   var content = document.getElementById('content_' + Code.selected);
   content.textContent = '';
+  
   if (Code.checkAllGeneratorFunctionsDefined(generator)) {
     var code = generator.workspaceToCode(Code.workspace);
 	var nn=code.indexOf('\n\n');
 	if(nn>=0 && code.substring(0,nn).indexOf('None')>=0) code = code.substring(nn+3);
     content.textContent = code;
 	navigator.clipboard.writeText(code).then(
-	  () => {/* clipboard successfully set */
+	  () => {//clipboard successfully set 
 				alert('程式碼已成功復制至剪貼簿');
 			},
-	  () => {/* clipboard write failed */
+	  () => {//clipboard write failed 
 				;
 			}
 	);
 	
     // Remove the 'prettyprinted' class, so that Prettify will recalculate.
     content.className = content.className.replace('prettyprinted', '');
-  }
+  }*/
 };
 
 /**
@@ -338,6 +340,12 @@ Code.checkAllGeneratorFunctionsDefined = function(generator) {
  */
 Code.init = function() {
   Code.initLanguage();
+  /** 隱藏不需要的元件 by國源 */
+  document.getElementById('tab_blocks').style.display = 'none';
+  document.getElementById('tab_python').style.display = 'none';
+  document.getElementById('languageMenu').style.display = 'none';
+  document.getElementById('linkButton').style.display = 'none';
+  /** */
 
   var rtl = Code.isRtl();
   var container = document.getElementById('content_area');
@@ -355,11 +363,12 @@ Code.init = function() {
       el.style.width = (2 * bBox.width - el.offsetWidth) + 'px';
     }
     // Make the 'Blocks' tab line up with the toolbox.
+    /*
     if (Code.workspace && Code.workspace.getToolbox().width) {
       document.getElementById('tab_blocks').style.minWidth =
           (Code.workspace.getToolbox().width - 38) + 'px';
           // Account for the 19 pixel margin and on each side.
-    }
+    }*/ 
   };
   window.addEventListener('resize', onresize, false);
 
@@ -412,7 +421,7 @@ Code.init = function() {
 
   Code.bindClick('trashButton',
       function() {Code.discard(); Code.renderContent();});
-  Code.bindClick('runButton', Code.runJS);
+  // Code.bindClick('runButton', Code.runJS);
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {
@@ -454,7 +463,6 @@ Code.initLanguage = function() {
   var rtl = Code.isRtl();
   document.dir = rtl ? 'rtl' : 'ltr';
   document.head.parentElement.setAttribute('lang', Code.LANG);
-
   // Sort languages alphabetically.
   var languages = [];
   for (var lang in Code.LANGUAGE_NAME) {
@@ -491,11 +499,11 @@ Code.initLanguage = function() {
 
   // Inject language strings.
   document.title += ' ' + MSG['title'];
-  document.getElementById('title').textContent = MSG['title'];
+  //document.getElementById('title').textContent = MSG['title'];
   document.getElementById('tab_blocks').textContent = MSG['blocks'];
 
   document.getElementById('linkButton').title = MSG['linkTooltip'];
-  document.getElementById('runButton').title = MSG['runTooltip'];
+  //document.getElementById('runButton').title = MSG['runTooltip'];
   document.getElementById('trashButton').title = MSG['trashTooltip'];
 };
 
