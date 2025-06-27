@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Python 轉 Blockly XML 積木</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      font-family: sans-serif;
+      margin: 0;
+    }
+    h2 { margin: 28px 0 16px 30px; }
+    #container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 0 0;
+      min-height: 0;
+    }
+    #editor {
+      flex: 1 1 auto;
+      min-height: 0;
+      min-width: 0;
+      width: 96%;
+      margin: 0 auto;
+      border-radius: 6px;
+      border: 1.5px solid #aaa;
+      font-size: 16px;
+      background: #fff;
+      box-sizing: border-box;
+      /* 高度自適應填滿 container（扣掉上下按鈕空間）*/
+      height: 100%;
+    }
+    #controls {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 30px 10px 30px;
+      background: #fff;
+    }
+    button {
+      font-size: 18px; padding: 6px 22px;
+      background: #2186e6; color: #fff; border: none; border-radius: 5px; cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover { background: #1866b7; }
+    #hint { color: #27a624; margin-left:10px; }
+    @media (max-width: 700px) {
+      #editor { width: 98%; }
+      h2 { margin-left: 8px; }
+      #controls { padding-left: 8px; padding-right: 8px;}
+    }
+  </style>
+</head>
+<body>
+  <h2>Python 轉 Blockly XML 積木</h2>
+  <div id="container">
+    <div id="editor">// 在這裡貼上你的 Python 程式碼</div>
+  </div>
+  <div id="controls">
+    <button onclick="convertAndDownload()">轉換</button>
+    <span id="hint"></span>
+  </div>
+
+  <!-- Ace Editor Light Theme -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/mode-python.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/theme/chrome.js"></script>
+  <script>
+    // 設定 Ace 編輯器（白底，會填滿父層）
+    let editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.session.setMode("ace/mode/python");
+    editor.setFontSize(16);
+    editor.setShowPrintMargin(false);
+    editor.setValue("", -1);
+
+    // 自動撐滿剩下空間
+    function resizeEditor() {
+      let h = window.innerHeight;
+      let controlsH = document.getElementById('controls').offsetHeight;
+      let h2H = document.querySelector('h2').offsetHeight;
+      // container 扣掉上下方空間
+      let target = h - controlsH - h2H - 32; // 微調
+      document.getElementById('container').style.height = (target > 180 ? target : 180) + 'px';
+      editor.resize();
+    }
+    window.addEventListener('resize', resizeEditor);
+    setTimeout(resizeEditor, 60);
+    // 頁面載入後也做一次
+    window.onload = resizeEditor;
+
+    // ================= 前處理 =================
+    function preprocessPython(text) {
+      const lines = text.replace(/\r/g, '').split('\n');
+      const pattern = /^( *)(if|elif|else|for|while|def)\b(.*?):(.*\S.*)$/;
+      const out = [];
+      for (let line of lines) {
+        let m = pattern.exec(line);
+        if (m) {
+          const [_, leading, keyword, mid, post] = m;
+          out.push(`${leading}${keyword}${mid}:`);
+          out.push(`${leading}    ${post.trimStart()}`);
+        } else {
+          out.push(line);
+        }
+      }
+      return out;
+    }
+
+    // ================== 主要轉換 ==================
+    function getIndent(line) {
+      return line.length - line.replace(/^ */, '').length;
+    }
+
+    function escapeXml(str) {
+      return String(str).replace(/[<>&'"]/g, c => (
+        { '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }[c]
+      ));
+    }
+
+    function stringToElement(xmlstr) {
+      return new window.DOMParser().parseFromString(xmlstr, "application/xml").documentElement;
+    }
+
+    function chainBlocksWithNext(blocks, parent) {
+      if (!blocks || blocks.length === 0) return;
+      if (parent) parent.appendChild(blocks[0]);
+      let cur = blocks[0];
+      for (let i = 1; i < blocks.length; ++i) {
+        let nextTag = stringToElement('<next></next>');
+        nextTag.appendChild(blocks[i]);
+        cur.appendChild(nextTag);
+        cur = blocks[i];
+      }
+    }
+
+    function parseBlock(lines, start=0) {
+      let blocks = [];
+      let i = start, n = lines.length;
+      while (i < n) {
+        let line = lines[i];
+        if (!line.trim()) { i++; continue; }
+        let indent = getIndent(line);
+        let content = line.trim();
+
+        // if/elif/else chain
+        if (/^if\s+.+:\s*$/.test(content)) {
+          let [block, nextIdx] = parseIfChain(lines, i, indent);
+          blocks.push(block);
+          i = nextIdx;
+          continue;
+        }
+        // 賦值
+        if (content.includes('=') && !/^(if|elif|while|for|def)/.test(content) && !content.startsWith('#')) {
+          let [left, ...right] = content.split('=');
+          let xml = `
+            <block type="block_assign">
+              <value name="NAME1">
+                <block type="python_any">
+                  <field name="NAME">${escapeXml(left.trim())}</field>
+                </block>
+              </value>
+              <value name="NAME2">
+                <block type="python_any">
+                  <field name="NAME">${escapeXml(right.join('=').trim())}</field>
+                </block>
+              </value>
+            </block>
+          `.replace(/\s+/g, ' ').replace(/> </g, '><');
+          blocks.push(stringToElement(xml));
+          i++;
+          continue;
+        }
+        // import
+        let m_as = /^import\s+(\S+)\s+as\s+(\S+)/.exec(content);
+        let m_from = /^from\s+(\S+)\s+import\s+(\S+)/.exec(content);
+        let m_imp = /^import\s+(\S+)/.exec(content);
+        if (m_as) {
+          blocks.push(stringToElement(
+            `<block type="import_as">
+                <value name="NAME1"><block type="python_any"><field name="NAME">${escapeXml(m_as[1])}</field></block></value>
+                <value name="NAME2"><block type="python_any"><field name="NAME">${escapeXml(m_as[2])}</field></block></value>
+            </block>`
+          ));
+          i++; continue;
+        } else if (m_from) {
+          blocks.push(stringToElement(
+            `<block type="from_import">
+                <value name="NAME1"><block type="python_any"><field name="NAME">${escapeXml(m_from[1])}</field></block></value>
+                <value name="NAME2"><block type="python_any"><field name="NAME">${escapeXml(m_from[2])}</field></block></value>
+            </block>`
+          ));
+          i++; continue;
+        } else if (m_imp) {
+          blocks.push(stringToElement(
+            `<block type="import_var">
+                <value name="NAME2"><block type="python_any"><field name="NAME">${escapeXml(m_imp[1])}</field></block></value>
+            </block>`
+          ));
+          i++; continue;
+        }
+        // 巢狀 def/for/while
+        let m_stmt = /^(def|for|while)\b(.*):$/.exec(content);
+        if (m_stmt) {
+          let keyword = m_stmt[1], rest = m_stmt[2] || '';
+          let j = i + 1, nest = [];
+          while (j < n) {
+            let nl = lines[j];
+            if (!nl.trim()) { j++; continue; }
+            if (getIndent(nl) <= indent) break;
+            nest.push(nl);
+            j++;
+          }
+          let nest_blocks = parseBlock(nest, 0);
+          let xml = `<block type="statement_var">
+                        <field name="NAME">${keyword}</field>
+                        <value name="NAME"><block type="python_any"><field name="NAME">${escapeXml(rest.trim())}</field></block></value>
+                        <statement name="NAME1"></statement>
+                     </block>`;
+          let el = stringToElement(xml);
+          chainBlocksWithNext(nest_blocks, el.querySelector('statement[name="NAME1"]'));
+          blocks.push(el);
+          i = j; continue;
+        }
+        // 其它單行
+        let xml = `<block type="block_any_line"><field name="NAME">${escapeXml(content)}</field></block>`;
+        blocks.push(stringToElement(xml));
+        i++;
+      }
+      return blocks;
+    }
+
+    function parseIfChain(lines, i, indent) {
+      let n = lines.length, chain = [];
+      while (i < n) {
+        let line = lines[i], content = line.trim(), cur_indent = getIndent(line);
+        if (cur_indent !== indent) break;
+        let m_if = /^if\s+(.+):\s*$/.exec(content);
+        let m_elif = /^elif\s+(.+):\s*$/.exec(content);
+        let m_else = /^else\s*:.*$/.exec(content);
+        let block_type, cond;
+        if (m_if) { block_type = 'if'; cond = m_if[1]; }
+        else if (m_elif) { block_type = 'elif'; cond = m_elif[1]; }
+        else if (m_else) { block_type = 'else'; cond = ''; }
+        else break;
+        let j = i + 1, block_lines = [];
+        while (j < n) {
+          let nl = lines[j];
+          if (!nl.trim()) { j++; continue; }
+          if (getIndent(nl) <= indent) break;
+          block_lines.push(nl);
+          j++;
+        }
+        let el = makeIfBlock(block_type, cond, block_lines);
+        chain.push(el);
+        i = j;
+      }
+      chainBlocksWithNext(chain, null);
+      return [chain[0], i];
+    }
+
+    function makeIfBlock(block_type, cond, block_lines) {
+      let el = stringToElement(`<block type="${block_type}"></block>`);
+      if (block_type !== 'else') {
+        let val = stringToElement(`<value name="NAME1"><block type="python_any"><field name="NAME">${escapeXml(cond)}</field></block></value>`);
+        el.appendChild(val);
+      }
+      let statement = stringToElement('<statement name="NAME2"></statement>');
+      let nest_blocks = parseBlock(block_lines, 0);
+      chainBlocksWithNext(nest_blocks, statement);
+      el.appendChild(statement);
+      return el;
+    }
+
+    function prettifyXml(elem) {
+      let xs = new XMLSerializer().serializeToString(elem);
+      try {
+        let formatted = new window.DOMParser().parseFromString(xs, "application/xml");
+        return vkbeautify.xml(new XMLSerializer().serializeToString(formatted));
+      } catch {
+        return xs;
+      }
+    }
+
+    function convertAndDownload() {
+      let input = editor.getValue();
+      document.getElementById('hint').innerText = "";
+      if (!input.trim()) {
+        document.getElementById('hint').innerText = '請先貼上 Python 程式碼！';
+        return;
+      }
+      let lines = preprocessPython(input);
+      let blocks = parseBlock(lines);
+      let xmlroot = stringToElement('<xml xmlns="https://developers.google.com/blockly/xml"></xml>');
+      chainBlocksWithNext(blocks, xmlroot);
+      let xmlstr = prettifyXml(xmlroot);
+      let blob = new Blob([xmlstr], {type: "text/xml"});
+      let a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = '111.xml';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      document.getElementById('hint').innerText = '已下載 111.xml！';
+    }
+
+    // 極簡 xml pretty 工具
+    window.vkbeautify=function(){function e(e,t){var n=0,r="",i=function(e){var t="",n=/\S/.test(e)?e.replace(/^\s+|\s+$/g,""):e;return n.length>0&&(t="\n"+new Array(n.length*t+1).join(" ")),t};return e.replace(/(\>)(\s*)(\<)(\/*)/g,"$1\n$3$4").split("\n").forEach(function(e){var s=0;/-\->/.test(e)?s=0:/^(\s*)<\//.test(e)?n--:/^(\s*)<[^!\/].*>.*$/.test(e)&&(s=1),r+=i(e.replace(/^\s+/,""))+e+"\n",n+=s}),r}return{xml:function(t){return e(t,2)}}}();
+  </script>
+</body>
+</html>
