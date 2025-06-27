@@ -49,7 +49,7 @@
     // ----------- 前處理 -----------
     function preprocessPython(text) {
       const lines = text.replace(/\r/g, '').split('\n');
-      const pattern = /^( *)(if|elif|else|for|while|def|try|except|finally)\b(.*?):(.*\S.*)$/;
+      const pattern = /^( *)(if|elif|else|for|while|def|try|except|finally|with)\b(.*?):(.*\S.*)$/;
       const out = [];
       for (let line of lines) {
         let m = pattern.exec(line);
@@ -107,8 +107,31 @@
           i = nextIdx;
           continue;
         }
+        // 巢狀 def/for/while/with
+        let m_stmt = /^(def|for|while|with)\b(.*):$/.exec(content);
+        if (m_stmt) {
+          let keyword = m_stmt[1], rest = m_stmt[2] || '';
+          let j = i + 1, nest = [];
+          while (j < n) {
+            let nl = lines[j];
+            if (!nl.trim()) { j++; continue; }
+            if (getIndent(nl) <= indent) break;
+            nest.push(nl);
+            j++;
+          }
+          let nest_blocks = parseBlock(nest, 0);
+          let xml = `<block type="statement_var">
+                        <field name="NAME">${keyword}</field>
+                        <value name="NAME"><block type="python_any"><field name="NAME">${escapeXml(rest.trim())}</field></block></value>
+                        <statement name="NAME1"></statement>
+                     </block>`;
+          let el = stringToElement(xml);
+          chainBlocksWithNext(nest_blocks, el.querySelector('statement[name="NAME1"]'));
+          blocks.push(el);
+          i = j; continue;
+        }
         // 賦值
-        if (content.includes('=') && !/^(if|elif|while|for|def|try|except|finally)/.test(content) && !content.startsWith('#')) {
+        if (content.includes('=') && !/^(if|elif|while|for|def|try|except|finally|with)/.test(content) && !content.startsWith('#')) {
           let [left, ...right] = content.split('=');
           let xml = `
             <block type="block_assign">
@@ -156,29 +179,6 @@
           ));
           i++; continue;
         }
-        // 巢狀 def/for/while
-        let m_stmt = /^(def|for|while)\b(.*):$/.exec(content);
-        if (m_stmt) {
-          let keyword = m_stmt[1], rest = m_stmt[2] || '';
-          let j = i + 1, nest = [];
-          while (j < n) {
-            let nl = lines[j];
-            if (!nl.trim()) { j++; continue; }
-            if (getIndent(nl) <= indent) break;
-            nest.push(nl);
-            j++;
-          }
-          let nest_blocks = parseBlock(nest, 0);
-          let xml = `<block type="statement_var">
-                        <field name="NAME">${keyword}</field>
-                        <value name="NAME"><block type="python_any"><field name="NAME">${escapeXml(rest.trim())}</field></block></value>
-                        <statement name="NAME1"></statement>
-                     </block>`;
-          let el = stringToElement(xml);
-          chainBlocksWithNext(nest_blocks, el.querySelector('statement[name="NAME1"]'));
-          blocks.push(el);
-          i = j; continue;
-        }
         // 其它單行
         let xml = `<block type="block_any_line"><field name="NAME">${escapeXml(content)}</field></block>`;
         blocks.push(stringToElement(xml));
@@ -187,37 +187,46 @@
       return blocks;
     }
 
-    // 正確 next/巢狀串接 try/except/finally
     function parseTryChain(lines, i, indent) {
       const n = lines.length;
       let chain = [];
       while (i < n) {
         let line = lines[i], content = line.trim(), cur_indent = getIndent(line);
         if (cur_indent !== indent) break;
+        // 1. try:
         let m_try = /^try\s*:/.exec(content);
-        let m_except = /^except\s*:/.exec(content);
+        // 2. except 語法 (except ...: 例: except Exception as e: / except e: / except: …)
+        let m_except = content.match(/^except\s*(.*):$/);
+        // 3. finally:
         let m_finally = /^finally\s*:/.exec(content);
-        if (m_try || m_except || m_finally) {
-          let keyword = m_try ? "try :" : (m_except ? "except :" : "finaly :");
-          let j = i + 1, block_lines = [];
-          while (j < n) {
-            let nl = lines[j];
-            if (!nl.trim()) { j++; continue; }
-            if (getIndent(nl) <= indent) break;
-            block_lines.push(nl);
-            j++;
-          }
-          let xml = `<block type="any_indent_statement">
-                        <field name="NAME">${keyword}</field>
-                        <statement name="NAME"></statement>
-                     </block>`;
-          let el = stringToElement(xml);
-          // 巢狀內容使用 parseBlock，不會亂掉
-          let nest_stmts = parseBlock(block_lines, 0);
-          chainBlocksWithNext(nest_stmts, el.querySelector('statement[name="NAME"]'));
-          chain.push(el);
-          i = j;
+
+        let fieldText = null;
+        if (m_try) {
+          fieldText = "try :";
+        } else if (m_except) {
+          fieldText = "except" + (m_except[1] ? " " + m_except[1] : "") + ":";
+        } else if (m_finally) {
+          fieldText = "finaly :";
         } else break;
+
+        let j = i + 1, block_lines = [];
+        while (j < n) {
+          let nl = lines[j];
+          if (!nl.trim()) { j++; continue; }
+          if (getIndent(nl) <= indent) break;
+          block_lines.push(nl);
+          j++;
+        }
+        let xml = `<block type="any_indent_statement">
+                      <field name="NAME">${escapeXml(fieldText)}</field>
+                      <statement name="NAME"></statement>
+                   </block>`;
+        let el = stringToElement(xml);
+        // 巢狀內容用 parseBlock
+        let nest_stmts = parseBlock(block_lines, 0);
+        chainBlocksWithNext(nest_stmts, el.querySelector('statement[name="NAME"]'));
+        chain.push(el);
+        i = j;
       }
       chainBlocksWithNext(chain, null);
       return [chain[0], i];
@@ -297,7 +306,6 @@
       document.getElementById('hint').innerText = '已下載 converted.xml！';
     }
 
-    // xml pretty
     window.vkbeautify=function(){function e(e,t){var n=0,r="",i=function(e){var t="",n=/\S/.test(e)?e.replace(/^\s+|\s+$/g,""):e;return n.length>0&&(t="\n"+new Array(n.length*t+1).join(" ")),t};return e.replace(/(\>)(\s*)(\<)(\/*)/g,"$1\n$3$4").split("\n").forEach(function(e){var s=0;/-\->/.test(e)?s=0:/^(\s*)<\//.test(e)?n--:/^(\s*)<[^!\/].*>.*$/.test(e)&&(s=1),r+=i(e.replace(/^\s+/,""))+e+"\n",n+=s}),r}return{xml:function(t){return e(t,2)}}}();
   </script>
 </body>
