@@ -4,79 +4,29 @@
   <meta charset="UTF-8">
   <title>Python 轉 Blockly XML 積木</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      font-family: sans-serif;
-      margin: 0;
-    }
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { height: 100vh; display: flex; flex-direction: column; background: #fff; font-family: sans-serif; margin: 0; }
     h2 { margin: 28px 0 16px 30px; }
-    #container {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      margin: 0 0 0 0;
-      min-height: 0;
-    }
-    #editor {
-      flex: 1 1 auto;
-      min-height: 0;
-      min-width: 0;
-      width: 96%;
-      margin: 0 auto;
-      border-radius: 6px;
-      border: 1.5px solid #aaa;
-      font-size: 16px;
-      background: #fff;
-      box-sizing: border-box;
-      /* 高度自適應填滿 container（扣掉上下按鈕空間）*/
-      height: 100%;
-    }
-    #controls {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 30px 10px 30px;
-      background: #fff;
-    }
-    button {
-      font-size: 18px; padding: 6px 22px;
-      background: #2186e6; color: #fff; border: none; border-radius: 5px; cursor: pointer;
-      transition: background 0.15s;
-    }
+    #container { flex: 1 1 auto; display: flex; flex-direction: column; margin: 0; min-height: 0; }
+    #editor { flex: 1 1 auto; min-height: 0; min-width: 0; width: 96%; margin: 0 auto; border-radius: 6px; border: 1.5px solid #aaa; font-size: 16px; background: #fff; box-sizing: border-box; height: 100%; }
+    #controls { display: flex; flex-direction: row; align-items: center; gap: 16px; padding: 16px 30px 10px 30px; background: #fff; }
+    button { font-size: 18px; padding: 6px 22px; background: #2186e6; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background 0.15s; }
     button:hover { background: #1866b7; }
     #hint { color: #27a624; margin-left:10px; }
-    @media (max-width: 700px) {
-      #editor { width: 98%; }
-      h2 { margin-left: 8px; }
-      #controls { padding-left: 8px; padding-right: 8px;}
-    }
+    @media (max-width: 700px) { #editor { width: 98%; } h2 { margin-left: 8px; } #controls { padding-left: 8px; padding-right: 8px;} }
   </style>
 </head>
 <body>
   <h2>Python 轉 Blockly XML 積木</h2>
-  <div id="container">
-    <div id="editor">// 在這裡貼上你的 Python 程式碼</div>
-  </div>
-  <div id="controls">
-    <button onclick="convertAndDownload()">轉換</button>
-    <span id="hint"></span>
-  </div>
+  <div id="container"><div id="editor">// 在這裡貼上你的 Python 程式碼</div></div>
+  <div id="controls"><button onclick="convertAndDownload()">轉換</button> <span id="hint"></span></div>
 
   <!-- Ace Editor Light Theme -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/mode-python.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/theme/chrome.js"></script>
   <script>
-    // 設定 Ace 編輯器（白底，會填滿父層）
+    // Ace 編輯器初始化
     let editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
     editor.session.setMode("ace/mode/python");
@@ -84,25 +34,22 @@
     editor.setShowPrintMargin(false);
     editor.setValue("", -1);
 
-    // 自動撐滿剩下空間
     function resizeEditor() {
       let h = window.innerHeight;
       let controlsH = document.getElementById('controls').offsetHeight;
       let h2H = document.querySelector('h2').offsetHeight;
-      // container 扣掉上下方空間
-      let target = h - controlsH - h2H - 32; // 微調
+      let target = h - controlsH - h2H - 32;
       document.getElementById('container').style.height = (target > 180 ? target : 180) + 'px';
       editor.resize();
     }
     window.addEventListener('resize', resizeEditor);
     setTimeout(resizeEditor, 60);
-    // 頁面載入後也做一次
     window.onload = resizeEditor;
 
-    // ================= 前處理 =================
+    // ----------- 前處理 -----------
     function preprocessPython(text) {
       const lines = text.replace(/\r/g, '').split('\n');
-      const pattern = /^( *)(if|elif|else|for|while|def)\b(.*?):(.*\S.*)$/;
+      const pattern = /^( *)(if|elif|else|for|while|def|try|except|finally)\b(.*?):(.*\S.*)$/;
       const out = [];
       for (let line of lines) {
         let m = pattern.exec(line);
@@ -116,22 +63,15 @@
       }
       return out;
     }
-
-    // ================== 主要轉換 ==================
-    function getIndent(line) {
-      return line.length - line.replace(/^ */, '').length;
-    }
-
+    function getIndent(line) { return line.length - line.replace(/^ */, '').length; }
     function escapeXml(str) {
       return String(str).replace(/[<>&'"]/g, c => (
         { '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }[c]
       ));
     }
-
     function stringToElement(xmlstr) {
       return new window.DOMParser().parseFromString(xmlstr, "application/xml").documentElement;
     }
-
     function chainBlocksWithNext(blocks, parent) {
       if (!blocks || blocks.length === 0) return;
       if (parent) parent.appendChild(blocks[0]);
@@ -153,6 +93,13 @@
         let indent = getIndent(line);
         let content = line.trim();
 
+        // try/except/finally group
+        if (/^try\s*:/.test(content)) {
+          let [tryBlock, nextIdx] = parseTryChain(lines, i, indent);
+          blocks.push(tryBlock); // 整個 group 當作一個 block
+          i = nextIdx;
+          continue;
+        }
         // if/elif/else chain
         if (/^if\s+.+:\s*$/.test(content)) {
           let [block, nextIdx] = parseIfChain(lines, i, indent);
@@ -161,7 +108,7 @@
           continue;
         }
         // 賦值
-        if (content.includes('=') && !/^(if|elif|while|for|def)/.test(content) && !content.startsWith('#')) {
+        if (content.includes('=') && !/^(if|elif|while|for|def|try|except|finally)/.test(content) && !content.startsWith('#')) {
           let [left, ...right] = content.split('=');
           let xml = `
             <block type="block_assign">
@@ -240,6 +187,42 @@
       return blocks;
     }
 
+    // 正確 next/巢狀串接 try/except/finally
+    function parseTryChain(lines, i, indent) {
+      const n = lines.length;
+      let chain = [];
+      while (i < n) {
+        let line = lines[i], content = line.trim(), cur_indent = getIndent(line);
+        if (cur_indent !== indent) break;
+        let m_try = /^try\s*:/.exec(content);
+        let m_except = /^except\s*:/.exec(content);
+        let m_finally = /^finally\s*:/.exec(content);
+        if (m_try || m_except || m_finally) {
+          let keyword = m_try ? "try :" : (m_except ? "except :" : "finaly :");
+          let j = i + 1, block_lines = [];
+          while (j < n) {
+            let nl = lines[j];
+            if (!nl.trim()) { j++; continue; }
+            if (getIndent(nl) <= indent) break;
+            block_lines.push(nl);
+            j++;
+          }
+          let xml = `<block type="any_indent_statement">
+                        <field name="NAME">${keyword}</field>
+                        <statement name="NAME"></statement>
+                     </block>`;
+          let el = stringToElement(xml);
+          // 巢狀內容使用 parseBlock，不會亂掉
+          let nest_stmts = parseBlock(block_lines, 0);
+          chainBlocksWithNext(nest_stmts, el.querySelector('statement[name="NAME"]'));
+          chain.push(el);
+          i = j;
+        } else break;
+      }
+      chainBlocksWithNext(chain, null);
+      return [chain[0], i];
+    }
+
     function parseIfChain(lines, i, indent) {
       let n = lines.length, chain = [];
       while (i < n) {
@@ -307,14 +290,14 @@
       let blob = new Blob([xmlstr], {type: "text/xml"});
       let a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = '111.xml';
+      a.download = 'converted.xml';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      document.getElementById('hint').innerText = '已下載 111.xml！';
+      document.getElementById('hint').innerText = '已下載 converted.xml！';
     }
 
-    // 極簡 xml pretty 工具
+    // xml pretty
     window.vkbeautify=function(){function e(e,t){var n=0,r="",i=function(e){var t="",n=/\S/.test(e)?e.replace(/^\s+|\s+$/g,""):e;return n.length>0&&(t="\n"+new Array(n.length*t+1).join(" ")),t};return e.replace(/(\>)(\s*)(\<)(\/*)/g,"$1\n$3$4").split("\n").forEach(function(e){var s=0;/-\->/.test(e)?s=0:/^(\s*)<\//.test(e)?n--:/^(\s*)<[^!\/].*>.*$/.test(e)&&(s=1),r+=i(e.replace(/^\s+/,""))+e+"\n",n+=s}),r}return{xml:function(t){return e(t,2)}}}();
   </script>
 </body>
