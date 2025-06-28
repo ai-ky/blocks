@@ -118,6 +118,7 @@
         <td>
           <input id="input_save" type="button" value="Save" style="font-size:16px">
           <input id="input_load" type="button" value="Load" style="font-size:16px">
+	  <input id="input_convert" type="button" value="python轉積木" style="font-size:16px">
         </td>
 		<td class="farSide"><select id="languageMenu"></select></td>
 		<td class="farSide">
@@ -1023,7 +1024,11 @@
       var data = new Blob([xmlText], {type: 'text/xml'});
       createAndDownloadFile(fileName, data);
     });
+    document.getElementById('input_convert').addEventListener('click', function() {
+  	window.open('https://ai-ky.github.io/blocks/py/code/python2xml.html', '_blank')
+    });
     
+      
 	document.getElementById('btn_copy_code').addEventListener('click', function() {
 	  window.navigator.clipboard.writeText(getCode())
 	  .then(() => {	alert('程式碼已複製到剪貼簿！');}).catch(err => {	
