@@ -487,67 +487,7 @@
 		</category>
 		<category name="mediapipe" colour="#a58c5b">
 			<category name="mediapip手部偵測" colour="#a58c5b">
-				<block type="import_mediapipe_as_mp"></block>
-				<block type="import_mediapipe_as_mp"><next><block type="opencv_import"><next><block type="mediapipe_hands_predefine"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="with_mp_hands_hands"><statement name="NAME"><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_BGR2RGB</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">False</field><next><block type="mediapipe_hands_process"><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">True</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_RGB2BGR</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME2"><block type="for_loop"><value name="NAME1"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value><value name="NAME2"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME3"><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow><block type="get_handslandmark"><field name="NAME1">hand_landmarks</field><field name="NAME">y</field><value name="NAME2"><shadow type="math_number"><field name="NUM">8</field></shadow><block type="math_number"><field name="NUM">8</field><comment pinned="true" h="45" w="170">取 index finger y座標</comment></block></value></block></value><next><block type="hands_mp_drawing"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value></block></next></block></statement></block></statement><next><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME2"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT">mediapipe hands demo</field></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></block></next></block></next></block></next></block></next></block></next></block></next></block>
-				</next>
-				<block type="mediapipe_hands_predefine"></block>
-				<block type="block_anyconcat">
-					<value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value>
-					<value name="NAME3"><block type="cv2_cvtcolor_"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value>
-				</block>	
-				<block type="mediapipe_hands_process">
-					<value name="NAME1">
-						<block type="variables_get">
-						<field name="VAR">result</field>
-						</block>
-					</value>
-					<value name="NAME2">
-						<block type="variables_get">
-						<field name="VAR">img</field>
-						</block>
-					</value>
-				</block>
-				<block type="with_mp_hands_hands"></block>
-				<block type="multi_hand_landmarks">
-					<value name="NAME1">
-						<block type="variables_get">
-						<field name="VAR">result</field>
-						</block>
-					</value>
-				</block>
-				<block type="for_loop">
-				<value name="NAME1">
-					<block type="variables_get">
-					<field name="VAR">hand_landmarks</field>
-					</block>
-				</value>
-				<value name="NAME2">
-					<block type="multi_hand_landmarks">
-						<value name="NAME1">
-						<block type="variables_get">
-						<field name="VAR">result</field>
-						</block>
-						</value>
-					</block>
-				</value>
-			</block>
-				<block type="get_handslandmark">
-					<value name="NAME2">
-						<shadow type="math_number"><field name="NUM">0</field></shadow>
-					</value>
-			</block>
-				<block type="hands_mp_drawing">
-				<value name="NAME1">
-					<block type="variables_get">
-						<field name="VAR">img</field>
-					</block>
-				</value>
-				<value name="NAME2">
-					<block type="variables_get">
-						<field name="VAR">hand_landmarks</field>
-					</block>
-				</value>
-			</block>
+				<block type="block_any_line"><field name="NAME">''' 先移除舊的package安裝指定 mediapipe 及 protobuf 版本如下</field><next><block type="block_any_line"><field name="NAME">pip uninstall mediapipe protobuf</field><next><block type="block_any_line"><field name="NAME">pip install mediapipe==0.10.7 protobuf==3.20.3</field><next><block type="block_any_line"><field name="NAME">'''</field><next><block type="import_mediapipe_as_mp"><next><block type="opencv_import"><next><block type="mediapipe_hands_predefine"><next><block type="cv2_vdeocapture"><field name="NAME1">0</field><field name="NAME2">cv2.CAP_DSHOW</field><next><block type="with_mp_hands_hands"><statement name="NAME"><block type="while"><value name="NAME"><block type="logic_boolean"><field name="NAME1">True</field></block></value><statement name="NAME1"><block type="cv2_cap_read"><field name="RET_NAME">ret</field><field name="IMG_NAME">img</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_flip"><field name="NAME2">1</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_BGR2RGB</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">False</field><next><block type="mediapipe_hands_process"><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">img</field></block></value><next><block type="img_flags_writeable"><field name="NAME1">img</field><field name="NAME2">True</field><next><block type="block_anyconcat"><field name="NAME2">=</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME3"><block type="cv2_cvtcolor_"><field name="NAME2">cv2.COLOR_RGB2BGR</field><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value></block></value><next><block type="if"><value name="NAME1"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME2"><block type="for_loop"><value name="NAME1"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value><value name="NAME2"><block type="multi_hand_landmarks"><field name="NAME2">multi_hand_landmarks</field><value name="NAME1"><block type="variables_get"><field name="VAR">result</field></block></value></block></value><statement name="NAME3"><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">abc</field></shadow><block type="get_handslandmark"><field name="NAME1">hand_landmarks</field><field name="NAME">y</field><value name="NAME2"><shadow type="math_number"><field name="NUM">8</field></shadow><block type="math_number"><field name="NUM">8</field><comment pinned="true" h="45" w="170">取 index finger y座標</comment></block></value></block></value><next><block type="hands_mp_drawing"><value name="NAME1"><block type="variables_get"><field name="VAR">img</field></block></value><value name="NAME2"><block type="variables_get"><field name="VAR">hand_landmarks</field></block></value></block></next></block></statement></block></statement><next><block type="if"><value name="NAME1"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="cv2_waitkey"><value name="NAME1"><shadow type="math_number"><field name="NUM">50</field></shadow></value></block></value><value name="NAME2"><block type="python_ord"><value name="python_ord_V"><shadow type="text"><field name="TEXT">q</field></shadow></value></block></value></block></value><statement name="NAME2"><block type="python_any_statement"><field name="NAME1">break</field></block></statement><next><block type="cv2_imshow"><value name="TITLE"><shadow type="text"><field name="TEXT">mediapipe hands demo</field></shadow></value><value name="IMG"><block type="variables_get"><field name="VAR">img</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></statement><next><block type="cv2_cap_release"><next><block type="cv2_destroyallwindows"></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block>
 			</category>	
 			<category name="mediapipe姿態偵測" colour="#a58c5b">
 				<block type="import_mediapipe_as_mp"></block>
