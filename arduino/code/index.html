@@ -529,7 +529,7 @@
     <!--<category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">-->
 	<category name="迴圈 LOOP" colour="%{BKY_LOOPS_HUE}">
 	  <block type="while"><value name="NAME"><block type="logic_operation"><field name="NAME3">==</field><value name="NAME1"><block type="block_any_"><field name="NAME">a</field></block></value><value name="NAME2"><block type="block_true_false"><field name="NAME1">true</field></block></value></block></value></block>
-	  <block type="block_for_"></block>
+	  <block type="block_comment"><field name="NAME">// 重覆迴圈: for(初始值條件;重複條件;覆加動作)</field><next><block type="block_for_"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">int </field><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></value><value name="NAME2"><block type="logic_operation"><field name="NAME3">&lt;=</field><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value><value name="NAME2"><block type="math_number"><field name="NUM">5</field></block></value></block></value><value name="NAME3"><block type="block_plusplus"><value name="NAME1"><block type="block_any_"><field name="NAME">i</field></block></value></block></value></block></next></block>
 	  <block type="block_continue"></block>
 	  <block type="block_break"></block>
 	  <!--
@@ -603,6 +603,7 @@
 
 </body>
 </html>
+
 
 
 
