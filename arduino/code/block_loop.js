@@ -61,7 +61,7 @@ Blockly.Python['block_for_'] = function(block) {
   var value_name3 = Blockly.Python.valueToCode(block, 'NAME3', Blockly.Python.ORDER_ATOMIC);
   var statements_name = Blockly.Python.statementToCode(block, 'NAME');
   // TODO: Assemble Python into code variable.
-  var code = 'for('+value_name1+';'+value_name2+';'+value_name3+'){\n+'+statements_name+'}\n';
+  var code = 'for('+ value_name1 + ';' + value_name2+ ';' + value_name3 + '){\n'+statements_name+'}\n';
   return code;
 };
 
@@ -100,4 +100,5 @@ Blockly.Python['block_break'] = function(block) {
   // TODO: Assemble Python into code variable.
   var code = 'break;\n';
   return code;
+
 };
