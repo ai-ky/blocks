@@ -412,7 +412,7 @@
 		<!--上下連接-->
 		<block type="tb_connection"></block>
 		<!--等號指定值-->
-		<block type="block_assignment_semicolon"></block>
+		<block type="block_assignment_semicolon"><value name="NAME1"><block type="block_any_"><field name="NAME">a</field></block></value><value name="NAME2"><block type="block_get_anyconcat"><field name="NAME2">+</field><value name="NAME1"><block type="block_any_"><field name="NAME">a</field></block></value><value name="NAME3"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block>
 		<block type="block_assign"></block>
 		<!--等號(左結合)-->
 		<block type="block_equal_"></block>
@@ -604,6 +604,7 @@
 
 </body>
 </html>
+
 
 
 
