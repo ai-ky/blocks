@@ -12,7 +12,7 @@ Blockly.Blocks['block_assignment_semicolon'] = {
         .appendField(";");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(80);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -994,4 +994,5 @@ Blockly.Python['block_dot1'] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
+
 
