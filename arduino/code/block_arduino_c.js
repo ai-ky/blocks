@@ -21,7 +21,7 @@ Blockly.Python['block_assignment_semicolon'] = function(block) {
   var value_name1 = Blockly.Python.valueToCode(block, 'NAME1', Blockly.Python.ORDER_ATOMIC);
   var value_name2 = Blockly.Python.valueToCode(block, 'NAME2', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = value_name1+'='+value_name2+'\n';
+  var code = value_name1+'='+value_name2+';\n';
   return code;
 };
 //<block type="block_pinmode"></block>
@@ -994,5 +994,6 @@ Blockly.Python['block_dot1'] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
+
 
 
