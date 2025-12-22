@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino C++ 轉 XML 積木轉換器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 編輯器樣式 */
+        .editor-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #1e1e1e;
+        }
+
+        .editor-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            white-space: pre-wrap;
+            overflow: auto;
+            border: none;
+            margin: 0;
+        }
+
+        /* 底部高亮層 */
+        #highlighting {
+            z-index: 1;
+            color: #d4d4d4;
+            pointer-events: none; /* 讓點擊穿透到 textarea */
+        }
+
+        /* 頂部輸入層 */
+        #code-input {
+            z-index: 2;
+            color: transparent;
+            background: transparent;
+            caret-color: white; /* 游標顏色 */
+            resize: none;
+            outline: none;
+        }
+
+        /* 語法高亮顏色 */
+        .kw-type { color: #569cd6; font-weight: bold; } /* void, int, String */
+        .kw-flow { color: #c586c0; font-weight: bold; } /* if, else, while, return */
+        .kw-func { color: #dcdcaa; } /* setup, loop, Serial... */
+        .kw-str { color: #ce9178; } /* "string" */
+        .kw-num { color: #b5cea8; } /* numbers */
+        .kw-comment { color: #6a9955; } /* // comments */
+        .kw-include { color: #9cdcfe; } /* #include */
+        
+        /* 滾動條樣式 */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #1e1e1e; }
+        ::-webkit-scrollbar-thumb { background: #444; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10 px-4">
+
+    <div class="w-full max-w-5xl bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">Arduino C++ 轉 XML 積木轉換器</h1>
+        
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold mb-2 text-gray-700">程式編輯區</h2>
+            <div class="editor-container">
+                <pre id="highlighting" class="editor-layer" aria-hidden="true"></pre>
+                <textarea id="code-input" class="editor-layer" spellcheck="false">//註解
+#include <Arduino.h>
+int i=0;
+unsigned int j=0;
+char c='s';
+int a;
+void sum(int a , int b){
+  return a+b;
+}
+Servo servo;
+void setup(){
+  Serial.begin(9600);
+  pinMode(7,INPUT);
+  pinMode(5,OUTPUT);
+  servo.attach(9);
+}
+void loop(){
+  if(ssid=="555"){
+    Serial.println(ssid.length());
+    Serial.print("123456");
+    sum(7,8);
+    digitalWrite(7,LOW);
+    digitalWrite(7,HIGH);
+    analogWrite(5,255);
+    servo.write(90);
+  }
+  else if(ssid=="666"){
+    i++;
+  }
+  else{
+    httpCode=sum(int a , int b);
+  }
+  delay(5);
+  while(True){
+    int jj=digitalRead(9);
+    int ii=digitalRead(8);
+    int ii=digitalRead(8);
+  }
+}</textarea>
+            </div>
+        </div>
+
+        <div class="flex gap-4 mb-6">
+            <button onclick="convertAndDownload()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow transition duration-200 flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                轉換並下載 XML
+            </button>
+            <span id="status-msg" class="text-sm text-gray-500 flex items-center"></span>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. 編輯器邏輯 (語法高亮) ---
+        const textarea = document.getElementById('code-input');
+        const pre = document.getElementById('highlighting');
+
+        function updateHighlighting() {
+            let text = textarea.value;
+            // 處理 HTML 特殊字元防止 XSS 或顯示錯誤
+            text = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            // 語法高亮正則表達式 Replacements
+            // 字串
+            text = text.replace(/(".*?")/g, '<span class="kw-str">$1</span>');
+            // 註解 (要在字串之後處理)
+            text = text.replace(/(\/\/.*)/g, '<span class="kw-comment">$1</span>');
+            // Include
+            text = text.replace(/(#include)/g, '<span class="kw-include">$1</span>');
+            // 關鍵字 (類型)
+            text = text.replace(/\b(void|int|float|String|boolean|bool|long|char|double|unsigned|const)\b/g, '<span class="kw-type">$1</span>');
+            // 關鍵字 (流程)
+            text = text.replace(/\b(if|else|while|for|return|break|continue)\b/g, '<span class="kw-flow">$1</span>');
+            // 數字
+            text = text.replace(/\b(\d+)\b/g, '<span class="kw-num">$1</span>');
+            // 常見函數與物件
+            text = text.replace(/\b(setup|loop|Serial|pinMode|digitalWrite|analogWrite|delay|Servo|begin|print|println|write|read|attach)\b/g, '<span class="kw-func">$1</span>');
+
+            // 結尾加上一個空格，防止最後一行滾動問題
+            if (text[text.length - 1] === "\n") {
+                text += " ";
+            }
+
+            pre.innerHTML = text;
+        }
+
+        function syncScroll() {
+            pre.scrollTop = textarea.scrollTop;
+            pre.scrollLeft = textarea.scrollLeft;
+        }
+
+        textarea.addEventListener('input', updateHighlighting);
+        textarea.addEventListener('scroll', syncScroll);
+        // 初始化
+        updateHighlighting();
+
+
+        // --- 2. 解析與轉換邏輯 (Core Logic) ---
+        
+        // 輔助函式：將 XML 特殊字元轉義
+        function escapeXml(unsafe) {
+            if (!unsafe) return "";
+            return unsafe.replace(/[<>&'"]/g, function (c) {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case '\'': return '&apos;';
+                    case '"': return '&quot;';
+                }
+            });
+        }
+
+        // 核心解析器：將程式碼拆解為語句 (Statements)
+        // 這是個簡單的遞迴解析器，用於處理 {} 區塊
+        function parseCodeToBlocks(code) {
+            code = code.trim();
+            if (!code) return "";
+
+            let blocks = [];
+            let buffer = "";
+            let balance = 0; // 用於追蹤 {}
+            let inString = false;
+            let i = 0;
+
+            while (i < code.length) {
+                let char = code[i];
+                
+                // 處理字串忽略 {}
+                if (char === '"' && code[i-1] !== '\\') {
+                    inString = !inString;
+                }
+
+                if (!inString) {
+                    if (char === '{') {
+                        balance++;
+                    } else if (char === '}') {
+                        balance--;
+                    } else if (char === ';') {
+                        if (balance === 0) {
+                            // 遇到分號且不在區塊內，這是一個完整語句
+                            blocks.push({ type: 'simple', content: buffer + ';' });
+                            buffer = "";
+                            i++;
+                            continue;
+                        }
+                    } else if (char === '\n') {
+                         // 遇到換行，檢查是否為預處理指令或單行註解
+                         let trimmed = buffer.trim();
+                         if (balance === 0) {
+                             if (trimmed.startsWith("//")) {
+                                 blocks.push({ type: 'comment', content: trimmed });
+                                 buffer = "";
+                                 i++;
+                                 continue;
+                             } else if (trimmed.startsWith("#")) {
+                                 blocks.push({ type: 'preprocessor', content: trimmed });
+                                 buffer = "";
+                                 i++;
+                                 continue;
+                             }
+                         }
+                    }
+                }
+
+                buffer += char;
+
+                // 檢查是否為區塊語句的結尾 (例如 if(...) { ... })
+                if (balance === 0 && !inString && buffer.trim().length > 0) {
+                    let trimmed = buffer.trim();
+                    if (trimmed.endsWith('}')) {
+                         blocks.push({ type: 'block', content: trimmed });
+                         buffer = "";
+                    }
+                }
+                
+                i++;
+            }
+            if (buffer.trim()) {
+                blocks.push({ type: 'simple', content: buffer.trim() }); // 剩餘部分
+            }
+
+            return generateXmlFromBlocks(blocks);
+        }
+
+        // 將語句陣列轉換為串聯的 XML (使用 <next>)
+        function generateXmlFromBlocks(blocks) {
+            if (blocks.length === 0) return "";
+
+            let currentBlock = blocks[0];
+            let restBlocks = blocks.slice(1);
+            let xml = "";
+
+            // 關鍵修正：這裡必須先 trim() 去除換行與縮排，否則正規表達式的 ^ 會失效
+            let content = currentBlock.content.trim(); 
+            let type = currentBlock.type;
+            
+            // --- 模式匹配邏輯 ---
+            
+            // 1. 註解
+            if (content.startsWith("//")) {
+                xml = `<block type="block_comment"><field name="NAME">${escapeXml(content)}</field>`;
+            } 
+            // 2. Include
+            else if (content.startsWith("#include")) {
+                // 支援 < > 和 " " 兩種引用方式，並統一轉為 <Lib.h> 格式
+                let lib = content.match(/#include\s*[<"](.*)[>"]/);
+                let libName = lib ? "&lt;" + lib[1] + "&gt;" : escapeXml(content);
+                xml = `<block type="block_include"><value name="NAME"><block type="block_any_"><field name="NAME">${libName}</field></block></value>`;
+            }
+            // 3. Setup 函數
+            else if (content.match(/^void\s+setup\s*\(\)\s*\{/)) {
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                xml = `<block type="block_setupfunc"><statement name="NAME">${innerXml}</statement>`;
+            }
+            // 4. Loop 函數
+            else if (content.match(/^void\s+loop\s*\(\)\s*\{/)) {
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                xml = `<block type="block_loopfunc"><statement name="NAME">${innerXml}</statement>`;
+            }
+            // 5. 自定義函數 (e.g., void sum(int a, int b))
+            else if (content.match(/^void\s+(\w+)\s*\((.*)\)\s*\{/)) {
+                let match = content.match(/^void\s+(\w+)\s*\((.*)\)\s*\{/);
+                let funcName = match[1];
+                let args = match[2];
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                
+                // 構造函數定義 XML
+                xml = `<block type="block_big_parantheses_statement"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">void </field><value name="NAME1"><block type="block_func1"><value name="NAME1"><block type="block_any_"><field name="NAME">${funcName}</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">${args}</field></block></value></block></value></block></value><statement name="NAME2">${innerXml}</statement>`;
+            }
+            // 6. If / Else If / Else
+            else if (content.match(/^if\s*\((.*)\)\s*\{/)) {
+                let match = content.match(/^if\s*\((.*)\)\s*\{/);
+                let condition = match[1]; // 需要注意這裡只抓第一層括號，若條件內有括號可能會有問題，簡單處理先
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                xml = `<block type="if"><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(condition)}</field></block></value><statement name="NAME2">${innerXml}</statement>`;
+            }
+            else if (content.match(/^else\s+if\s*\((.*)\)\s*\{/)) {
+                let match = content.match(/^else\s+if\s*\((.*)\)\s*\{/);
+                let condition = match[1];
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                xml = `<block type="elseIf"><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(condition)}</field></block></value><statement name="NAME2">${innerXml}</statement>`;
+            }
+            else if (content.match(/^else\s*\{/)) {
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                xml = `<block type="else"><statement name="NAME2">${innerXml}</statement>`;
+            }
+            // 7. While
+            else if (content.match(/^while\s*\((.*)\)\s*\{/)) {
+                let match = content.match(/^while\s*\((.*)\)\s*\{/);
+                let condition = match[1];
+                let body = extractBody(content);
+                let innerXml = parseCodeToBlocks(body);
+                xml = `<block type="while"><value name="NAME"><block type="block_any_"><field name="NAME">${escapeXml(condition)}</field></block></value><statement name="NAME1">${innerXml}</statement>`;
+            }
+            // 8. Serial.print / println / begin
+            else if (content.includes("Serial.")) {
+                let match = content.match(/Serial\.(\w+)\((.*)\);/);
+                if (match) {
+                    let method = match[1];
+                    let args = match[2];
+                    xml = `<block type="block_serial"><field name="NAME2">${method}</field><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(args)}</field></block></value>`;
+                } else {
+                    // Fallback for generic
+                     xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(content.replace(';', ''))}</field></block></value>`;
+                }
+            }
+            // 9. PinMode
+            else if (content.match(/pinMode\((.*)\);/)) {
+                let args = content.match(/pinMode\((.*)\);/)[1].split(',');
+                let pin = args[0].trim();
+                let mode = args[1].trim();
+                xml = `<block type="block_pinmode"><field name="NAME2">${mode}</field><value name="NAME1"><block type="block_any_"><field name="NAME">${pin}</field></block></value>`;
+            }
+            // 10. DigitalWrite
+            else if (content.match(/digitalWrite\((.*)\);/)) {
+                let args = content.match(/digitalWrite\((.*)\);/)[1].split(',');
+                let pin = args[0].trim();
+                let val = args[1].trim();
+                // 檢查是否是 HIGH/LOW
+                let valBlock = (val === 'HIGH' || val === 'LOW') ? 
+                    `<block type="block_highlow"><field name="NAME">${val}</field></block>` :
+                    `<block type="block_any_"><field name="NAME">${val}</field></block>`;
+                
+                xml = `<block type="block_digitalwrite"><value name="NAME1"><block type="block_any_"><field name="NAME">${pin}</field></block></value><value name="NAME2">${valBlock}</value>`;
+            }
+            // 11. AnalogWrite
+            else if (content.match(/analogWrite\((.*)\);/)) {
+                let args = content.match(/analogWrite\((.*)\);/)[1].split(',');
+                let pin = args[0].trim();
+                let val = args[1].trim();
+                xml = `<block type="block_analogwrite"><value name="NAME1"><block type="block_any_"><field name="NAME">${pin}</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">${val}</field></block></value>`;
+            }
+            // 12. Delay
+            else if (content.match(/delay\((.*)\);/)) {
+                let val = content.match(/delay\((.*)\);/)[1];
+                xml = `<block type="block_delay"><value name="NAME"><block type="block_any_"><field name="NAME">${val}</field></block></value>`;
+            }
+            // 13. Servo Declaration: Servo servo;
+            else if (content.match(/^Servo\s+(\w+);/)) {
+                let name = content.match(/^Servo\s+(\w+);/)[1];
+                xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_get_anyconcat"><field name="NAME2"> </field><value name="NAME1"><block type="block_any_"><field name="NAME">Servo</field></block></value><value name="NAME3"><block type="block_any_"><field name="NAME">${name}</field></block></value></block></value>`;
+            }
+            // 14. Servo Methods: servo.attach(9) / servo.write(90)
+            else if (content.match(/(\w+)\.(attach|write)\((.*)\);/)) {
+                 let match = content.match(/(\w+)\.(attach|write)\((.*)\);/);
+                 let varName = match[1];
+                 let method = match[2];
+                 let val = match[3];
+                 let type = method === "attach" ? "block_servofunction" : "block_servofunction"; // 範例中 attach 跟 write 都是 servofunction 結構
+                 
+                 // 根據範例，數字有時用 math_number 有時用 block_any_，這裡盡量根據範例邏輯
+                 let valBlock = "";
+                 if(!isNaN(val) && method === "write") {
+                     valBlock = `<block type="math_number"><field name="NUM">${val}</field></block>`;
+                 } else {
+                     valBlock = `<block type="block_any_"><field name="NAME">${val}</field></block>`;
+                 }
+
+                 xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_servofunction"><field name="NAME2">${method}</field><value name="NAME1"><block type="block_any_"><field name="NAME">${varName}</field></block></value><value name="NAME3">${valBlock}</value></block></value>`;
+            }
+            // 15. Return
+            else if (content.match(/^return\s+(.*);/)) {
+                let retVal = content.match(/^return\s+(.*);/)[1];
+                xml = `<block type="block_semicolon_"><value name="NAME1"><block type="cammaconcat"><field name="NAME3">return </field><value name="NAME1"><block type="block_any_"><field name="NAME">${retVal}</field></block></value></block></value>`;
+            }
+            // 16. Variable Declaration with Assignment (e.g., String ssid="123456"; int i=0; unsigned int j=0;)
+            // 改良：支援多單字型別分離 (Type Splitting)
+            else if (content.match(/^(.+)\s+(\w+)\s*=\s*(.*);/)) {
+                let match = content.match(/^(.+)\s+(\w+)\s*=\s*(.*);/);
+                let fullType = match[1].trim(); // 例如 "unsigned int"
+                let name = match[2];
+                let val = match[3];
+
+                // 決定數值區塊
+                let valBlock = "";
+                if (val.match(/digitalRead\((.*)\)/)) {
+                    let pin = val.match(/digitalRead\((.*)\)/)[1];
+                    valBlock = `<block type="block_digitalread"><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(pin)}</field></block></value></block>`;
+                } else if (val.match(/analogRead\((.*)\)/)) {
+                    let pin = val.match(/analogRead\((.*)\)/)[1];
+                    valBlock = `<block type="block_analogread"><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(pin)}</field></block></value></block>`;
+                } else {
+                    valBlock = `<block type="block_any_"><field name="NAME">${escapeXml(val)}</field></block>`;
+                }
+
+                // 建立核心賦值積木 (block_equal_)
+                let coreBlock = `<block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">${escapeXml(name)}</field></block></value><value name="NAME2">${valBlock}</value></block>`;
+
+                // 處理型別拆分：將 "unsigned int" 拆成 ["unsigned", "int"]
+                let typeParts = fullType.split(/\s+/);
+                let currentXml = coreBlock;
+                
+                // 從後往前包裹，建立巢狀 cammaconcat
+                for (let k = typeParts.length - 1; k >= 0; k--) {
+                    let t = typeParts[k];
+                    // 每個型別部分後面都加一個空白
+                    let tName = escapeXml(t) + " "; 
+                    currentXml = `<block type="cammaconcat"><field name="NAME3">${tName}</field><value name="NAME1">${currentXml}</value></block>`;
+                }
+
+                xml = `<block type="block_semicolon_"><value name="NAME1">${currentXml}</value>`;
+            }
+            // 16.5 Variable Declaration WITHOUT Assignment (e.g. int a; unsigned int b;)
+            // 加強：排除含有 "=" 的情況，避免誤判賦值語句 (如 a = 10;)
+            else if (content.match(/^(.+)\s+(\w+);/) && !content.includes('=')) {
+                 let match = content.match(/^(.+)\s+(\w+);/);
+                 let fullType = match[1].trim(); 
+                 let name = match[2];
+                 
+                 // 建立核心變數積木 (只包名稱，沒有 equal)
+                 let coreBlock = `<block type="block_any_"><field name="NAME">${escapeXml(name)}</field></block>`;
+                 
+                 // 處理型別拆分
+                 let typeParts = fullType.split(/\s+/);
+                 let currentXml = coreBlock;
+
+                 for (let k = typeParts.length - 1; k >= 0; k--) {
+                    let t = typeParts[k];
+                    let tName = escapeXml(t) + " "; 
+                    currentXml = `<block type="cammaconcat"><field name="NAME3">${tName}</field><value name="NAME1">${currentXml}</value></block>`;
+                }
+                xml = `<block type="block_semicolon_"><value name="NAME1">${currentXml}</value>`;
+            }
+            // 17. Simple Assignment (e.g., i++; or httpCode=... or ii=digitalRead(8))
+            else if (content.match(/(.*);/)) {
+                let clean = content.replace(';', '').trim();
+                
+                // 檢查是否是 httpCode=sum(...) 這種賦值
+                if(clean.includes('=')) {
+                     let parts = clean.split('=');
+                     let lhs = parts[0].trim();
+                     let rhs = parts.slice(1).join('=').trim();
+                     
+                     // 特判：如果 rhs 是函數呼叫 (sum(int a, int b))
+                     if(rhs.match(/^(\w+)\(.*\)$/) && !rhs.includes("Read")) { // 排除 Read 函數，交給下面處理
+                         let funcParts = rhs.match(/^(\w+)\((.*)\)$/);
+                         let fName = funcParts[1];
+                         let fArgs = funcParts[2];
+                         xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">${lhs}</field></block></value><value name="NAME2"><block type="block_func1"><value name="NAME1"><block type="block_any_"><field name="NAME">${fName}</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">${fArgs}</field></block></value></block></value></block></value>`;
+                     } 
+                     // 讀取函數 (digitalRead/analogRead) - 純賦值 (ii = digitalRead(8))
+                     else if (rhs.includes("digitalRead") || rhs.includes("analogRead")) {
+                         let readType = rhs.includes("digitalRead") ? "block_digitalread" : "block_analogread";
+                         // 簡單抓取 pin 碼
+                         let pinMatch = rhs.match(/\((.*)\)/);
+                         let pin = pinMatch ? pinMatch[1] : "";
+                         
+                         // 保留之前的 intii 處理邏輯，但其實現在上方 replace 全形空白後，大部分會走 Logic 16
+                         xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">${lhs}</field></block></value><value name="NAME2"><block type="${readType}"><value name="NAME1"><block type="block_any_"><field name="NAME">${pin}</field></block></value></block></value></block></value>`;
+                     }
+                     else {
+                         xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_equal_"><value name="NAME1"><block type="block_any_"><field name="NAME">${lhs}</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">${rhs}</field></block></value></block></value>`;
+                     }
+                } else {
+                    // 純表達式 e.g. i++; sum(7,8);
+                    // 檢查是否為函數呼叫
+                    if(clean.match(/^(\w+)\((.*)\)$/)) {
+                         let funcParts = clean.match(/^(\w+)\((.*)\)$/);
+                         let fName = funcParts[1];
+                         let fArgs = funcParts[2];
+                         // 範例中的 sum(7,8) 使用 block_func1
+                         xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_func1"><value name="NAME1"><block type="block_any_"><field name="NAME">${fName}</field></block></value><value name="NAME2"><block type="block_any_"><field name="NAME">${fArgs}</field></block></value></block></value>`;
+                    } else {
+                        xml = `<block type="block_semicolon_"><value name="NAME1"><block type="block_any_"><field name="NAME">${clean}</field></block></value>`;
+                    }
+                }
+            }
+            // Fallback (未知語句)
+            else {
+                xml = `<block type="block_any_"><field name="NAME">${escapeXml(content)}</field>`;
+            }
+
+            // 遞迴處理下一個語句並放入 <next>
+            if (restBlocks.length > 0) {
+                let nextXml = generateXmlFromBlocks(restBlocks);
+                if (nextXml) {
+                    xml += `<next>${nextXml}</next>`;
+                }
+            }
+
+            // 閉合標籤
+            xml += `</block>`;
+            return xml;
+        }
+
+        // 提取 {} 內的內容
+        function extractBody(fullBlockString) {
+            let start = fullBlockString.indexOf('{');
+            let end = fullBlockString.lastIndexOf('}');
+            if (start === -1 || end === -1) return "";
+            return fullBlockString.substring(start + 1, end);
+        }
+
+        // 格式化 XML 函式
+        function formatXml(xml) {
+            var formatted = '';
+            // 在標籤之間加入換行符號
+            var reg = /(>)(<)(\/*)/g;
+            xml = xml.replace(reg, '$1\r\n$2$3');
+            var pad = 0;
+            
+            // 逐行處理縮排
+            xml.split('\r\n').forEach(function(node) {
+                var indent = 0;
+                // 1. 同一行有開也有關 (例如 <field>...</field>)，縮排不變
+                if (node.match(/.+<\/\w[^>]*>$/)) {
+                    indent = 0;
+                } 
+                // 2. 只有關閉標籤 (例如 </block>)，縮排先減少
+                else if (node.match(/^<\/\w/)) {
+                    if (pad > 0) {
+                        pad -= 1;
+                    }
+                } 
+                // 3. 只有開啟標籤 (例如 <block>)，下一行縮排要增加
+                else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+                    indent = 1;
+                } 
+                // 4. 其他情況
+                else {
+                    indent = 0;
+                }
+
+                var padding = '';
+                for (var i = 0; i < pad; i++) {
+                    padding += '  '; // 兩格空白縮排
+                }
+
+                formatted += padding + node + '\r\n';
+                pad += indent;
+            });
+            return formatted;
+        }
+
+        // 轉換並下載
+        function convertAndDownload() {
+            // 1. 取得程式碼並立即進行全形空白消毒
+            let code = textarea.value;
+            code = code.replace(/\u3000/g, ' '); 
+
+            const statusMsg = document.getElementById('status-msg');
+            
+            try {
+                // 開始轉換
+                let xmlBody = parseCodeToBlocks(code);
+                // 加上前後包裹標籤
+                let xmlContent = `<xml xmlns="https://developers.google.com/blockly/xml">${xmlBody}</xml>`;
+                
+                // 格式化 XML
+                xmlContent = formatXml(xmlContent);
+
+                // 創建 Blob 物件
+                const blob = new Blob([xmlContent], { type: 'text/xml' });
+                const url = URL.createObjectURL(blob);
+                
+                // 創建下載連結
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'arduino_blocks.xml';
+                document.body.appendChild(a);
+                a.click();
+                
+                // 清理
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                statusMsg.textContent = "轉換成功！已開始下載。";
+                statusMsg.className = "text-sm text-green-600 flex items-center";
+            } catch (e) {
+                console.error(e);
+                statusMsg.textContent = "轉換失敗，請檢查程式碼格式。";
+                statusMsg.className = "text-sm text-red-600 flex items-center";
+            }
+        }
+    </script>
+</body>
+</html>
