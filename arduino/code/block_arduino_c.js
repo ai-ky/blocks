@@ -36,6 +36,8 @@ Blockly.Blocks['block_pinmode'] = {
         .appendField(",")
         .appendField(new Blockly.FieldDropdown([["INPUT","INPUT"], ["OUTPUT","OUTPUT"], ["INPUT_PULLUP","INPUT_PULLUP"]]), "NAME2")
         .appendField(")");
+	this.appendDummyInput()//ky
+        .appendField(";"); //ky
     this.setInputsInline(true);
    // this.setOutput(true, null);
     this.setPreviousStatement(true, null);
@@ -994,6 +996,7 @@ Blockly.Python['block_dot1'] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
+
 
 
 
