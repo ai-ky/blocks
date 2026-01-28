@@ -1025,10 +1025,12 @@
         Blockly.svgResize(Blockly.mainWorkspace);
 		//Blockly.mainWorkspace.render();// 強制 workspace 重新渲染
       });
-	  /*
+	  
       document.addEventListener('keyup', handleKeyup);
       function handleKeyup(e){
-        if(e.keyCode === 27)   lastSelected_blocklyTreeRow = null;
+        if(e.keyCode === 27){
+          lastSelected_blocklyTreeRow = null;
+        }
         if(e.keyCode === 38 || e.keyCode === 40) {
           var blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
           lastSelected_blocklyTreeRow = blocklyTreeRow;
@@ -1048,7 +1050,12 @@
           lastSelected_blocklyTreeRow = null;
         }
       }
-   
+    /* 
+	if (blocklyCanvas) {
+		blocklyCanvas.addEventListener('click', (event) => {
+			if (event.button === 0) console.log("blocklyCanvas click");
+		});
+	}*/
 
       function handleClick(e) {
         var blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
@@ -1105,15 +1112,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
