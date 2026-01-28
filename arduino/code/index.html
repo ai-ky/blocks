@@ -308,9 +308,6 @@
       var topElement = document.querySelector("body > .left-section");
       if(topElement) topElement.addEventListener('click', handleTopClick);
 	  else console.log("topElement not found");
-      
-      if(content_blocks) content_blocks.addEventListener('click', handleClick);
-      
       function handleTopClick(e) {
 		//navigator.clipboard.writeText(getCode())
         if(lastSelected_blocklyTreeRow != null) {
@@ -318,11 +315,13 @@
           lastSelected_blocklyTreeRow = null;
         }
       }
-    
+		
+      if(content_blocks) content_blocks.addEventListener('click', handleClick);
       function handleClick(e) {
         var blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
         var e_tab_hint1 = document.querySelector("#tab_hint1");
         if(blocklyTreeRow != null) {
+		  /*
           var hintHTML = "<font size=3>(按住shift鍵拖曳可維持選單,按住ctrl鍵可拖曳單一方塊)</font>";
           e_tab_hint1.innerHTML = hintHTML;
           let tabText = "opencv影像處理";
@@ -349,7 +348,8 @@
             let linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';
             e_tab_hint1.innerHTML = linkHTML + hintHTML;
           }
-          tabText = "youtube工具";
+		  */
+          tabText = "伺服馬達";
           ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=7";
           if(blocklyTreeRow.textContent.includes(tabText)){
             let linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';
@@ -604,6 +604,7 @@
 
 </body>
 </html>
+
 
 
 
