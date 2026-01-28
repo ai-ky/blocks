@@ -356,6 +356,7 @@
             e_tab_hint1.innerHTML = linkHTML + hintHTML;
           }
           e_tab_hint1.style.visibility = "visible";
+		  lastSelected_blocklyTreeRow = blocklyTreeRow;
         } 
 		else 
 		{
@@ -365,8 +366,6 @@
             if(lastSelected_blocklyTreeRow != null && e.shiftKey) {
               lastSelected_blocklyTreeRow.click();
             }
-          } else {
-            lastSelected_blocklyTreeRow = blocklyTreeRow;
           }
         }
       }
@@ -605,6 +604,7 @@
 
 </body>
 </html>
+
 
 
 
