@@ -1025,7 +1025,7 @@
         Blockly.svgResize(Blockly.mainWorkspace);
 		//Blockly.mainWorkspace.render();// 強制 workspace 重新渲染
       });
-	  
+	  /*
       document.addEventListener('keyup', handleKeyup);
       function handleKeyup(e){
         if(e.keyCode === 27){
@@ -1036,13 +1036,9 @@
           lastSelected_blocklyTreeRow = blocklyTreeRow;
         }
       }
-      
       var topElement = document.querySelector("body > .left-section");
       if(topElement) topElement.addEventListener('click', handleTopClick);
 	  else console.log("topElement not found");
-      
-      if(content_blocks) content_blocks.addEventListener('click', handleClick);
-      
       function handleTopClick(e) {
 		//navigator.clipboard.writeText(getCode())
         if(lastSelected_blocklyTreeRow != null) {
@@ -1050,25 +1046,23 @@
           lastSelected_blocklyTreeRow = null;
         }
       }
-    /* 
-	if (blocklyCanvas) {
-		blocklyCanvas.addEventListener('click', (event) => {
-			if (event.button === 0) console.log("blocklyCanvas click");
-		});
-	}*/
-
+	  */      
+	  if(content_blocks) content_blocks.addEventListener('click', handleClick);
       function handleClick(e) {
         var blocklyTreeRow = document.querySelector(".blocklyTreeRow.blocklyTreeSelected");
         var e_tab_hint1 = document.querySelector("#tab_hint1");
         if(blocklyTreeRow != null) {
           var hintHTML = "<font size=3>(按住shift鍵拖曳可維持選單,按住ctrl鍵可拖曳單一方塊)</font>";
           e_tab_hint1.innerHTML = hintHTML;
+		  
+		  
           let tabText = "opencv影像處理";
           let ytLink = "https://www.youtube.com/watch?v=1ctcuUD7ci8&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=1";
           if(blocklyTreeRow.textContent.includes(tabText)){
             let linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';
             e_tab_hint1.innerHTML = linkHTML + hintHTML;
           }
+		  
           tabText = "mediapip手部偵測";
           ytLink = "https://www.youtube.com/watch?v=MnowZOsAVvQ&list=PLPE0QG97eXpji7ijpNc2iGu21Q4Y0xJ3s&index=4";
           if(blocklyTreeRow.textContent.includes(tabText)){
@@ -1093,6 +1087,7 @@
             let linkHTML = '<a href="'+ytLink+'">'+tabText+'示範&nbsp</a>';
             e_tab_hint1.innerHTML = linkHTML + hintHTML;
           }
+		  lastSelected_blocklyTreeRow = blocklyTreeRow;
           e_tab_hint1.style.visibility = "visible";
         } 
 		else 
@@ -1103,8 +1098,6 @@
             if(lastSelected_blocklyTreeRow != null && e.shiftKey) {
               lastSelected_blocklyTreeRow.click();
             }
-          } else {
-            lastSelected_blocklyTreeRow = blocklyTreeRow;
           }
         }
       }
@@ -1112,3 +1105,5 @@
   </script>
 </body>
 </html>
+
+
